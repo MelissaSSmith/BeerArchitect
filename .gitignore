@@ -1,6 +1,5 @@
 .fake/
 .vs/
-.paket/
 obj/
 bin/
 packages/
