@@ -1,0 +1,101 @@
+[
+    {
+        "Id": 1,
+        "Name": "Abbey Malt",
+        "Country": "German",
+        "Category": "Grain",
+        "Type": "Base Malt",
+        "DegressLovibond": 17,
+        "PPG": 33 
+    },
+    {
+        "Id": 2,
+        "Name": "Acerola",
+        "Country": "",
+        "Category": "Friut",
+        "Type": "Fruit",
+        "DegressLovibond": 0,
+        "PPG": 1.5 
+    },
+    {
+        "Id": 3,
+        "Name": "Acidulated Malt",
+        "Country": "German",
+        "Category": "Grain",
+        "Type": "Acidulated Malt",
+        "DegressLovibond": 3.4,
+        "PPG": 27 
+    },
+    {
+        "Id": 4,
+        "Name": "Agave Nectar",
+        "Country": "",
+        "Category": "Sugar",
+        "Type": "Sugar",
+        "DegressLovibond": 2,
+        "PPG": 52.5 
+    },
+    {
+        "Id": 5,
+        "Name": "Ale Malt",
+        "Country": "Ireland",
+        "Category": "Grain",
+        "Type": "Base Malt",
+        "DegressLovibond": 3,
+        "PPG": 37 
+    },
+    {
+        "Id": 6,
+        "Name": "Ale Malt",
+        "Country": "New Zealand",
+        "Category": "Grain",
+        "Type": "Base Malt",
+        "DegressLovibond": 3.04569,
+        "PPG": 37.4 
+    },
+    {
+        "Id": 7,
+        "Name": "Amber",
+        "Country": "United Kingdom",
+        "Category": "Grain",
+        "Type": "Base Malt",
+        "DegressLovibond": 27,
+        "PPG": 32 
+    },
+    {
+        "Id": 8,
+        "Name": "American Ale Malt",
+        "Country": "New Zealand",
+        "Category": "Grain",
+        "Type": "Base Malt",
+        "DegressLovibond": 2.53807,
+        "PPG": 37.3 
+    },
+    {
+        "Id": 9,
+        "Name": "Apple",
+        "Country": "",
+        "Category": "Fruit",
+        "Type": "Fruit",
+        "DegressLovibond": 0,
+        "PPG": 5.6 
+    },
+    {
+        "Id": 10,
+        "Name": "Apricot",
+        "Country": "",
+        "Category": "Fruit",
+        "Type": "Fruit",
+        "DegressLovibond": 0,
+        "PPG": 4.05 
+    },
+    {
+        "Id": 11,
+        "Name": "Apricot (dried)",
+        "Country": "",
+        "Category": "Fruit",
+        "Type": "Fruit",
+        "DegressLovibond": 0,
+        "PPG": 17.9 
+    }
+]
