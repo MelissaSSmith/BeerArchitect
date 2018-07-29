@@ -1,101 +1,3026 @@
 [
     {
-        "Id": 1,
-        "Name": "Abbey Malt",
-        "Country": "German",
-        "Category": "Grain",
-        "Type": "Base Malt",
-        "DegressLovibond": 17,
-        "PPG": 33 
+      "Id": 1,
+      "Name": "Abbey Malt",
+      "Country": "German",
+      "Category": "Grain",
+      "Type": "Base malt",
+      "DegreesLovibond": 17,
+      "PPG": 33
     },
     {
-        "Id": 2,
-        "Name": "Acerola",
-        "Country": "",
-        "Category": "Friut",
-        "Type": "Fruit",
-        "DegressLovibond": 0,
-        "PPG": 1.5 
+      "Id": 2,
+      "Name": "Acerola",
+      "Country": "",
+      "Category": "Fruit",
+      "Type": "Fruit",
+      "DegreesLovibond": 0,
+      "PPG": 1.5
     },
     {
-        "Id": 3,
-        "Name": "Acidulated Malt",
-        "Country": "German",
-        "Category": "Grain",
-        "Type": "Acidulated Malt",
-        "DegressLovibond": 3.4,
-        "PPG": 27 
+      "Id": 3,
+      "Name": "Acidulated Malt",
+      "Country": "German",
+      "Category": "Grain",
+      "Type": "Acidulated malt",
+      "DegreesLovibond": 3.4,
+      "PPG": 27
     },
     {
-        "Id": 4,
-        "Name": "Agave Nectar",
-        "Country": "",
-        "Category": "Sugar",
-        "Type": "Sugar",
-        "DegressLovibond": 2,
-        "PPG": 52.5 
+      "Id": 4,
+      "Name": "Agave Nectar",
+      "Country": "",
+      "Category": "Sugar",
+      "Type": "Sugar",
+      "DegreesLovibond": 2,
+      "PPG": 52.5
     },
     {
-        "Id": 5,
-        "Name": "Ale Malt",
-        "Country": "Ireland",
-        "Category": "Grain",
-        "Type": "Base Malt",
-        "DegressLovibond": 3,
-        "PPG": 37 
+      "Id": 5,
+      "Name": "Ale Malt",
+      "Country": "Ireland",
+      "Category": "Grain",
+      "Type": "Base malt",
+      "DegreesLovibond": 3,
+      "PPG": 37
     },
     {
-        "Id": 6,
-        "Name": "Ale Malt",
-        "Country": "New Zealand",
-        "Category": "Grain",
-        "Type": "Base Malt",
-        "DegressLovibond": 3.04569,
-        "PPG": 37.4 
+      "Id": 6,
+      "Name": "Ale Malt",
+      "Country": "New Zealand",
+      "Category": "Grain",
+      "Type": "Base malt",
+      "DegreesLovibond": 3.04569,
+      "PPG": 37.4
     },
     {
-        "Id": 7,
-        "Name": "Amber",
-        "Country": "United Kingdom",
-        "Category": "Grain",
-        "Type": "Base Malt",
-        "DegressLovibond": 27,
-        "PPG": 32 
+      "Id": 7,
+      "Name": "Amber",
+      "Country": "United Kingdom",
+      "Category": "Grain",
+      "Type": "Base malt",
+      "DegreesLovibond": 27,
+      "PPG": 32
     },
     {
-        "Id": 8,
-        "Name": "American Ale Malt",
-        "Country": "New Zealand",
-        "Category": "Grain",
-        "Type": "Base Malt",
-        "DegressLovibond": 2.53807,
-        "PPG": 37.3 
+      "Id": 8,
+      "Name": "American Ale Malt",
+      "Country": "New Zealand",
+      "Category": "Grain",
+      "Type": "Base malt",
+      "DegreesLovibond": 2.53807,
+      "PPG": 37.3
     },
     {
-        "Id": 9,
-        "Name": "Apple",
-        "Country": "",
-        "Category": "Fruit",
-        "Type": "Fruit",
-        "DegressLovibond": 0,
-        "PPG": 5.6 
+      "Id": 9,
+      "Name": "Apple",
+      "Country": "",
+      "Category": "Fruit",
+      "Type": "Fruit",
+      "DegreesLovibond": 0,
+      "PPG": 5.6
     },
     {
-        "Id": 10,
-        "Name": "Apricot",
-        "Country": "",
-        "Category": "Fruit",
-        "Type": "Fruit",
-        "DegressLovibond": 0,
-        "PPG": 4.05 
+      "Id": 10,
+      "Name": "Apricot",
+      "Country": "",
+      "Category": "Fruit",
+      "Type": "Fruit",
+      "DegreesLovibond": 0,
+      "PPG": 4.05
     },
     {
-        "Id": 11,
-        "Name": "Apricot (dried)",
-        "Country": "",
-        "Category": "Fruit",
-        "Type": "Fruit",
-        "DegressLovibond": 0,
-        "PPG": 17.9 
+      "Id": 11,
+      "Name": "Apricot (dried)",
+      "Country": "",
+      "Category": "Fruit",
+      "Type": "Fruit",
+      "DegreesLovibond": 0,
+      "PPG": 17.9
+    },
+    {
+      "Id": 12,
+      "Name": "Aromatic",
+      "Country": "Belgian",
+      "Category": "Grain",
+      "Type": "Roasted malt",
+      "DegreesLovibond": 38,
+      "PPG": 33
+    },
+    {
+      "Id": 13,
+      "Name": "Aromatic Malt",
+      "Country": "American",
+      "Category": "Grain",
+      "Type": "Base malt",
+      "DegreesLovibond": 20,
+      "PPG": 35
+    },
+    {
+      "Id": 14,
+      "Name": "Ashbourne Mild",
+      "Country": "American",
+      "Category": "Grain",
+      "Type": "Base malt",
+      "DegreesLovibond": 5.3,
+      "PPG": 30
+    },
+    {
+      "Id": 15,
+      "Name": "Aurora Malt",
+      "Country": "New Zealand",
+      "Category": "Grain",
+      "Type": "Base malt",
+      "DegreesLovibond": 29.4416,
+      "PPG": 37.2
+    },
+    {
+      "Id": 16,
+      "Name": "Banana",
+      "Country": "",
+      "Category": "Fruit",
+      "Type": "Fruit",
+      "DegreesLovibond": 0,
+      "PPG": 7.65
+    },
+    {
+      "Id": 17,
+      "Name": "Belgian Candi Sugar - Amber/Brown (60L)",
+      "Country": "",
+      "Category": "Sugar",
+      "Type": "Sugar",
+      "DegreesLovibond": 60,
+      "PPG": 38
+    },
+    {
+      "Id": 18,
+      "Name": "Belgian Candi Sugar - Clear/Blond (0L)",
+      "Country": "",
+      "Category": "Sugar",
+      "Type": "Sugar",
+      "DegreesLovibond": 0,
+      "PPG": 38
+    },
+    {
+      "Id": 19,
+      "Name": "Belgian Candi Sugar - Dark (275L)",
+      "Country": "",
+      "Category": "Sugar",
+      "Type": "Sugar",
+      "DegreesLovibond": 275,
+      "PPG": 38
+    },
+    {
+      "Id": 20,
+      "Name": "Belgian Candi Syrup - Amber (40L)",
+      "Country": "",
+      "Category": "Sugar",
+      "Type": "Sugar",
+      "DegreesLovibond": 40,
+      "PPG": 32
+    },
+    {
+      "Id": 21,
+      "Name": "Belgian Candi Syrup - Clear (0L)",
+      "Country": "",
+      "Category": "Sugar",
+      "Type": "Sugar",
+      "DegreesLovibond": 0,
+      "PPG": 32
+    },
+    {
+      "Id": 22,
+      "Name": "Belgian Candi Syrup - D-180",
+      "Country": "",
+      "Category": "Sugar",
+      "Type": "Sugar",
+      "DegreesLovibond": 180,
+      "PPG": 32
+    },
+    {
+      "Id": 23,
+      "Name": "Belgian Candi Syrup - D-45",
+      "Country": "",
+      "Category": "Sugar",
+      "Type": "Sugar",
+      "DegreesLovibond": 45,
+      "PPG": 32
+    },
+    {
+      "Id": 24,
+      "Name": "Belgian Candi Syrup - D-90",
+      "Country": "",
+      "Category": "Sugar",
+      "Type": "Sugar",
+      "DegreesLovibond": 90,
+      "PPG": 32
+    },
+    {
+      "Id": 25,
+      "Name": "Belgian Candi Syrup - D2 (160L)",
+      "Country": "",
+      "Category": "Sugar",
+      "Type": "Sugar",
+      "DegreesLovibond": 160,
+      "PPG": 32
+    },
+    {
+      "Id": 26,
+      "Name": "Belgian Candi Syrup - Dark (80L)",
+      "Country": "",
+      "Category": "Sugar",
+      "Type": "Sugar",
+      "DegreesLovibond": 80,
+      "PPG": 32
+    },
+    {
+      "Id": 27,
+      "Name": "Belgian Candi Syrup - Golden (5L)",
+      "Country": "",
+      "Category": "Sugar",
+      "Type": "Sugar",
+      "DegreesLovibond": 5,
+      "PPG": 32
+    },
+    {
+      "Id": 28,
+      "Name": "Biscuit",
+      "Country": "Belgian",
+      "Category": "Grain",
+      "Type": "Roasted malt",
+      "DegreesLovibond": 23,
+      "PPG": 35
+    },
+    {
+      "Id": 29,
+      "Name": "Biscuit Malt",
+      "Country": "New Zealand",
+      "Category": "Grain",
+      "Type": "Roasted malt",
+      "DegreesLovibond": 30.4569,
+      "PPG": 35
+    },
+    {
+      "Id": 30,
+      "Name": "Black Barley",
+      "Country": "American",
+      "Category": "Grain",
+      "Type": "Roasted malt",
+      "DegreesLovibond": 530,
+      "PPG": 27
+    },
+    {
+      "Id": 31,
+      "Name": "Black Malt",
+      "Country": "American",
+      "Category": "Grain",
+      "Type": "Roasted malt",
+      "DegreesLovibond": 500,
+      "PPG": 28
+    },
+    {
+      "Id": 32,
+      "Name": "Black Malt",
+      "Country": "Finland",
+      "Category": "Grain",
+      "Type": "Roasted malt",
+      "DegreesLovibond": 526,
+      "PPG": 30
+    },
+    {
+      "Id": 33,
+      "Name": "Black Patent",
+      "Country": "United Kingdom",
+      "Category": "Grain",
+      "Type": "Roasted malt",
+      "DegreesLovibond": 525,
+      "PPG": 27
+    },
+    {
+      "Id": 34,
+      "Name": "Blackberry",
+      "Country": "",
+      "Category": "Fruit",
+      "Type": "Fruit",
+      "DegreesLovibond": 0,
+      "PPG": "3.6"
+    },
+    {
+      "Id": 35,
+      "Name": "Blackprinz",
+      "Country": "American",
+      "Category": "Grain",
+      "Type": "Roasted malt",
+      "DegreesLovibond": 500,
+      "PPG": 36
+    },
+    {
+      "Id": 36,
+      "Name": "Blueberry",
+      "Country": "",
+      "Category": "Fruit",
+      "Type": "Fruit",
+      "DegreesLovibond": 0,
+      "PPG": 4.95
+    },
+    {
+      "Id": 37,
+      "Name": "Bohemian Pilsner",
+      "Country": "German",
+      "Category": "Grain",
+      "Type": "Base malt",
+      "DegreesLovibond": 1.9,
+      "PPG": 38
+    },
+    {
+      "Id": 38,
+      "Name": "Bonlander Munich",
+      "Country": "American",
+      "Category": "Grain",
+      "Type": "Base malt",
+      "DegreesLovibond": 10,
+      "PPG": 36
+    },
+    {
+      "Id": 39,
+      "Name": "Boysenberry",
+      "Country": "",
+      "Category": "Fruit",
+      "Type": "Fruit",
+      "DegreesLovibond": 0,
+      "PPG": 2.5
+    },
+    {
+      "Id": 40,
+      "Name": "Brown",
+      "Country": "United Kingdom",
+      "Category": "Grain",
+      "Type": "Roasted malt",
+      "DegreesLovibond": 65,
+      "PPG": 32
+    },
+    {
+      "Id": 41,
+      "Name": "Brown Malt",
+      "Country": "New Zealand",
+      "Category": "Grain",
+      "Type": "Roasted malt",
+      "DegreesLovibond": 30.3553,
+      "PPG": 34
+    },
+    {
+      "Id": 42,
+      "Name": "Brown Rice Syrup - Gluten Free",
+      "Country": "",
+      "Category": "Sugar",
+      "Type": "Raw",
+      "DegreesLovibond": 2,
+      "PPG": 44
+    },
+    {
+      "Id": 43,
+      "Name": "Brown Sugar",
+      "Country": "",
+      "Category": "Sugar",
+      "Type": "Sugar",
+      "DegreesLovibond": 15,
+      "PPG": 45
+    },
+    {
+      "Id": 44,
+      "Name": "Buckwheat Malt - Gluten Free",
+      "Country": "American",
+      "Category": "Grain",
+      "Type": "Gluten-free malt",
+      "DegreesLovibond": 2,
+      "PPG": 25
+    },
+    {
+      "Id": 45,
+      "Name": "Cane Sugar",
+      "Country": "",
+      "Category": "Sugar",
+      "Type": "Sugar",
+      "DegreesLovibond": 0,
+      "PPG": 46
+    },
+    {
+      "Id": 46,
+      "Name": "Cantaloupe",
+      "Country": "",
+      "Category": "Fruit",
+      "Type": "Fruit",
+      "DegreesLovibond": 0,
+      "PPG": 3.4
+    },
+    {
+      "Id": 47,
+      "Name": "Cara 20L",
+      "Country": "Belgian",
+      "Category": "Grain",
+      "Type": "Crystal malt",
+      "DegreesLovibond": 22,
+      "PPG": 34
+    },
+    {
+      "Id": 48,
+      "Name": "Cara 45L",
+      "Country": "Belgian",
+      "Category": "Grain",
+      "Type": "Crystal malt",
+      "DegreesLovibond": 42,
+      "PPG": 34
+    },
+    {
+      "Id": 49,
+      "Name": "Cara Malt",
+      "Country": "United Kingdom",
+      "Category": "Grain",
+      "Type": "Crystal malt",
+      "DegreesLovibond": 17.5,
+      "PPG": 35
+    },
+    {
+      "Id": 50,
+      "Name": "Cara Pale",
+      "Country": "Finland",
+      "Category": "Grain",
+      "Type": "Crystal malt",
+      "DegreesLovibond": 4,
+      "PPG": 35
+    },
+    {
+      "Id": 51,
+      "Name": "Cara Plus 100",
+      "Country": "Finland",
+      "Category": "Grain",
+      "Type": "Crystal malt",
+      "DegreesLovibond": 38,
+      "PPG": 35
+    },
+    {
+      "Id": 52,
+      "Name": "Cara Plus 150",
+      "Country": "Finland",
+      "Category": "Grain",
+      "Type": "Crystal malt",
+      "DegreesLovibond": 57,
+      "PPG": 35
+    },
+    {
+      "Id": 53,
+      "Name": "Cara Plus 200",
+      "Country": "Finland",
+      "Category": "Grain",
+      "Type": "Crystal malt",
+      "DegreesLovibond": 76,
+      "PPG": 35
+    },
+    {
+      "Id": 54,
+      "Name": "Cara Plus 250",
+      "Country": "Finland",
+      "Category": "Grain",
+      "Type": "Crystal malt",
+      "DegreesLovibond": 94,
+      "PPG": 35
+    },
+    {
+      "Id": 55,
+      "Name": "CaraAmber",
+      "Country": "German",
+      "Category": "Grain",
+      "Type": "Crystal malt",
+      "DegreesLovibond": 23,
+      "PPG": 34
+    },
+    {
+      "Id": 56,
+      "Name": "CaraAroma",
+      "Country": "German",
+      "Category": "Grain",
+      "Type": "Crystal malt",
+      "DegreesLovibond": 130,
+      "PPG": 34
+    },
+    {
+      "Id": 57,
+      "Name": "CaraBelge",
+      "Country": "German",
+      "Category": "Grain",
+      "Type": "Crystal malt",
+      "DegreesLovibond": 13.6,
+      "PPG": 33
+    },
+    {
+      "Id": 58,
+      "Name": "CaraBohemian",
+      "Country": "German",
+      "Category": "Grain",
+      "Type": "Crystal malt",
+      "DegreesLovibond": 75,
+      "PPG": 33
+    },
+    {
+      "Id": 59,
+      "Name": "CaraBrown",
+      "Country": "American",
+      "Category": "Grain",
+      "Type": "Roasted malt",
+      "DegreesLovibond": 55,
+      "PPG": 34
+    },
+    {
+      "Id": 60,
+      "Name": "CaraCrystal Wheat Malt",
+      "Country": "American",
+      "Category": "Grain",
+      "Type": "Crystal malt",
+      "DegreesLovibond": 55,
+      "PPG": 34
+    },
+    {
+      "Id": 61,
+      "Name": "Carafa I",
+      "Country": "German",
+      "Category": "Grain",
+      "Type": "Roasted malt",
+      "DegreesLovibond": 340,
+      "PPG": 32
+    },
+    {
+      "Id": 62,
+      "Name": "Carafa II",
+      "Country": "German",
+      "Category": "Grain",
+      "Type": "Roasted malt",
+      "DegreesLovibond": 425,
+      "PPG": 32
+    },
+    {
+      "Id": 63,
+      "Name": "Carafa III",
+      "Country": "German",
+      "Category": "Grain",
+      "Type": "Roasted malt",
+      "DegreesLovibond": 535,
+      "PPG": 32
+    },
+    {
+      "Id": 64,
+      "Name": "CaraFoam",
+      "Country": "German",
+      "Category": "Grain",
+      "Type": "Crystal malt",
+      "DegreesLovibond": 1.8,
+      "PPG": 37
+    },
+    {
+      "Id": 65,
+      "Name": "CaraHell",
+      "Country": "German",
+      "Category": "Grain",
+      "Type": "Crystal malt",
+      "DegreesLovibond": 11,
+      "PPG": 34
+    },
+    {
+      "Id": 66,
+      "Name": "Carambola",
+      "Country": "",
+      "Category": "Fruit",
+      "Type": "Fruit",
+      "DegreesLovibond": 0,
+      "PPG": 1.95
+    },
+    {
+      "Id": 67,
+      "Name": "Caramel / Crystal 10L",
+      "Country": "American",
+      "Category": "Grain",
+      "Type": "Crystal malt",
+      "DegreesLovibond": 10,
+      "PPG": 35
+    },
+    {
+      "Id": 68,
+      "Name": "Caramel / Crystal 120L",
+      "Country": "American",
+      "Category": "Grain",
+      "Type": "Crystal malt",
+      "DegreesLovibond": 120,
+      "PPG": 33
+    },
+    {
+      "Id": 69,
+      "Name": "Caramel / Crystal 150L",
+      "Country": "American",
+      "Category": "Grain",
+      "Type": "Crystal malt",
+      "DegreesLovibond": 150,
+      "PPG": 33
+    },
+    {
+      "Id": 70,
+      "Name": "Caramel / Crystal 15L",
+      "Country": "American",
+      "Category": "Grain",
+      "Type": "Crystal malt",
+      "DegreesLovibond": 15,
+      "PPG": 35
+    },
+    {
+      "Id": 71,
+      "Name": "Caramel / Crystal 20L",
+      "Country": "American",
+      "Category": "Grain",
+      "Type": "Crystal malt",
+      "DegreesLovibond": 20,
+      "PPG": 35
+    },
+    {
+      "Id": 72,
+      "Name": "Caramel / Crystal 30L",
+      "Country": "American",
+      "Category": "Grain",
+      "Type": "Crystal malt",
+      "DegreesLovibond": 30,
+      "PPG": 34
+    },
+    {
+      "Id": 73,
+      "Name": "Caramel / Crystal 40L",
+      "Country": "American",
+      "Category": "Grain",
+      "Type": "Crystal malt",
+      "DegreesLovibond": 40,
+      "PPG": 34
+    },
+    {
+      "Id": 74,
+      "Name": "Caramel / Crystal 60L",
+      "Country": "American",
+      "Category": "Grain",
+      "Type": "Crystal malt",
+      "DegreesLovibond": 60,
+      "PPG": 34
+    },
+    {
+      "Id": 75,
+      "Name": "Caramel / Crystal 75L",
+      "Country": "American",
+      "Category": "Grain",
+      "Type": "Crystal malt",
+      "DegreesLovibond": 75,
+      "PPG": 33
+    },
+    {
+      "Id": 76,
+      "Name": "Caramel / Crystal 80L",
+      "Country": "American",
+      "Category": "Grain",
+      "Type": "Crystal malt",
+      "DegreesLovibond": 80,
+      "PPG": 33
+    },
+    {
+      "Id": 77,
+      "Name": "Caramel / Crystal 90L",
+      "Country": "American",
+      "Category": "Grain",
+      "Type": "Crystal malt",
+      "DegreesLovibond": 90,
+      "PPG": 33
+    },
+    {
+      "Id": 78,
+      "Name": "Caramel Pils",
+      "Country": "Belgian",
+      "Category": "Grain",
+      "Type": "Crystal malt",
+      "DegreesLovibond": 8,
+      "PPG": 34
+    },
+    {
+      "Id": 79,
+      "Name": "Caramel Pils",
+      "Country": "German",
+      "Category": "Grain",
+      "Type": "Crystal malt",
+      "DegreesLovibond": 2.4,
+      "PPG": 35
+    },
+    {
+      "Id": 80,
+      "Name": "Caramel Wheat",
+      "Country": "German",
+      "Category": "Grain",
+      "Type": "Crystal malt",
+      "DegreesLovibond": 46,
+      "PPG": 34
+    },
+    {
+      "Id": 81,
+      "Name": "CaraMunich",
+      "Country": "Belgian",
+      "Category": "Grain",
+      "Type": "Crystal malt",
+      "DegreesLovibond": 50,
+      "PPG": 33
+    },
+    {
+      "Id": 82,
+      "Name": "CaraMunich I",
+      "Country": "German",
+      "Category": "Grain",
+      "Type": "Crystal malt",
+      "DegreesLovibond": 39,
+      "PPG": 34
+    },
+    {
+      "Id": 83,
+      "Name": "CaraMunich II",
+      "Country": "German",
+      "Category": "Grain",
+      "Type": "Crystal malt",
+      "DegreesLovibond": 46,
+      "PPG": 34
+    },
+    {
+      "Id": 84,
+      "Name": "CaraMunich III",
+      "Country": "German",
+      "Category": "Grain",
+      "Type": "Crystal malt",
+      "DegreesLovibond": 57,
+      "PPG": 34
+    },
+    {
+      "Id": 85,
+      "Name": "Carapils",
+      "Country": "German",
+      "Category": "Grain",
+      "Type": "Crystal malt",
+      "DegreesLovibond": 1.3,
+      "PPG": 35
+    },
+    {
+      "Id": 86,
+      "Name": "Carapils (Dextrine Malt)",
+      "Country": "American",
+      "Category": "Grain",
+      "Type": "Crystal malt",
+      "DegreesLovibond": 1.8,
+      "PPG": 33
+    },
+    {
+      "Id": 87,
+      "Name": "CaraRed",
+      "Country": "German",
+      "Category": "Grain",
+      "Type": "Crystal malt",
+      "DegreesLovibond": 20,
+      "PPG": 34
+    },
+    {
+      "Id": 88,
+      "Name": "CaraRye",
+      "Country": "German",
+      "Category": "Grain",
+      "Type": "Crystal malt",
+      "DegreesLovibond": 67,
+      "PPG": 34
+    },
+    {
+      "Id": 89,
+      "Name": "Carastan (30/37)",
+      "Country": "United Kingdom",
+      "Category": "Grain",
+      "Type": "Crystal malt",
+      "DegreesLovibond": 34,
+      "PPG": 35
+    },
+    {
+      "Id": 90,
+      "Name": "Carastan Light (15L)",
+      "Country": "United Kingdom",
+      "Category": "Grain",
+      "Type": "Crystal malt",
+      "DegreesLovibond": 15,
+      "PPG": 35
+    },
+    {
+      "Id": 91,
+      "Name": "CaraVienne",
+      "Country": "Belgian",
+      "Category": "Grain",
+      "Type": "Crystal malt",
+      "DegreesLovibond": 20,
+      "PPG": 34
+    },
+    {
+      "Id": 92,
+      "Name": "Carrot",
+      "Country": "",
+      "Category": "Fruit",
+      "Type": "Fruit",
+      "DegreesLovibond": 0,
+      "PPG": 2
+    },
+    {
+      "Id": 93,
+      "Name": "Casaba Melon",
+      "Country": "",
+      "Category": "Fruit",
+      "Type": "Fruit",
+      "DegreesLovibond": 0,
+      "PPG": 1.9
+    },
+    {
+      "Id": 94,
+      "Name": "Cashew",
+      "Country": "",
+      "Category": "Fruit",
+      "Type": "Fruit",
+      "DegreesLovibond": 0,
+      "PPG": 3
+    },
+    {
+      "Id": 95,
+      "Name": "Celery",
+      "Country": "",
+      "Category": "Fruit",
+      "Type": "Fruit",
+      "DegreesLovibond": 0,
+      "PPG": 0.75
+    },
+    {
+      "Id": 96,
+      "Name": "Cherry",
+      "Country": "",
+      "Category": "Fruit",
+      "Type": "Fruit",
+      "DegreesLovibond": 0,
+      "PPG": 6.3
+    },
+    {
+      "Id": 97,
+      "Name": "Cherry, dark sweet",
+      "Country": "",
+      "Category": "Fruit",
+      "Type": "Fruit",
+      "DegreesLovibond": 0,
+      "PPG": 6.4
+    },
+    {
+      "Id": 98,
+      "Name": "Cherry, Montmorency",
+      "Country": "",
+      "Category": "Fruit",
+      "Type": "Fruit",
+      "DegreesLovibond": 0,
+      "PPG": 3.55
+    },
+    {
+      "Id": 99,
+      "Name": "Chocolate",
+      "Country": "American",
+      "Category": "Grain",
+      "Type": "Roasted malt",
+      "DegreesLovibond": 350,
+      "PPG": 29
+    },
+    {
+      "Id": 100,
+      "Name": "Chocolate",
+      "Country": "Belgian",
+      "Category": "Grain",
+      "Type": "Roasted malt",
+      "DegreesLovibond": 340,
+      "PPG": 30
+    },
+    {
+      "Id": 101,
+      "Name": "Chocolate",
+      "Country": "United Kingdom",
+      "Category": "Grain",
+      "Type": "Roasted malt",
+      "DegreesLovibond": 425,
+      "PPG": 34
+    },
+    {
+      "Id": 102,
+      "Name": "Chocolate Malt",
+      "Country": "Finland",
+      "Category": "Grain",
+      "Type": "Roasted malt",
+      "DegreesLovibond": 338,
+      "PPG": 31
+    },
+    {
+      "Id": 103,
+      "Name": "Chocolate Rye",
+      "Country": "German",
+      "Category": "Grain",
+      "Type": "Roasted malt",
+      "DegreesLovibond": 240,
+      "PPG": 31
+    },
+    {
+      "Id": 104,
+      "Name": "Chocolate Wheat",
+      "Country": "German",
+      "Category": "Grain",
+      "Type": "Roasted malt",
+      "DegreesLovibond": 413,
+      "PPG": 31
+    },
+    {
+      "Id": 105,
+      "Name": "Coffee Malt",
+      "Country": "United Kingdom",
+      "Category": "Grain",
+      "Type": "Roasted malt",
+      "DegreesLovibond": 150,
+      "PPG": 36
+    },
+    {
+      "Id": 106,
+      "Name": "Cookie Malt",
+      "Country": "Finland",
+      "Category": "Grain",
+      "Type": "Roasted malt",
+      "DegreesLovibond": 19,
+      "PPG": 37
+    },
+    {
+      "Id": 107,
+      "Name": "Corn Sugar - Dextrose",
+      "Country": "",
+      "Category": "Sugar",
+      "Type": "Sugar",
+      "DegreesLovibond": 0.5,
+      "PPG": 46
+    },
+    {
+      "Id": 108,
+      "Name": "Corn Syrup",
+      "Country": "",
+      "Category": "Sugar",
+      "Type": "Sugar",
+      "DegreesLovibond": 0.5,
+      "PPG": 37
+    },
+    {
+      "Id": 109,
+      "Name": "Crabapple",
+      "Country": "",
+      "Category": "Fruit",
+      "Type": "Fruit",
+      "DegreesLovibond": 0,
+      "PPG": 3.85
+    },
+    {
+      "Id": 110,
+      "Name": "Cranberry",
+      "Country": "",
+      "Category": "Fruit",
+      "Type": "Fruit",
+      "DegreesLovibond": 0,
+      "PPG": 1.8
+    },
+    {
+      "Id": 111,
+      "Name": "Crystal 10L Millet Malt - Gluten Free",
+      "Country": "American",
+      "Category": "Grain",
+      "Type": "Gluten-free malt",
+      "DegreesLovibond": 10,
+      "PPG": 25
+    },
+    {
+      "Id": 112,
+      "Name": "Crystal 140L",
+      "Country": "United Kingdom",
+      "Category": "Grain",
+      "Type": "Crystal malt",
+      "DegreesLovibond": 140,
+      "PPG": 33
+    },
+    {
+      "Id": 113,
+      "Name": "Crystal 15L",
+      "Country": "United Kingdom",
+      "Category": "Grain",
+      "Type": "Crystal malt",
+      "DegreesLovibond": 15,
+      "PPG": 34
+    },
+    {
+      "Id": 114,
+      "Name": "Crystal 30L",
+      "Country": "United Kingdom",
+      "Category": "Grain",
+      "Type": "Crystal malt",
+      "DegreesLovibond": 30,
+      "PPG": 34
+    },
+    {
+      "Id": 115,
+      "Name": "Crystal 30L Millet Malt - Gluten Free",
+      "Country": "American",
+      "Category": "Grain",
+      "Type": "Gluten-free malt",
+      "DegreesLovibond": 30,
+      "PPG": 25
+    },
+    {
+      "Id": 116,
+      "Name": "Crystal 45L",
+      "Country": "United Kingdom",
+      "Category": "Grain",
+      "Type": "Crystal malt",
+      "DegreesLovibond": 45,
+      "PPG": 34
+    },
+    {
+      "Id": 117,
+      "Name": "Crystal 50L",
+      "Country": "United Kingdom",
+      "Category": "Grain",
+      "Type": "Crystal malt",
+      "DegreesLovibond": 50,
+      "PPG": 34
+    },
+    {
+      "Id": 118,
+      "Name": "Crystal 55L",
+      "Country": "United Kingdom",
+      "Category": "Grain",
+      "Type": "Crystal malt",
+      "DegreesLovibond": 55,
+      "PPG": 34
+    },
+    {
+      "Id": 119,
+      "Name": "Crystal 60L",
+      "Country": "United Kingdom",
+      "Category": "Grain",
+      "Type": "Crystal malt",
+      "DegreesLovibond": 60,
+      "PPG": 34
+    },
+    {
+      "Id": 120,
+      "Name": "Crystal 70L",
+      "Country": "United Kingdom",
+      "Category": "Grain",
+      "Type": "Crystal malt",
+      "DegreesLovibond": 70,
+      "PPG": 34
+    },
+    {
+      "Id": 121,
+      "Name": "Crystal 90L",
+      "Country": "United Kingdom",
+      "Category": "Grain",
+      "Type": "Crystal malt",
+      "DegreesLovibond": 90,
+      "PPG": 33
+    },
+    {
+      "Id": 122,
+      "Name": "Crystal Malt 100",
+      "Country": "Finland",
+      "Category": "Grain",
+      "Type": "Crystal malt",
+      "DegreesLovibond": 38,
+      "PPG": 35
+    },
+    {
+      "Id": 123,
+      "Name": "Crystal Malt 150",
+      "Country": "Finland",
+      "Category": "Grain",
+      "Type": "Crystal malt",
+      "DegreesLovibond": 57,
+      "PPG": 35
+    },
+    {
+      "Id": 124,
+      "Name": "Crystal Malt 250",
+      "Country": "Finland",
+      "Category": "Grain",
+      "Type": "Crystal malt",
+      "DegreesLovibond": 94,
+      "PPG": 35
+    },
+    {
+      "Id": 125,
+      "Name": "Crystal Malt 300",
+      "Country": "Finland",
+      "Category": "Grain",
+      "Type": "Crystal malt",
+      "DegreesLovibond": 113,
+      "PPG": 35
+    },
+    {
+      "Id": 126,
+      "Name": "Crystal Malt 50",
+      "Country": "Finland",
+      "Category": "Grain",
+      "Type": "Crystal malt",
+      "DegreesLovibond": 19,
+      "PPG": 35
+    },
+    {
+      "Id": 127,
+      "Name": "Crystal Rye",
+      "Country": "United Kingdom",
+      "Category": "Grain",
+      "Type": "Crystal malt",
+      "DegreesLovibond": 90,
+      "PPG": 33
+    },
+    {
+      "Id": 128,
+      "Name": "Currant, black",
+      "Country": "",
+      "Category": "Fruit",
+      "Type": "Fruit",
+      "DegreesLovibond": 0,
+      "PPG": 4.2
+    },
+    {
+      "Id": 129,
+      "Name": "Currant, red",
+      "Country": "",
+      "Category": "Fruit",
+      "Type": "Fruit",
+      "DegreesLovibond": 0,
+      "PPG": 2.7
+    },
+    {
+      "Id": 130,
+      "Name": "Dark Ale",
+      "Country": "Finland",
+      "Category": "Grain",
+      "Type": "Roasted malt",
+      "DegreesLovibond": 14,
+      "PPG": 35
+    },
+    {
+      "Id": 131,
+      "Name": "Dark Chocolate",
+      "Country": "American",
+      "Category": "Grain",
+      "Type": "Roasted malt",
+      "DegreesLovibond": 420,
+      "PPG": 29
+    },
+    {
+      "Id": 132,
+      "Name": "Dark Chocolate Malt",
+      "Country": "New Zealand",
+      "Category": "Grain",
+      "Type": "Roasted malt",
+      "DegreesLovibond": 659.898,
+      "PPG": 32.7
+    },
+    {
+      "Id": 133,
+      "Name": "Dark Crystal 80L",
+      "Country": "United Kingdom",
+      "Category": "Grain",
+      "Type": "Crystal malt",
+      "DegreesLovibond": 80,
+      "PPG": 33
+    },
+    {
+      "Id": 134,
+      "Name": "Dark Crystal Malt",
+      "Country": "New Zealand",
+      "Category": "Grain",
+      "Type": "Crystal malt",
+      "DegreesLovibond": 96.4467,
+      "PPG": 35.4
+    },
+    {
+      "Id": 135,
+      "Name": "Dark Munich",
+      "Country": "German",
+      "Category": "Grain",
+      "Type": "Base malt",
+      "DegreesLovibond": 10,
+      "PPG": 36
+    },
+    {
+      "Id": 136,
+      "Name": "Dark Roasted Millet Malt - Gluten Free",
+      "Country": "American",
+      "Category": "Grain",
+      "Type": "Gluten-free malt",
+      "DegreesLovibond": 300,
+      "PPG": 25
+    },
+    {
+      "Id": 137,
+      "Name": "Dark Wheat",
+      "Country": "German",
+      "Category": "Grain",
+      "Type": "Base malt",
+      "DegreesLovibond": 6.5,
+      "PPG": 39
+    },
+    {
+      "Id": 138,
+      "Name": "Date",
+      "Country": "",
+      "Category": "Fruit",
+      "Type": "Fruit",
+      "DegreesLovibond": 0,
+      "PPG": 27
+    },
+    {
+      "Id": 139,
+      "Name": "Date (dried)",
+      "Country": "",
+      "Category": "Fruit",
+      "Type": "Fruit",
+      "DegreesLovibond": 0,
+      "PPG": 28.9
+    },
+    {
+      "Id": 140,
+      "Name": "De-Bittered Black",
+      "Country": "Belgian",
+      "Category": "Grain",
+      "Type": "Roasted malt",
+      "DegreesLovibond": 566,
+      "PPG": 34
+    },
+    {
+      "Id": 141,
+      "Name": "De-Husked Caraf I",
+      "Country": "German",
+      "Category": "Grain",
+      "Type": "Roasted malt",
+      "DegreesLovibond": 340,
+      "PPG": 32
+    },
+    {
+      "Id": 142,
+      "Name": "De-Husked Caraf II",
+      "Country": "German",
+      "Category": "Grain",
+      "Type": "Roasted malt",
+      "DegreesLovibond": 418,
+      "PPG": 32
+    },
+    {
+      "Id": 143,
+      "Name": "De-Husked Caraf III",
+      "Country": "German",
+      "Category": "Grain",
+      "Type": "Roasted malt",
+      "DegreesLovibond": 470,
+      "PPG": 32
+    },
+    {
+      "Id": 144,
+      "Name": "Dewberry",
+      "Country": "",
+      "Category": "Fruit",
+      "Type": "Fruit",
+      "DegreesLovibond": 0,
+      "PPG": 2.5
+    },
+    {
+      "Id": 145,
+      "Name": "Dextrine Malt",
+      "Country": "United Kingdom",
+      "Category": "Grain",
+      "Type": "Crystal malt",
+      "DegreesLovibond": 1.8,
+      "PPG": 33
+    },
+    {
+      "Id": 146,
+      "Name": "Distillers Malt",
+      "Country": "Ireland",
+      "Category": "Grain",
+      "Type": "Base malt",
+      "DegreesLovibond": 2,
+      "PPG": 37
+    },
+    {
+      "Id": 147,
+      "Name": "Dry Malt Extract - Amber",
+      "Country": "",
+      "Category": "Dry Extract",
+      "Type": "Extract",
+      "DegreesLovibond": 10,
+      "PPG": 42
+    },
+    {
+      "Id": 148,
+      "Name": "Dry Malt Extract - Dark",
+      "Country": "",
+      "Category": "Dry Extract",
+      "Type": "Extract",
+      "DegreesLovibond": 30,
+      "PPG": 44
+    },
+    {
+      "Id": 149,
+      "Name": "Dry Malt Extract - Extra Light",
+      "Country": "",
+      "Category": "Dry Extract",
+      "Type": "Extract",
+      "DegreesLovibond": 2.5,
+      "PPG": 42
+    },
+    {
+      "Id": 150,
+      "Name": "Dry Malt Extract - Light",
+      "Country": "",
+      "Category": "Dry Extract",
+      "Type": "Extract",
+      "DegreesLovibond": 4,
+      "PPG": 42
+    },
+    {
+      "Id": 151,
+      "Name": "Dry Malt Extract - Munich",
+      "Country": "",
+      "Category": "Dry Extract",
+      "Type": "Extract",
+      "DegreesLovibond": 8,
+      "PPG": 42
+    },
+    {
+      "Id": 152,
+      "Name": "Dry Malt Extract - Pilsen",
+      "Country": "",
+      "Category": "Dry Extract",
+      "Type": "Extract",
+      "DegreesLovibond": 2,
+      "PPG": 42
+    },
+    {
+      "Id": 153,
+      "Name": "Dry Malt Extract - Wheat",
+      "Country": "",
+      "Category": "Dry Extract",
+      "Type": "Extract",
+      "DegreesLovibond": 3,
+      "PPG": 42
+    },
+    {
+      "Id": 154,
+      "Name": "Elderberry",
+      "Country": "",
+      "Category": "Fruit",
+      "Type": "Fruit",
+      "DegreesLovibond": 0,
+      "PPG": 2.75
+    },
+    {
+      "Id": 155,
+      "Name": "Enzyme Malt",
+      "Country": "Finland",
+      "Category": "Grain",
+      "Type": "Base malt",
+      "DegreesLovibond": 0,
+      "PPG": 35
+    },
+    {
+      "Id": 156,
+      "Name": "ESB Malt",
+      "Country": "Canadian",
+      "Category": "Grain",
+      "Type": "Base malt",
+      "DegreesLovibond": 2.5,
+      "PPG": 36
+    },
+    {
+      "Id": 157,
+      "Name": "Extra Dark Crystal 120L",
+      "Country": "United Kingdom",
+      "Category": "Grain",
+      "Type": "Crystal malt",
+      "DegreesLovibond": 120,
+      "PPG": 33
+    },
+    {
+      "Id": 158,
+      "Name": "Extra Dark Crystal 160L",
+      "Country": "United Kingdom",
+      "Category": "Grain",
+      "Type": "Crystal malt",
+      "DegreesLovibond": 160,
+      "PPG": 33
+    },
+    {
+      "Id": 159,
+      "Name": "Fig",
+      "Country": "",
+      "Category": "Fruit",
+      "Type": "Fruit",
+      "DegreesLovibond": 0,
+      "PPG": 5.3
+    },
+    {
+      "Id": 160,
+      "Name": "Figs (dried)",
+      "Country": "",
+      "Category": "Fruit",
+      "Type": "Fruit",
+      "DegreesLovibond": 0,
+      "PPG": 29.95
+    },
+    {
+      "Id": 161,
+      "Name": "Flaked Barley",
+      "Country": "",
+      "Category": "Adjunct",
+      "Type": "Raw",
+      "DegreesLovibond": 2.2,
+      "PPG": 32
+    },
+    {
+      "Id": 162,
+      "Name": "Flaked Corn",
+      "Country": "",
+      "Category": "Adjunct",
+      "Type": "Raw",
+      "DegreesLovibond": 0.5,
+      "PPG": 40
+    },
+    {
+      "Id": 163,
+      "Name": "Flaked Oats",
+      "Country": "",
+      "Category": "Adjunct",
+      "Type": "Raw",
+      "DegreesLovibond": 2.2,
+      "PPG": 33
+    },
+    {
+      "Id": 164,
+      "Name": "Flaked Rice",
+      "Country": "",
+      "Category": "Adjunct",
+      "Type": "Raw",
+      "DegreesLovibond": 0.5,
+      "PPG": 40
+    },
+    {
+      "Id": 165,
+      "Name": "Flaked Rye",
+      "Country": "",
+      "Category": "Adjunct",
+      "Type": "Raw",
+      "DegreesLovibond": 2.8,
+      "PPG": 36
+    },
+    {
+      "Id": 166,
+      "Name": "Flaked Wheat",
+      "Country": "",
+      "Category": "Adjunct",
+      "Type": "Raw",
+      "DegreesLovibond": 2,
+      "PPG": 34
+    },
+    {
+      "Id": 167,
+      "Name": "Floor-Malted Bohemian Pilsner",
+      "Country": "German",
+      "Category": "Grain",
+      "Type": "Base malt",
+      "DegreesLovibond": 1.8,
+      "PPG": 38
+    },
+    {
+      "Id": 168,
+      "Name": "Floor-Malted Bohemian Pilsner Dk",
+      "Country": "German",
+      "Category": "Grain",
+      "Type": "Base malt",
+      "DegreesLovibond": 6.5,
+      "PPG": 38
+    },
+    {
+      "Id": 169,
+      "Name": "Floor-Malted Bohemian Wheat",
+      "Country": "German",
+      "Category": "Grain",
+      "Type": "Base malt",
+      "DegreesLovibond": 2,
+      "PPG": 38
+    },
+    {
+      "Id": 170,
+      "Name": "Gladiator Malt",
+      "Country": "New Zealand",
+      "Category": "Grain",
+      "Type": "Base malt",
+      "DegreesLovibond": 5.07614,
+      "PPG": 37.3
+    },
+    {
+      "Id": 171,
+      "Name": "Golden Naked Oats",
+      "Country": "United Kingdom",
+      "Category": "Grain",
+      "Type": "Raw",
+      "DegreesLovibond": 10,
+      "PPG": 33
+    },
+    {
+      "Id": 172,
+      "Name": "Golden Promise",
+      "Country": "United Kingdom",
+      "Category": "Grain",
+      "Type": "Base malt",
+      "DegreesLovibond": 3,
+      "PPG": 37
+    },
+    {
+      "Id": 173,
+      "Name": "Gooseberry",
+      "Country": "",
+      "Category": "Fruit",
+      "Type": "Fruit",
+      "DegreesLovibond": 0,
+      "PPG": 4.95
+    },
+    {
+      "Id": 174,
+      "Name": "Grape",
+      "Country": "",
+      "Category": "Fruit",
+      "Type": "Fruit",
+      "DegreesLovibond": 0,
+      "PPG": 7.15
+    },
+    {
+      "Id": 175,
+      "Name": "Grape, concord",
+      "Country": "",
+      "Category": "Fruit",
+      "Type": "Fruit",
+      "DegreesLovibond": 0,
+      "PPG": 4
+    },
+    {
+      "Id": 176,
+      "Name": "Grapefruit",
+      "Country": "",
+      "Category": "Fruit",
+      "Type": "Fruit",
+      "DegreesLovibond": 0,
+      "PPG": 2.75
+    },
+    {
+      "Id": 177,
+      "Name": "Grits",
+      "Country": "",
+      "Category": "Adjunct",
+      "Type": "Raw",
+      "DegreesLovibond": 1,
+      "PPG": 37
+    },
+    {
+      "Id": 178,
+      "Name": "Guanabana",
+      "Country": "",
+      "Category": "Fruit",
+      "Type": "Fruit",
+      "DegreesLovibond": 0,
+      "PPG": 4
+    },
+    {
+      "Id": 179,
+      "Name": "Guava",
+      "Country": "",
+      "Category": "Fruit",
+      "Type": "Fruit",
+      "DegreesLovibond": 0,
+      "PPG": 2.8
+    },
+    {
+      "Id": 180,
+      "Name": "Halcyon",
+      "Country": "United Kingdom",
+      "Category": "Grain",
+      "Type": "Base malt",
+      "DegreesLovibond": 2,
+      "PPG": 36
+    },
+    {
+      "Id": 181,
+      "Name": "Honey",
+      "Country": "",
+      "Category": "Sugar",
+      "Type": "Sugar",
+      "DegreesLovibond": 2,
+      "PPG": 42
+    },
+    {
+      "Id": 182,
+      "Name": "Honey (Buckwheat)",
+      "Country": "",
+      "Category": "Sugar",
+      "Type": "Sugar",
+      "DegreesLovibond": 2,
+      "PPG": 42
+    },
+    {
+      "Id": 183,
+      "Name": "Honey Malt",
+      "Country": "Canadian",
+      "Category": "Grain",
+      "Type": "Base malt",
+      "DegreesLovibond": 25,
+      "PPG": 37
+    },
+    {
+      "Id": 184,
+      "Name": "Honeydew Melon",
+      "Country": "",
+      "Category": "Fruit",
+      "Type": "Fruit",
+      "DegreesLovibond": 0,
+      "PPG": 4.5
+    },
+    {
+      "Id": 185,
+      "Name": "Invert Sugar",
+      "Country": "",
+      "Category": "Sugar",
+      "Type": "Sugar",
+      "DegreesLovibond": 1,
+      "PPG": 46
+    },
+    {
+      "Id": 186,
+      "Name": "Jackfruit",
+      "Country": "",
+      "Category": "Fruit",
+      "Type": "Fruit",
+      "DegreesLovibond": 0,
+      "PPG": 8.3
+    },
+    {
+      "Id": 187,
+      "Name": "Kiwi",
+      "Country": "",
+      "Category": "Fruit",
+      "Type": "Fruit",
+      "DegreesLovibond": 0,
+      "PPG": 5.75
+    },
+    {
+      "Id": 188,
+      "Name": "Kölsch",
+      "Country": "German",
+      "Category": "Grain",
+      "Type": "Base malt",
+      "DegreesLovibond": 4.4,
+      "PPG": 37
+    },
+    {
+      "Id": 189,
+      "Name": "Lactose (Milk Sugar)",
+      "Country": "",
+      "Category": "Sugar",
+      "Type": "Sugar",
+      "DegreesLovibond": 1,
+      "PPG": 41
+    },
+    {
+      "Id": 190,
+      "Name": "Lager",
+      "Country": "United Kingdom",
+      "Category": "Grain",
+      "Type": "Base malt",
+      "DegreesLovibond": 1.4,
+      "PPG": 38
+    },
+    {
+      "Id": 191,
+      "Name": "Lager Light",
+      "Country": "New Zealand",
+      "Category": "Grain",
+      "Type": "Base malt",
+      "DegreesLovibond": 1.4264,
+      "PPG": 37
+    },
+    {
+      "Id": 192,
+      "Name": "Lager Malt",
+      "Country": "Ireland",
+      "Category": "Grain",
+      "Type": "Base malt",
+      "DegreesLovibond": 2,
+      "PPG": 37
+    },
+    {
+      "Id": 193,
+      "Name": "Lemon juice",
+      "Country": "",
+      "Category": "Fruit",
+      "Type": "Fruit",
+      "DegreesLovibond": 0,
+      "PPG": 1
+    },
+    {
+      "Id": 194,
+      "Name": "Light Chocolate Malt",
+      "Country": "New Zealand",
+      "Category": "Grain",
+      "Type": "Roasted malt",
+      "DegreesLovibond": 456.853,
+      "PPG": 32.7
+    },
+    {
+      "Id": 195,
+      "Name": "Light Crystal Malt",
+      "Country": "New Zealand",
+      "Category": "Grain",
+      "Type": "Crystal malt",
+      "DegreesLovibond": 31.9797,
+      "PPG": 35.4
+    },
+    {
+      "Id": 196,
+      "Name": "Light Roasted Millet Malt - Gluten Free",
+      "Country": "American",
+      "Category": "Grain",
+      "Type": "Gluten-free malt",
+      "DegreesLovibond": 7,
+      "PPG": 25
+    },
+    {
+      "Id": 197,
+      "Name": "Lime",
+      "Country": "",
+      "Category": "Fruit",
+      "Type": "Fruit",
+      "DegreesLovibond": 0,
+      "PPG": 0.45
+    },
+    {
+      "Id": 198,
+      "Name": "Lime juice",
+      "Country": "",
+      "Category": "Fruit",
+      "Type": "Fruit",
+      "DegreesLovibond": 0,
+      "PPG": 0.45
+    },
+    {
+      "Id": 199,
+      "Name": "Liquid Malt Extract - Amber",
+      "Country": "",
+      "Category": "Liquid Extract",
+      "Type": "Extract",
+      "DegreesLovibond": 10,
+      "PPG": 35
+    },
+    {
+      "Id": 200,
+      "Name": "Liquid Malt Extract - Dark",
+      "Country": "",
+      "Category": "Liquid Extract",
+      "Type": "Extract",
+      "DegreesLovibond": 30,
+      "PPG": 35
+    },
+    {
+      "Id": 201,
+      "Name": "Liquid Malt Extract - Extra Light",
+      "Country": "",
+      "Category": "Liquid Extract",
+      "Type": "Extract",
+      "DegreesLovibond": 2.5,
+      "PPG": 37
+    },
+    {
+      "Id": 202,
+      "Name": "Liquid Malt Extract - Light",
+      "Country": "",
+      "Category": "Liquid Extract",
+      "Type": "Extract",
+      "DegreesLovibond": 4,
+      "PPG": 35
+    },
+    {
+      "Id": 203,
+      "Name": "Liquid Malt Extract - Maris Otter",
+      "Country": "",
+      "Category": "Liquid Extract",
+      "Type": "Extract",
+      "DegreesLovibond": 4,
+      "PPG": 36
+    },
+    {
+      "Id": 204,
+      "Name": "Liquid Malt Extract - Munich",
+      "Country": "",
+      "Category": "Liquid Extract",
+      "Type": "Extract",
+      "DegreesLovibond": 8,
+      "PPG": 35
+    },
+    {
+      "Id": 205,
+      "Name": "Liquid Malt Extract - Pilsen",
+      "Country": "",
+      "Category": "Liquid Extract",
+      "Type": "Extract",
+      "DegreesLovibond": 2,
+      "PPG": 35
+    },
+    {
+      "Id": 206,
+      "Name": "Liquid Malt Extract - Rye",
+      "Country": "",
+      "Category": "Liquid Extract",
+      "Type": "Extract",
+      "DegreesLovibond": "9",
+      "PPG": 35
+    },
+    {
+      "Id": 207,
+      "Name": "Liquid Malt Extract - Wheat",
+      "Country": "",
+      "Category": "Liquid Extract",
+      "Type": "Extract",
+      "DegreesLovibond": 3,
+      "PPG": 35
+    },
+    {
+      "Id": 208,
+      "Name": "Loganberry",
+      "Country": "",
+      "Category": "Fruit",
+      "Type": "Fruit",
+      "DegreesLovibond": 0,
+      "PPG": "2.6"
+    },
+    {
+      "Id": 209,
+      "Name": "Lychee (Litchi)",
+      "Country": "",
+      "Category": "Fruit",
+      "Type": "Fruit",
+      "DegreesLovibond": 0,
+      "PPG": 7.65
+    },
+    {
+      "Id": 210,
+      "Name": "Malted Naked Oats",
+      "Country": "United Kingdom",
+      "Category": "Grain",
+      "Type": "Base malt",
+      "DegreesLovibond": 1.3,
+      "PPG": 33
+    },
+    {
+      "Id": 211,
+      "Name": "Malted Rye",
+      "Country": "New Zealand",
+      "Category": "Grain",
+      "Type": "Base malt",
+      "DegreesLovibond": 3,
+      "PPG": 40.2
+    },
+    {
+      "Id": 212,
+      "Name": "Maltodextrin",
+      "Country": "",
+      "Category": "Sugar",
+      "Type": "Sugar",
+      "DegreesLovibond": 0,
+      "PPG": 39
+    },
+    {
+      "Id": 213,
+      "Name": "Mango",
+      "Country": "",
+      "Category": "Fruit",
+      "Type": "Fruit",
+      "DegreesLovibond": 0,
+      "PPG": 4.95
+    },
+    {
+      "Id": 214,
+      "Name": "Manuka Smoked Malt",
+      "Country": "New Zealand",
+      "Category": "Grain",
+      "Type": "Base malt",
+      "DegreesLovibond": 2.03046,
+      "PPG": 36.8
+    },
+    {
+      "Id": 215,
+      "Name": "Maple Sap",
+      "Country": "",
+      "Category": "Fruit",
+      "Type": "Fruit",
+      "DegreesLovibond": 0,
+      "PPG": 0.9
+    },
+    {
+      "Id": 216,
+      "Name": "Maple Syrup",
+      "Country": "",
+      "Category": "Sugar",
+      "Type": "Sugar",
+      "DegreesLovibond": 35,
+      "PPG": 30
+    },
+    {
+      "Id": 217,
+      "Name": "Maple Syrup",
+      "Country": "",
+      "Category": "Fruit",
+      "Type": "Fruit",
+      "DegreesLovibond": 0,
+      "PPG": 29.8
+    },
+    {
+      "Id": 218,
+      "Name": "Maris Otter Pale",
+      "Country": "United Kingdom",
+      "Category": "Grain",
+      "Type": "Base malt",
+      "DegreesLovibond": 3.75,
+      "PPG": 38
+    },
+    {
+      "Id": 219,
+      "Name": "Medium Crystal Malt",
+      "Country": "New Zealand",
+      "Category": "Grain",
+      "Type": "Crystal malt",
+      "DegreesLovibond": 56.3452,
+      "PPG": 35.4
+    },
+    {
+      "Id": 220,
+      "Name": "Medium Roasted Millet Malt - Gluten Free",
+      "Country": "American",
+      "Category": "Grain",
+      "Type": "Gluten-free malt",
+      "DegreesLovibond": 36,
+      "PPG": 25
+    },
+    {
+      "Id": 221,
+      "Name": "Melanoid Malt",
+      "Country": "Finland",
+      "Category": "Grain",
+      "Type": "Roasted malt",
+      "DegreesLovibond": 27,
+      "PPG": 35
+    },
+    {
+      "Id": 222,
+      "Name": "Melanoidin",
+      "Country": "German",
+      "Category": "Grain",
+      "Type": "Roasted malt",
+      "DegreesLovibond": 25,
+      "PPG": 37
+    },
+    {
+      "Id": 223,
+      "Name": "Midnight Wheat Malt",
+      "Country": "American",
+      "Category": "Grain",
+      "Type": "Roasted malt",
+      "DegreesLovibond": 550,
+      "PPG": 33
+    },
+    {
+      "Id": 224,
+      "Name": "Mild",
+      "Country": "United Kingdom",
+      "Category": "Grain",
+      "Type": "Base malt",
+      "DegreesLovibond": 3,
+      "PPG": 37
+    },
+    {
+      "Id": 225,
+      "Name": "Molasses",
+      "Country": "",
+      "Category": "Sugar",
+      "Type": "Sugar",
+      "DegreesLovibond": 80,
+      "PPG": 36
+    },
+    {
+      "Id": 226,
+      "Name": "Mulberry",
+      "Country": "",
+      "Category": "Fruit",
+      "Type": "Fruit",
+      "DegreesLovibond": 0,
+      "PPG": 6.1
+    },
+    {
+      "Id": 227,
+      "Name": "Munich",
+      "Country": "Belgian",
+      "Category": "Grain",
+      "Type": "Base malt",
+      "DegreesLovibond": 6,
+      "PPG": 38
+    },
+    {
+      "Id": 228,
+      "Name": "Munich",
+      "Country": "United Kingdom",
+      "Category": "Grain",
+      "Type": "Base malt",
+      "DegreesLovibond": 6,
+      "PPG": 37
+    },
+    {
+      "Id": 229,
+      "Name": "Munich - 60L",
+      "Country": "American",
+      "Category": "Grain",
+      "Type": "Base malt",
+      "DegreesLovibond": 60,
+      "PPG": 33
+    },
+    {
+      "Id": 230,
+      "Name": "Munich - Dark 20L",
+      "Country": "American",
+      "Category": "Grain",
+      "Type": "Base malt",
+      "DegreesLovibond": 20,
+      "PPG": 33
+    },
+    {
+      "Id": 231,
+      "Name": "Munich - Light 10L",
+      "Country": "American",
+      "Category": "Grain",
+      "Type": "Base malt",
+      "DegreesLovibond": 10,
+      "PPG": 33
+    },
+    {
+      "Id": 232,
+      "Name": "Munich Dark",
+      "Country": "Canadian",
+      "Category": "Grain",
+      "Type": "Base malt",
+      "DegreesLovibond": 32,
+      "PPG": 34
+    },
+    {
+      "Id": 233,
+      "Name": "Munich Dark",
+      "Country": "German",
+      "Category": "Grain",
+      "Type": "Base malt",
+      "DegreesLovibond": 15.5,
+      "PPG": 37
+    },
+    {
+      "Id": 234,
+      "Name": "Munich Light",
+      "Country": "Canadian",
+      "Category": "Grain",
+      "Type": "Base malt",
+      "DegreesLovibond": 10,
+      "PPG": 34
+    },
+    {
+      "Id": 235,
+      "Name": "Munich Light",
+      "Country": "German",
+      "Category": "Grain",
+      "Type": "Base malt",
+      "DegreesLovibond": 6,
+      "PPG": 37
+    },
+    {
+      "Id": 236,
+      "Name": "Munich Malt",
+      "Country": "Finland",
+      "Category": "Grain",
+      "Type": "Base malt",
+      "DegreesLovibond": 7,
+      "PPG": 36
+    },
+    {
+      "Id": 237,
+      "Name": "Munich Malt",
+      "Country": "New Zealand",
+      "Category": "Grain",
+      "Type": "Base malt",
+      "DegreesLovibond": 7.86802,
+      "PPG": 36.8
+    },
+    {
+      "Id": 238,
+      "Name": "Munich Millet Malt - Gluten Free",
+      "Country": "American",
+      "Category": "Grain",
+      "Type": "Gluten-free malt",
+      "DegreesLovibond": 7,
+      "PPG": 25
+    },
+    {
+      "Id": 239,
+      "Name": "Nectarine",
+      "Country": "",
+      "Category": "Fruit",
+      "Type": "Fruit",
+      "DegreesLovibond": 0,
+      "PPG": 3.4
+    },
+    {
+      "Id": 240,
+      "Name": "Oat Malt",
+      "Country": "United Kingdom",
+      "Category": "Grain",
+      "Type": "Base malt",
+      "DegreesLovibond": 2,
+      "PPG": 28
+    },
+    {
+      "Id": 241,
+      "Name": "Optic",
+      "Country": "United Kingdom",
+      "Category": "Grain",
+      "Type": "Base malt",
+      "DegreesLovibond": 2.1,
+      "PPG": 38
+    },
+    {
+      "Id": 242,
+      "Name": "Orange",
+      "Country": "",
+      "Category": "Fruit",
+      "Type": "Fruit",
+      "DegreesLovibond": 0,
+      "PPG": 4.1
+    },
+    {
+      "Id": 243,
+      "Name": "Orange (Blood Orange)",
+      "Country": "",
+      "Category": "Fruit",
+      "Type": "Fruit",
+      "DegreesLovibond": 0,
+      "PPG": 4.05
+    },
+    {
+      "Id": 244,
+      "Name": "Orange juice",
+      "Country": "",
+      "Category": "Fruit",
+      "Type": "Fruit",
+      "DegreesLovibond": 0,
+      "PPG": 4.8
+    },
+    {
+      "Id": 245,
+      "Name": "Organic Pilsner",
+      "Country": "New Zealand",
+      "Category": "Grain",
+      "Type": "Base malt",
+      "DegreesLovibond": 1.58629,
+      "PPG": 37.9
+    },
+    {
+      "Id": 246,
+      "Name": "Organic Pilsner Malt",
+      "Country": "Finland",
+      "Category": "Grain",
+      "Type": "Base malt",
+      "DegreesLovibond": 2,
+      "PPG": 36
+    },
+    {
+      "Id": 247,
+      "Name": "Pale 2-Row",
+      "Country": "American",
+      "Category": "Grain",
+      "Type": "Base malt",
+      "DegreesLovibond": 1.8,
+      "PPG": 37
+    },
+    {
+      "Id": 248,
+      "Name": "Pale 2-Row",
+      "Country": "Canadian",
+      "Category": "Grain",
+      "Type": "Base malt",
+      "DegreesLovibond": 1.75,
+      "PPG": 36
+    },
+    {
+      "Id": 249,
+      "Name": "Pale 2-Row",
+      "Country": "United Kingdom",
+      "Category": "Grain",
+      "Type": "Base malt",
+      "DegreesLovibond": 2.5,
+      "PPG": 38
+    },
+    {
+      "Id": 250,
+      "Name": "Pale 2-Row - Toasted",
+      "Country": "American",
+      "Category": "Grain",
+      "Type": "Base malt",
+      "DegreesLovibond": 30,
+      "PPG": 33
+    },
+    {
+      "Id": 251,
+      "Name": "Pale 6-Row",
+      "Country": "American",
+      "Category": "Grain",
+      "Type": "Base malt",
+      "DegreesLovibond": 1.8,
+      "PPG": 35
+    },
+    {
+      "Id": 252,
+      "Name": "Pale Ale",
+      "Country": "American",
+      "Category": "Grain",
+      "Type": "Base malt",
+      "DegreesLovibond": 2.5,
+      "PPG": 37
+    },
+    {
+      "Id": 253,
+      "Name": "Pale Ale",
+      "Country": "Belgian",
+      "Category": "Grain",
+      "Type": "Base malt",
+      "DegreesLovibond": 3.4,
+      "PPG": 38
+    },
+    {
+      "Id": 254,
+      "Name": "Pale Ale",
+      "Country": "German",
+      "Category": "Grain",
+      "Type": "Base malt",
+      "DegreesLovibond": 2.3,
+      "PPG": 39
+    },
+    {
+      "Id": 255,
+      "Name": "Pale Ale Malt",
+      "Country": "Finland",
+      "Category": "Grain",
+      "Type": "Base malt",
+      "DegreesLovibond": 2,
+      "PPG": 36
+    },
+    {
+      "Id": 256,
+      "Name": "Pale Chocolate",
+      "Country": "United Kingdom",
+      "Category": "Grain",
+      "Type": "Roasted malt",
+      "DegreesLovibond": 207,
+      "PPG": 33
+    },
+    {
+      "Id": 257,
+      "Name": "Pale Millet Malt - Gluten Free",
+      "Country": "American",
+      "Category": "Grain",
+      "Type": "Gluten-free malt",
+      "DegreesLovibond": 1.5,
+      "PPG": 30
+    },
+    {
+      "Id": 258,
+      "Name": "Pale Wheat",
+      "Country": "Canadian",
+      "Category": "Grain",
+      "Type": "Base malt",
+      "DegreesLovibond": 2,
+      "PPG": 36
+    },
+    {
+      "Id": 259,
+      "Name": "Pale Wheat",
+      "Country": "German",
+      "Category": "Grain",
+      "Type": "Base malt",
+      "DegreesLovibond": 1.5,
+      "PPG": 39
+    },
+    {
+      "Id": 260,
+      "Name": "Papaya",
+      "Country": "",
+      "Category": "Fruit",
+      "Type": "Fruit",
+      "DegreesLovibond": 0,
+      "PPG": 2.9
+    },
+    {
+      "Id": 261,
+      "Name": "Passionfruit",
+      "Country": "",
+      "Category": "Fruit",
+      "Type": "Fruit",
+      "DegreesLovibond": 0,
+      "PPG": 5
+    },
+    {
+      "Id": 262,
+      "Name": "Peach",
+      "Country": "",
+      "Category": "Fruit",
+      "Type": "Fruit",
+      "DegreesLovibond": 0,
+      "PPG": 4.05
+    },
+    {
+      "Id": 263,
+      "Name": "Pear",
+      "Country": "",
+      "Category": "Fruit",
+      "Type": "Fruit",
+      "DegreesLovibond": 0,
+      "PPG": 4.5
+    },
+    {
+      "Id": 264,
+      "Name": "Pearl",
+      "Country": "United Kingdom",
+      "Category": "Grain",
+      "Type": "Base malt",
+      "DegreesLovibond": 2.1,
+      "PPG": 37
+    },
+    {
+      "Id": 265,
+      "Name": "Peated Malt",
+      "Country": "United Kingdom",
+      "Category": "Grain",
+      "Type": "Base malt",
+      "DegreesLovibond": 2.5,
+      "PPG": 38
+    },
+    {
+      "Id": 266,
+      "Name": "Persimmon",
+      "Country": "",
+      "Category": "Fruit",
+      "Type": "Fruit",
+      "DegreesLovibond": 0,
+      "PPG": 6.3
+    },
+    {
+      "Id": 267,
+      "Name": "Pilsen",
+      "Country": "United Kingdom",
+      "Category": "Grain",
+      "Type": "Base malt",
+      "DegreesLovibond": 1.8,
+      "PPG": 36
+    },
+    {
+      "Id": 268,
+      "Name": "Pilsner",
+      "Country": "American",
+      "Category": "Grain",
+      "Type": "Base malt",
+      "DegreesLovibond": 1.8,
+      "PPG": 37
+    },
+    {
+      "Id": 269,
+      "Name": "Pilsner",
+      "Country": "Belgian",
+      "Category": "Grain",
+      "Type": "Base malt",
+      "DegreesLovibond": 1.6,
+      "PPG": 37
+    },
+    {
+      "Id": 270,
+      "Name": "Pilsner",
+      "Country": "German",
+      "Category": "Grain",
+      "Type": "Base malt",
+      "DegreesLovibond": 1.6,
+      "PPG": 38
+    },
+    {
+      "Id": 271,
+      "Name": "Pilsner Malt",
+      "Country": "Finland",
+      "Category": "Grain",
+      "Type": "Base malt",
+      "DegreesLovibond": 2,
+      "PPG": 37
+    },
+    {
+      "Id": 272,
+      "Name": "Pilsner Malt",
+      "Country": "New Zealand",
+      "Category": "Grain",
+      "Type": "Base malt",
+      "DegreesLovibond": 1.92893,
+      "PPG": 37.3
+    },
+    {
+      "Id": 273,
+      "Name": "Pineapple",
+      "Country": "",
+      "Category": "Fruit",
+      "Type": "Fruit",
+      "DegreesLovibond": 0,
+      "PPG": 5.85
+    },
+    {
+      "Id": 274,
+      "Name": "Plum",
+      "Country": "",
+      "Category": "Fruit",
+      "Type": "Fruit",
+      "DegreesLovibond": 0,
+      "PPG": 4.95
+    },
+    {
+      "Id": 275,
+      "Name": "Pomegranate",
+      "Country": "",
+      "Category": "Fruit",
+      "Type": "Fruit",
+      "DegreesLovibond": 0,
+      "PPG": 5.2
+    },
+    {
+      "Id": 276,
+      "Name": "Prickly Pear",
+      "Country": "",
+      "Category": "Fruit",
+      "Type": "Fruit",
+      "DegreesLovibond": 0,
+      "PPG": 4.95
+    },
+    {
+      "Id": 277,
+      "Name": "Prunes (dried)",
+      "Country": "",
+      "Category": "Fruit",
+      "Type": "Fruit",
+      "DegreesLovibond": 0,
+      "PPG": "19.8"
+    },
+    {
+      "Id": 278,
+      "Name": "Pumpkin (canned)",
+      "Country": "",
+      "Category": "Fruit",
+      "Type": "Fruit",
+      "DegreesLovibond": 0,
+      "PPG": 1
+    },
+    {
+      "Id": 279,
+      "Name": "Pumpkin (fresh)",
+      "Country": "",
+      "Category": "Fruit",
+      "Type": "Fruit",
+      "DegreesLovibond": 0,
+      "PPG": 1
+    },
+    {
+      "Id": 280,
+      "Name": "Quince",
+      "Country": "",
+      "Category": "Fruit",
+      "Type": "Fruit",
+      "DegreesLovibond": 0,
+      "PPG": 0.45
+    },
+    {
+      "Id": 281,
+      "Name": "Raisins (dried)",
+      "Country": "",
+      "Category": "Fruit",
+      "Type": "Fruit",
+      "DegreesLovibond": 0,
+      "PPG": 29.25
+    },
+    {
+      "Id": 282,
+      "Name": "Raspberry",
+      "Country": "",
+      "Category": "Fruit",
+      "Type": "Fruit",
+      "DegreesLovibond": 0,
+      "PPG": 3.15
+    },
+    {
+      "Id": 283,
+      "Name": "Raspberry, black",
+      "Country": "",
+      "Category": "Fruit",
+      "Type": "Fruit",
+      "DegreesLovibond": 0,
+      "PPG": 2.8
+    },
+    {
+      "Id": 284,
+      "Name": "Raspberry, red",
+      "Country": "",
+      "Category": "Fruit",
+      "Type": "Fruit",
+      "DegreesLovibond": 0,
+      "PPG": 2.3
+    },
+    {
+      "Id": 285,
+      "Name": "Red Back Malt",
+      "Country": "New Zealand",
+      "Category": "Grain",
+      "Type": "Roasted malt",
+      "DegreesLovibond": 32.9949,
+      "PPG": 35.4
+    },
+    {
+      "Id": 286,
+      "Name": "Red Wheat",
+      "Country": "American",
+      "Category": "Grain",
+      "Type": "Base malt",
+      "DegreesLovibond": 2.5,
+      "PPG": 38
+    },
+    {
+      "Id": 287,
+      "Name": "Red X",
+      "Country": "German",
+      "Category": "Grain",
+      "Type": "Base malt",
+      "DegreesLovibond": 12,
+      "PPG": 36
+    },
+    {
+      "Id": 288,
+      "Name": "Rhubarb",
+      "Country": "",
+      "Category": "Fruit",
+      "Type": "Fruit",
+      "DegreesLovibond": 0,
+      "PPG": 0.4
+    },
+    {
+      "Id": 289,
+      "Name": "Rice Hulls",
+      "Country": "",
+      "Category": "Adjunct",
+      "Type": "Other",
+      "DegreesLovibond": 0,
+      "PPG": 0
+    },
+    {
+      "Id": 290,
+      "Name": "Rice Syrup Solids",
+      "Country": "",
+      "Category": "Dry Extract",
+      "Type": "Raw",
+      "DegreesLovibond": 1,
+      "PPG": 37
+    },
+    {
+      "Id": 291,
+      "Name": "Roast Barley",
+      "Country": "New Zealand",
+      "Category": "Grain",
+      "Type": "Roasted malt",
+      "DegreesLovibond": 736.041,
+      "PPG": 32.7
+    },
+    {
+      "Id": 292,
+      "Name": "Roasted Barley",
+      "Country": "American",
+      "Category": "Grain",
+      "Type": "Roasted malt",
+      "DegreesLovibond": 300,
+      "PPG": 33
+    },
+    {
+      "Id": 293,
+      "Name": "Roasted Barley",
+      "Country": "Belgian",
+      "Category": "Grain",
+      "Type": "Roasted malt",
+      "DegreesLovibond": 575,
+      "PPG": 30
+    },
+    {
+      "Id": 294,
+      "Name": "Roasted Barley",
+      "Country": "United Kingdom",
+      "Category": "Grain",
+      "Type": "Roasted malt",
+      "DegreesLovibond": 550,
+      "PPG": 29
+    },
+    {
+      "Id": 295,
+      "Name": "Roasted Wheat",
+      "Country": "New Zealand",
+      "Category": "Grain",
+      "Type": "Roasted malt",
+      "DegreesLovibond": 279.188,
+      "PPG": 33.6
+    },
+    {
+      "Id": 296,
+      "Name": "Rolled Barley",
+      "Country": "New Zealand",
+      "Category": "Adjunct",
+      "Type": "Raw",
+      "DegreesLovibond": 1.7,
+      "PPG": 35.4
+    },
+    {
+      "Id": 297,
+      "Name": "Rolled Oats",
+      "Country": "",
+      "Category": "Adjunct",
+      "Type": "Raw",
+      "DegreesLovibond": 2.2,
+      "PPG": 33
+    },
+    {
+      "Id": 298,
+      "Name": "Rolled Oats",
+      "Country": "New Zealand",
+      "Category": "Adjunct",
+      "Type": "Raw",
+      "DegreesLovibond": 1.4,
+      "PPG": 12.4
+    },
+    {
+      "Id": 299,
+      "Name": "Rye",
+      "Country": "American",
+      "Category": "Grain",
+      "Type": "Base malt",
+      "DegreesLovibond": 2.5,
+      "PPG": 38
+    },
+    {
+      "Id": 300,
+      "Name": "Rye",
+      "Country": "German",
+      "Category": "Grain",
+      "Type": "Base malt",
+      "DegreesLovibond": 2.5,
+      "PPG": 38
+    },
+    {
+      "Id": 301,
+      "Name": "Shepherds Delight Malt",
+      "Country": "New Zealand",
+      "Category": "Grain",
+      "Type": "Roasted malt",
+      "DegreesLovibond": 152.284,
+      "PPG": 36.5
+    },
+    {
+      "Id": 302,
+      "Name": "Smoked Malt",
+      "Country": "American",
+      "Category": "Grain",
+      "Type": "Base malt",
+      "DegreesLovibond": 5,
+      "PPG": 37
+    },
+    {
+      "Id": 303,
+      "Name": "Smoked Malt",
+      "Country": "German",
+      "Category": "Grain",
+      "Type": "Base malt",
+      "DegreesLovibond": 3,
+      "PPG": 37
+    },
+    {
+      "Id": 304,
+      "Name": "Soft Candi Sugar - Blond",
+      "Country": "",
+      "Category": "Sugar",
+      "Type": "Sugar",
+      "DegreesLovibond": 5,
+      "PPG": 38
+    },
+    {
+      "Id": 305,
+      "Name": "Soft Candi Sugar - Brown",
+      "Country": "",
+      "Category": "Sugar",
+      "Type": "Sugar",
+      "DegreesLovibond": 60,
+      "PPG": 38
+    },
+    {
+      "Id": 306,
+      "Name": "Sour Grapes Malt",
+      "Country": "New Zealand",
+      "Category": "Grain",
+      "Type": "Base malt",
+      "DegreesLovibond": 2.03046,
+      "PPG": 34
+    },
+    {
+      "Id": 307,
+      "Name": "Special B",
+      "Country": "Belgian",
+      "Category": "Grain",
+      "Type": "Roasted malt",
+      "DegreesLovibond": 115,
+      "PPG": 34
+    },
+    {
+      "Id": 308,
+      "Name": "Special Roast",
+      "Country": "American",
+      "Category": "Grain",
+      "Type": "Roasted malt",
+      "DegreesLovibond": 50,
+      "PPG": 33
+    },
+    {
+      "Id": 309,
+      "Name": "Spelt Malt",
+      "Country": "German",
+      "Category": "Grain",
+      "Type": "Base malt",
+      "DegreesLovibond": 2,
+      "PPG": 37
+    },
+    {
+      "Id": 310,
+      "Name": "Stout Malt",
+      "Country": "Ireland",
+      "Category": "Grain",
+      "Type": "Base malt",
+      "DegreesLovibond": 2,
+      "PPG": 37
+    },
+    {
+      "Id": 311,
+      "Name": "Strawberry",
+      "Country": "",
+      "Category": "Fruit",
+      "Type": "Fruit",
+      "DegreesLovibond": 0,
+      "PPG": 3.15
+    },
+    {
+      "Id": 312,
+      "Name": "Sultanas",
+      "Country": "",
+      "Category": "Fruit",
+      "Type": "Fruit",
+      "DegreesLovibond": 0,
+      "PPG": 8.55
+    },
+    {
+      "Id": 313,
+      "Name": "Supernova Malt",
+      "Country": "New Zealand",
+      "Category": "Grain",
+      "Type": "Roasted malt",
+      "DegreesLovibond": 58.3756,
+      "PPG": 37.4
+    },
+    {
+      "Id": 314,
+      "Name": "Tangelo",
+      "Country": "",
+      "Category": "Fruit",
+      "Type": "Fruit",
+      "DegreesLovibond": 0,
+      "PPG": 3.35
+    },
+    {
+      "Id": 315,
+      "Name": "Tangerine",
+      "Country": "",
+      "Category": "Fruit",
+      "Type": "Fruit",
+      "DegreesLovibond": 0,
+      "PPG": 2.95
+    },
+    {
+      "Id": 316,
+      "Name": "Toffee Malt",
+      "Country": "New Zealand",
+      "Category": "Grain",
+      "Type": "Roasted malt",
+      "DegreesLovibond": 5.32995,
+      "PPG": 38.8
+    },
+    {
+      "Id": 317,
+      "Name": "Tomato",
+      "Country": "",
+      "Category": "Fruit",
+      "Type": "Fruit",
+      "DegreesLovibond": 0,
+      "PPG": 1.25
+    },
+    {
+      "Id": 318,
+      "Name": "Torrified Barley",
+      "Country": "",
+      "Category": "Adjunct",
+      "Type": "Raw",
+      "DegreesLovibond": 2,
+      "PPG": 36
+    },
+    {
+      "Id": 319,
+      "Name": "Torrified Wheat",
+      "Country": "",
+      "Category": "Adjunct",
+      "Type": "Raw",
+      "DegreesLovibond": 2,
+      "PPG": 36
+    },
+    {
+      "Id": 320,
+      "Name": "Turbinado",
+      "Country": "",
+      "Category": "Sugar",
+      "Type": "Sugar",
+      "DegreesLovibond": 10,
+      "PPG": 44
+    },
+    {
+      "Id": 321,
+      "Name": "Unmalted Wheat",
+      "Country": "Belgian",
+      "Category": "Grain",
+      "Type": "Raw",
+      "DegreesLovibond": 2,
+      "PPG": 36
+    },
+    {
+      "Id": 322,
+      "Name": "Victory",
+      "Country": "American",
+      "Category": "Grain",
+      "Type": "Roasted malt",
+      "DegreesLovibond": 28,
+      "PPG": 34
+    },
+    {
+      "Id": 323,
+      "Name": "Vienna",
+      "Country": "American",
+      "Category": "Grain",
+      "Type": "Base malt",
+      "DegreesLovibond": 4,
+      "PPG": 35
+    },
+    {
+      "Id": 324,
+      "Name": "Vienna",
+      "Country": "German",
+      "Category": "Grain",
+      "Type": "Base malt",
+      "DegreesLovibond": 4,
+      "PPG": 37
+    },
+    {
+      "Id": 325,
+      "Name": "Vienna Malt",
+      "Country": "Finland",
+      "Category": "Grain",
+      "Type": "Base malt",
+      "DegreesLovibond": 3,
+      "PPG": 36
+    },
+    {
+      "Id": 326,
+      "Name": "Vienna Malt",
+      "Country": "New Zealand",
+      "Category": "Grain",
+      "Type": "Base malt",
+      "DegreesLovibond": 3.45178,
+      "PPG": "39.1"
+    },
+    {
+      "Id": 327,
+      "Name": "Watermelon",
+      "Country": "",
+      "Category": "Fruit",
+      "Type": "Fruit",
+      "DegreesLovibond": 0,
+      "PPG": 4.05
+    },
+    {
+      "Id": 328,
+      "Name": "Wheat",
+      "Country": "American",
+      "Category": "Grain",
+      "Type": "Base malt",
+      "DegreesLovibond": 1.8,
+      "PPG": 38
+    },
+    {
+      "Id": 329,
+      "Name": "Wheat",
+      "Country": "Belgian",
+      "Category": "Grain",
+      "Type": "Base malt",
+      "DegreesLovibond": 1.8,
+      "PPG": 38
+    },
+    {
+      "Id": 330,
+      "Name": "Wheat",
+      "Country": "United Kingdom",
+      "Category": "Grain",
+      "Type": "Base malt",
+      "DegreesLovibond": 2,
+      "PPG": 37
+    },
+    {
+      "Id": 331,
+      "Name": "Wheat Malt",
+      "Country": "German",
+      "Category": "Grain",
+      "Type": "Base malt",
+      "DegreesLovibond": 2,
+      "PPG": 37
+    },
+    {
+      "Id": 332,
+      "Name": "Wheat Malt",
+      "Country": "Finland",
+      "Category": "Grain",
+      "Type": "Base malt",
+      "DegreesLovibond": 2,
+      "PPG": 38
+    },
+    {
+      "Id": 333,
+      "Name": "Wheat Malt",
+      "Country": "New Zealand",
+      "Category": "Grain",
+      "Type": "Base malt",
+      "DegreesLovibond": 2.13198,
+      "PPG": 35.4
+    },
+    {
+      "Id": 334,
+      "Name": "White Sorghum Syrup  - Gluten Free",
+      "Country": "",
+      "Category": "Sugar",
+      "Type": "Sugar",
+      "DegreesLovibond": 1.5,
+      "PPG": 37
+    },
+    {
+      "Id": 335,
+      "Name": "White Wheat",
+      "Country": "American",
+      "Category": "Grain",
+      "Type": "Base malt",
+      "DegreesLovibond": 2.8,
+      "PPG": 40
+    },
+    {
+      "Id": 336,
+      "Name": "Youngberry",
+      "Country": "",
+      "Category": "Fruit",
+      "Type": "Fruit",
+      "DegreesLovibond": 0,
+      "PPG": 2.5
     }
-]
+  ]
