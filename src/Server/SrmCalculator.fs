@@ -1,6 +1,7 @@
-module SrmCalculations
+module SrmCalculator
 
 open System
+
 let Power power b =
     Math.Pow(b, power)
 

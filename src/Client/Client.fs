@@ -1,109 +1,49 @@
-module Client
+module Client.App
 
 open Elmish
+open Elmish.Browser.Navigation
 open Elmish.React
+open Elmish.HMR
 
-open Fable.Helpers.React
-open Fable.Helpers.React.Props
-open Fable.PowerPack.Fetch
+open Fable.Core.JsInterop
+open Fable.Import
 
+open Client
+open Client.Pages
 open Shared
 
-open Fulma
+let viewPage model dispatch =
+    match model.PageModel with
+    | HomePageModel ->
+        Home.view ()
 
+let handleNotFound (model: Model) =
+    Browser.console.error("Error parsing url: " + Browser.window.location.href)
+    ( model, Navigation.modifyUrl (toPath Page.Home) )
 
-type Model = Counter option
+let urlUpdate (result:Page option) (model: Model) =
+    match result with
+    | None ->
+        handleNotFound model
+    | Some Page.Home ->
+        { model with PageModel = HomePageModel }, Cmd.none
 
-type Msg =
-| Increment
-| Decrement
-| Init of Result<Counter, exn>
+let init result =
+    let stateJson: string option = !!Browser.window?__INIT_MODEL__
+    match stateJson, result with
+    | _ ->
+        let model =
+            { PageModel = HomePageModel }
 
+        urlUpdate result model
 
-
-let init () : Model * Cmd<Msg> =
-    let model = None
-    let cmd =
-        Cmd.ofPromise
-            (fetchAs<int> "/api/init")
-            []
-            (Ok >> Init)
-            (Error >> Init)
-    model, cmd
-
-let update (msg : Msg) (model : Model) : Model * Cmd<Msg> =
-    let model' =
-        match model,  msg with
-        | Some x, Increment -> Some (x + 1)
-        | Some x, Decrement -> Some (x - 1)
-        | None, Init (Ok x) -> Some x
-        | _ -> None
-    model', Cmd.none
-
-let safeComponents =
-    let intersperse sep ls =
-        List.foldBack (fun x -> function
-            | [] -> [x]
-            | xs -> x::sep::xs) ls []
-
-    let components =
-        [
-            "Saturn", "https://saturnframework.github.io/docs/"
-            "Fable", "http://fable.io"
-            "Elmish", "https://elmish.github.io/elmish/"
-            "Fulma", "https://mangelmaxime.github.io/Fulma"
-        ]
-        |> List.map (fun (desc,link) -> a [ Href link ] [ str desc ] )
-        |> intersperse (str ", ")
-        |> span [ ]
-
-    p [ ]
-        [ strong [] [ str "SAFE Template" ]
-          str " powered by: "
-          components ]
-
-let show = function
-| Some x -> string x
-| None -> "Loading..."
-
-let button txt onClick =
-    Button.button
-        [ Button.IsFullWidth
-          Button.Color IsPrimary
-          Button.OnClick onClick ]
-        [ str txt ]
-
-let view (model : Model) (dispatch : Msg -> unit) =
-    div []
-        [ Navbar.navbar [ Navbar.Color IsPrimary ]
-            [ Navbar.Item.div [ ]
-                [ Heading.h2 [ ]
-                    [ str "SAFE Template" ] ] ]
-
-          Container.container []
-              [ Content.content [ Content.Modifiers [ Modifier.TextAlignment (Screen.All, TextAlignment.Centered) ] ]
-                    [ Heading.h3 [] [ str ("Press buttons to manipulate counter: " + show model) ] ]
-                Columns.columns []
-                    [ Column.column [] [ button "-" (fun _ -> dispatch Decrement) ]
-                      Column.column [] [ button "+" (fun _ -> dispatch Increment) ] ] ]
-
-          Footer.footer [ ]
-                [ Content.content [ Content.Modifiers [ Modifier.TextAlignment (Screen.All, TextAlignment.Centered) ] ]
-                    [ safeComponents ] ] ]
-
-
-#if DEBUG
-open Elmish.Debug
-open Elmish.HMR
-#endif
+let update msg model =
+    match msg, model.PageModel with
+    | StorageFailure e, _ ->
+        printfn "Unable to access local storage: %A" e
+        model, Cmd.none
 
 Program.mkProgram init update view
-#if DEBUG
-|> Program.withConsoleTrace
-|> Program.withHMR
-#endif
-|> Program.withReact "elmish-app"
-#if DEBUG
-|> Program.withDebugger
-#endif
+|> Program.toNavigable Pages.urlParser urlUpdate
+|> Program.withReact "beer-architect-main"
 |> Program.run

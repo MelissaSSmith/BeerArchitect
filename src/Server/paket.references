@@ -2,3 +2,5 @@ group Server
     FSharp.Core
     Saturn
     Fable.JsonConverter
+    Giraffe
+    Giraffe.TokenRouter
