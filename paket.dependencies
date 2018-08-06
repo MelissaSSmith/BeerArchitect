@@ -1,26 +1,21 @@
-group Server
-    storage: none
-    source https://api.nuget.org/v3/index.json
+storage: none
+source https://api.nuget.org/v3/index.json
 
-    nuget FSharp.Core
-    nuget Saturn
-    nuget Giraffe
-    nuget Giraffe.TokenRouter
-    nuget Fable.JsonConverter
+nuget FSharp.Core
+nuget Saturn
+nuget Giraffe
+nuget Giraffe.TokenRouter
+nuget Fable.JsonConverter
 
-group Client
-    storage: none
-    source https://api.nuget.org/v3/index.json
+nuget Fable.Core
+nuget Fable.Elmish
+nuget Fable.Elmish.Browser
+nuget Fable.Elmish.Debugger
+nuget Fable.Elmish.React
+nuget Fable.Elmish.HMR
+nuget Fulma
 
-    nuget Fable.Core
-    nuget Fable.Elmish
-    nuget Fable.Elmish.Browser
-    nuget Fable.Elmish.Debugger
-    nuget Fable.Elmish.React
-    nuget Fable.Elmish.HMR
-    nuget Fulma
-
-    clitool dotnet-fable
+clitool dotnet-fable
 
 group Build
     storage: none

@@ -1,15 +1,12 @@
-group Server
-    FSharp.Core
-    Saturn
-    Fable.JsonConverter
-    Giraffe
-    Giraffe.TokenRouter
-    Microsoft.AspNetCore.StaticFiles
-    Microsoft.AspNetCore
+FSharp.Core
+Saturn
+Fable.JsonConverter
+Giraffe
+Giraffe.TokenRouter
+Microsoft.AspNetCore
 
-group Client
-    Fable.Core
-    Fable.React
-    Fable.Import.Browser
-    Fable.Elmish.Browser
-    Fable.Elmish.React
+Fable.Core
+Fable.React
+Fable.Import.Browser
+Fable.Elmish.Browser
+Fable.Elmish.React
