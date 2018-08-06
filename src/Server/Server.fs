@@ -8,8 +8,8 @@ open Microsoft.AspNetCore.Http
 
 open Giraffe.Serialization
 
-open Server
-open Server.ServerUrls
+open ServerCode
+open ServerCode.ServerUrls
 
 let publicPath = Path.GetFullPath "../Client/public"
 let port = 8085us
@@ -26,6 +26,7 @@ let webApp =
     router notfound [
         GET [
             route PageUrls.Home Pages.home
+            // route PageUrls.AbvCalculator Pages.abvCalculator
         ]
     ]
 
@@ -43,4 +44,4 @@ let app = application {
     use_gzip
 }
 
-run app
+run app 

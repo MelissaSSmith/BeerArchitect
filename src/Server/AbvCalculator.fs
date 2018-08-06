@@ -1,4 +1,4 @@
-module AbvCalculator
+module ServerCode.AbvCalculator
 
 let Abv og fg = (og - fg) * 131.25
 

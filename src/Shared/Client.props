@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project>
+  <ItemGroup>
+    <Compile Include="../Client/Pages.fs" Watch="false" />
+    <Compile Include="../Client/Style.fs" Watch="false" />
+    <Compile Include="../Client/Home.fs" Watch="false" />
+    <Compile Include="../Client/AbvCalculator.fs" Watch="false" />
+    <Compile Include="../Client/Shared.fs" Watch="false" />
+  </ItemGroup>
+</Project>

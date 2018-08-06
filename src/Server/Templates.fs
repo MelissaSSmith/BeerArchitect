@@ -1,4 +1,4 @@
-module Server.Templates
+module ServerCode.Templates
 
 open Client.Shared
 open Giraffe.GiraffeViewEngine
@@ -23,8 +23,7 @@ let index (model: Model option) =
         link [ _rel "shortcut icon"; _type "image/png"; _href "/Images/safe_favicon.png" ]
       ]
       body [ _class "app-container" ] [
-        div [ _id "beer-architect-main"; ] [
-        ]
+        div [ _id "beer-architect-main"; ] []
         script [ _src "/public/bundle.js" ] []
       ]
     ]

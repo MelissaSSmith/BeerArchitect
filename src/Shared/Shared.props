@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project>
+  <ItemGroup>
+    <Compile Include="../Server/ServerUrls.fs" />
+    <Compile Include="../Shared/Shared.fs" />
+  </ItemGroup>
+
+  <Import Project="./Client.props"/>
+</Project>

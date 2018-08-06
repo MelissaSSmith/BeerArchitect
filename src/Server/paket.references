@@ -4,3 +4,12 @@ group Server
     Fable.JsonConverter
     Giraffe
     Giraffe.TokenRouter
+    Microsoft.AspNetCore.StaticFiles
+    Microsoft.AspNetCore
+
+group Client
+    Fable.Core
+    Fable.React
+    Fable.Import.Browser
+    Fable.Elmish.Browser
+    Fable.Elmish.React

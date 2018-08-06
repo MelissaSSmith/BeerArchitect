@@ -1,14 +1,12 @@
-module Server.ServerUrls
+module ServerCode.ServerUrls
 
 module PageUrls =
   [<Literal>]
   let Home = "/"
+  [<Literal>]
+  let AbvCalculator = "/abv-calculator"
 
 module APIUrls =
 
   [<Literal>]
-  let WishList = "/api/wishlist/"
-  [<Literal>]
-  let ResetTime = "/api/wishlist/resetTime/"
-  [<Literal>]
-  let Login = "/api/users/login/"
+  let CalculateAbv = "/api/abv/calculate"

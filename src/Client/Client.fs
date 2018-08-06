@@ -10,12 +10,7 @@ open Fable.Import
 
 open Client
 open Client.Pages
-open Shared
-
-let viewPage model dispatch =
-    match model.PageModel with
-    | HomePageModel ->
-        Home.view ()
+open Shared 
 
 let handleNotFound (model: Model) =
     Browser.console.error("Error parsing url: " + Browser.window.location.href)
@@ -25,6 +20,9 @@ let urlUpdate (result:Page option) (model: Model) =
     match result with
     | None ->
         handleNotFound model
+    | Some Page.AbvCalculator ->
+        let m = AbvCalculator.init()
+        { model with PageModel = AbvCalculatorPageModal m }, Cmd.none
     | Some Page.Home ->
         { model with PageModel = HomePageModel }, Cmd.none
 
@@ -42,6 +40,14 @@ let update msg model =
     | StorageFailure e, _ ->
         printfn "Unable to access local storage: %A" e
         model, Cmd.none
+    | AbvCalculatorMsg msg, AbvCalculatorPageModal m ->
+        let m, cmd = AbvCalculator.update msg m
+        { model with
+            PageModel = AbvCalculatorPageModal m},
+                Cmd.batch [
+                    Cmd.map AbvCalculatorMsg cmd
+                ]
+    | AbvCalculatorMsg _, _ -> model, Cmd.none
 
 Program.mkProgram init update view
 |> Program.toNavigable Pages.urlParser urlUpdate
