@@ -5,7 +5,6 @@
     </PropertyGroup>
     <Import Project="../Shared/Shared.props" />
     <ItemGroup>
-        <Compile Include="JqueryEmitter.fs" />
         <Compile Include="Client.fs" />
     </ItemGroup>
     <Import Project="..\..\.paket\Paket.Restore.targets" />

@@ -1,4 +1,4 @@
-module JqueryEmitter
+module Client.JqueryEmitter
 
 open Fable.Core
 
@@ -28,3 +28,6 @@ module JQuery =
 
     [<Emit("$2.prop($0, $1)")>]
     let prop (property: string) (value: int) (el: IJQuery) : IJQuery = jsNative
+
+    [<Emit("$0.val()")>]
+    let value (el: IJQuery) : IJQuery = jsNative

@@ -1,7 +1,6 @@
 module Client.AbvCalculator
 
 open Elmish
-open Fable.Core
 open Fable.Helpers.React
 open Fable.Helpers.React.Props
 open Fable.Core.JsInterop
@@ -11,8 +10,9 @@ open Fable.PowerPack.Fetch.Fetch_types
 
 open ServerCode
 open Shared
-open Client.Home
+open Client.Style
 open Client.Pages
+open Client.JqueryEmitter
 
 type Model = {
     GravityReading : GravityReading
@@ -72,13 +72,14 @@ let view model (dispatch: Msg -> unit) =
         div [ClassName "row abv-row"] [
             div [ClassName "col"] []
             div [ClassName "col"] [
+                label [] [str ("Original Gravity")]
                 input [
                     Id "originalGravity" 
                     ClassName "form-control"
-                    Placeholder "Original Gravity"
+                    Placeholder (sprintf "%f" model.GravityReading.OriginalGravity)
                     AutoFocus true
                     Type "number"
-                    Step "Any"
+                    Step "any"
                 ]
             ]
             div [ClassName "col"] []
@@ -86,10 +87,11 @@ let view model (dispatch: Msg -> unit) =
         div [ClassName "row abv-row"] [
             div [ClassName "col"] []
             div [ClassName "col"] [
+                label [] [str ("Final Gravity")]
                 input [
                     Id "finalGravity" 
                     ClassName "form-control"
-                    Placeholder "Final Gravity"
+                    Placeholder (sprintf "%f" model.GravityReading.FinalGravity)
                     AutoFocus false
                     Type "number"
                     Step "any"
@@ -103,7 +105,7 @@ let view model (dispatch: Msg -> unit) =
                 button [
                     Id "calculateAbv"
                     ClassName "btn btn-info btn-lg btn-block"
-                    OnClick (fun _ -> dispatch (ClickCalculate { OriginalGravity = 0.0; FinalGravity = 0.0 } ))
+                    OnClick (fun _ -> dispatch (ClickCalculate { OriginalGravity = JQuery.select("#originalGravity").value(); FinalGravity = JQuery.select("#finalGravity").value() } ))
                 ] [ str "Calculate"]
             ]
             div [ClassName "col"] []
