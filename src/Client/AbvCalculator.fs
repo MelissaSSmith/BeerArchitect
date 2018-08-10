@@ -1,9 +1,11 @@
 module Client.AbvCalculator
 
 open Elmish
+open Fable.Core
 open Fable.Helpers.React
 open Fable.Helpers.React.Props
 open Fable.Core.JsInterop
+open Fable.Import.Browser
 open Fable.PowerPack
 open Fable.PowerPack.Fetch.Fetch_types
 
@@ -19,7 +21,7 @@ type Model = {
 
 type Msg =
     | CompleteCalculate of AbvResult
-    | ClickCalculate
+    | ClickCalculate of GravityReading
     | Error of exn
 
 let calculateAbv (readings:GravityReading) =
@@ -51,9 +53,11 @@ let init result =
 let update (msg:Msg) model: Model*Cmd<Msg> = 
     match msg with 
     | CompleteCalculate results ->
+        console.log(results.StandardAbv)
         { model with AbvResult = { model.AbvResult with StandardAbv = results.StandardAbv; AlternateAbv = results.AlternateAbv; TotalCalories = results.TotalCalories } }, Cmd.none
-    | ClickCalculate ->
-        model, calculateAbvCmd model.GravityReading
+    | ClickCalculate input ->
+        console.log(input)
+        { model with GravityReading = { model.GravityReading with OriginalGravity = input.OriginalGravity; FinalGravity = input.FinalGravity } }, calculateAbvCmd model.GravityReading
     | Error exn ->
         { model with ErrorMsg = string (exn.Message) }, Cmd.none
 
@@ -73,6 +77,8 @@ let view model (dispatch: Msg -> unit) =
                     ClassName "form-control"
                     Placeholder "Original Gravity"
                     AutoFocus true
+                    Type "number"
+                    Step "Any"
                 ]
             ]
             div [ClassName "col"] []
@@ -85,6 +91,8 @@ let view model (dispatch: Msg -> unit) =
                     ClassName "form-control"
                     Placeholder "Final Gravity"
                     AutoFocus false
+                    Type "number"
+                    Step "any"
                 ]
             ]
             div [ClassName "col"] []
@@ -95,7 +103,7 @@ let view model (dispatch: Msg -> unit) =
                 button [
                     Id "calculateAbv"
                     ClassName "btn btn-info btn-lg btn-block"
-                    OnClick (fun _ -> dispatch ClickCalculate)
+                    OnClick (fun _ -> dispatch (ClickCalculate { OriginalGravity = 0.0; FinalGravity = 0.0 } ))
                 ] [ str "Calculate"]
             ]
             div [ClassName "col"] []

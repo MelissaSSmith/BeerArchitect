@@ -1,4 +1,4 @@
-module Transformations
+module Client.Transformations
 
 open Fable.Core
 open System
