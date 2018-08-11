@@ -12,22 +12,22 @@ module JQuery =
     let ready (handler: unit -> unit) : unit = jsNative
       
     [<Emit("$2.css($0, $1)")>]
-    let css (prop: string) (value: string) (el: IJQuery) : IJQuery = jsNative
+    let css (_: string) (_: string) (_: IJQuery) : IJQuery = jsNative
       
     [<Emit("$1.click($0)")>]
-    let click (handler: obj -> unit) (el: IJQuery) : IJQuery = jsNative
+    let click (handler: obj -> unit) (_: IJQuery) : IJQuery = jsNative
 
     [<Emit("window['$']($0)")>]
-    let select (selector: string) : IJQuery = jsNative
+    let select (_: string) : IJQuery = jsNative
 
     [<Emit("$0.empty()")>]
-    let empty (el: IJQuery) : IJQuery = jsNative
+    let empty (_: IJQuery) : IJQuery = jsNative
 
     [<Emit("$1.append($0)")>]
-    let append (prop: string) (el: IJQuery) : IJQuery = jsNative
+    let append (_: string) (_: IJQuery) : IJQuery = jsNative
 
     [<Emit("$2.prop($0, $1)")>]
-    let prop (property: string) (value: int) (el: IJQuery) : IJQuery = jsNative
+    let prop (_: string) (_: int) (_: IJQuery) : IJQuery = jsNative
 
     [<Emit("$0.val()")>]
-    let value (el: IJQuery) : IJQuery = jsNative
+    let value (_: IJQuery) : string = jsNative

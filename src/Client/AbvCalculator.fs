@@ -4,7 +4,6 @@ open Elmish
 open Fable.Helpers.React
 open Fable.Helpers.React.Props
 open Fable.Core.JsInterop
-open Fable.Import.Browser
 open Fable.PowerPack
 open Fable.PowerPack.Fetch.Fetch_types
 
@@ -12,7 +11,6 @@ open ServerCode
 open Shared
 open Client.Style
 open Client.Pages
-open Client.JqueryEmitter
 
 type Model = {
     GravityReading : GravityReading
@@ -21,7 +19,9 @@ type Model = {
 
 type Msg =
     | CompleteCalculate of AbvResult
-    | ClickCalculate of GravityReading
+    | SetOriginalGravity of float
+    | SetFinalGravity of float
+    | ClickCalculate
     | Error of exn
 
 let calculateAbv (readings:GravityReading) =
@@ -50,14 +50,16 @@ let init result =
           AbvResult = { StandardAbv = 0.0; AlternateAbv = 0.0; TotalCalories = 0.0 }
           ErrorMsg = "" }
 
-let update (msg:Msg) model: Model*Cmd<Msg> = 
+let update (msg:Msg) (model:Model): Model*Cmd<Msg> = 
     match msg with 
     | CompleteCalculate results ->
-        console.log(results.StandardAbv)
         { model with AbvResult = { model.AbvResult with StandardAbv = results.StandardAbv; AlternateAbv = results.AlternateAbv; TotalCalories = results.TotalCalories } }, Cmd.none
-    | ClickCalculate input ->
-        console.log(input)
-        { model with GravityReading = { model.GravityReading with OriginalGravity = input.OriginalGravity; FinalGravity = input.FinalGravity } }, calculateAbvCmd model.GravityReading
+    | SetOriginalGravity originalGravity ->
+        { model with GravityReading = { model.GravityReading with OriginalGravity = originalGravity } }, Cmd.none
+    | SetFinalGravity finalGravity ->
+        { model with GravityReading = { model.GravityReading with FinalGravity = finalGravity } }, Cmd.none
+    | ClickCalculate ->
+        model, calculateAbvCmd model.GravityReading
     | Error exn ->
         { model with ErrorMsg = string (exn.Message) }, Cmd.none
 
@@ -76,10 +78,10 @@ let view model (dispatch: Msg -> unit) =
                 input [
                     Id "originalGravity" 
                     ClassName "form-control"
-                    Placeholder (sprintf "%f" model.GravityReading.OriginalGravity)
                     AutoFocus true
-                    Type "number"
+                    HTMLAttr.Type "number"
                     Step "any"
+                    OnChange (fun ev -> dispatch (SetOriginalGravity !!ev.target?value))
                 ]
             ]
             div [ClassName "col"] []
@@ -91,10 +93,10 @@ let view model (dispatch: Msg -> unit) =
                 input [
                     Id "finalGravity" 
                     ClassName "form-control"
-                    Placeholder (sprintf "%f" model.GravityReading.FinalGravity)
                     AutoFocus false
-                    Type "number"
+                    HTMLAttr.Type "number"
                     Step "any"
+                    OnChange (fun ev -> dispatch (SetFinalGravity !!ev.target?value))
                 ]
             ]
             div [ClassName "col"] []
@@ -103,9 +105,10 @@ let view model (dispatch: Msg -> unit) =
             div [ClassName "col"] []
             div [ClassName "col"] [
                 button [
+                    Type "button"
                     Id "calculateAbv"
                     ClassName "btn btn-info btn-lg btn-block"
-                    OnClick (fun _ -> dispatch (ClickCalculate { OriginalGravity = JQuery.select("#originalGravity").value(); FinalGravity = JQuery.select("#finalGravity").value() } ))
+                    OnClick (fun _ -> dispatch ClickCalculate)
                 ] [ str "Calculate"]
             ]
             div [ClassName "col"] []
@@ -115,7 +118,7 @@ let view model (dispatch: Msg -> unit) =
             div [ClassName "col"
                  Id "StandardAbv"] [
                 p [ ClassName "lead" ] [ str "Standard ABV: "]
-                p [ ClassName "lead" ] [ str (sprintf "%f" model.AbvResult.StandardAbv)]
+                p [ ClassName "lead" ] [ str (sprintf "%.2f %%" model.AbvResult.StandardAbv)]
             ]
             div [ClassName "col"] []
         ]
@@ -124,7 +127,7 @@ let view model (dispatch: Msg -> unit) =
             div [ClassName "col"
                  Id "AlternateAbv"] [
                 p [ ClassName "lead" ] [ str "Alternate ABV: "]
-                p [ ClassName "lead" ] [ str (sprintf "%f" model.AbvResult.AlternateAbv)]
+                p [ ClassName "lead" ] [ str (sprintf "%.2f %%" model.AbvResult.AlternateAbv)]
             ]
             div [ClassName "col"] []
         ]
@@ -133,7 +136,7 @@ let view model (dispatch: Msg -> unit) =
             div [ClassName "col"
                  Id "TotalCalories"] [
                 p [ ClassName "lead" ] [ str "Total Calories: "]
-                p [ ClassName "lead" ] [ str (sprintf "%f" model.AbvResult.TotalCalories)]
+                p [ ClassName "lead" ] [ str (sprintf "%.2f per 12 oz." model.AbvResult.TotalCalories)]
             ]
             div [ClassName "col"] []
         ]
