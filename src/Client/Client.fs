@@ -29,6 +29,9 @@ let urlUpdate (result:Page option) (model: Model) =
 let init result =
     let stateJson: string option = !!Browser.window?__INIT_MODEL__
     match stateJson, result with
+    | Some json, Some Page.Home ->
+        let model: Model = ofJson json
+        { model with PageModel = HomePageModel }, Cmd.none
     | _ ->
         let model =
             { PageModel = HomePageModel }
@@ -37,9 +40,6 @@ let init result =
 
 let update msg model =
     match msg, model.PageModel with
-    | StorageFailure e, _ ->
-        printfn "Unable to access local storage: %A" e
-        model, Cmd.none
     | AbvCalculatorMsg msg, AbvCalculatorPageModal m ->
         let m, cmd = AbvCalculator.update msg m
         { model with
@@ -47,7 +47,8 @@ let update msg model =
                 Cmd.batch [
                     Cmd.map AbvCalculatorMsg cmd
                 ]
-    | AbvCalculatorMsg _, _ -> model, Cmd.none
+    | AbvCalculatorMsg _, _ -> model, Navigation.newUrl (toPath Page.AbvCalculator)
+
 
 Program.mkProgram init update view
 |> Program.toNavigable Pages.urlParser urlUpdate

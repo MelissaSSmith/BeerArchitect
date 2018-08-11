@@ -19,7 +19,6 @@ let webApp : HttpHandler =
     router notfound [
         GET [
             route PageUrls.Home Pages.home
-            // route PageUrls.AbvCalculator Pages.abvCalculator
         ]
         POST [
             route APIUrls.CalculateAbv AbvCalculator.calculate

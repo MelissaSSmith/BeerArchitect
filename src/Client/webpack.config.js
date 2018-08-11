@@ -44,7 +44,8 @@ module.exports = {
         },
         contentBase: "./public",
         hot: true,
-        inline: true
+        inline: true,
+        historyApiFallback: true,
     },
     module: {
         rules: [
