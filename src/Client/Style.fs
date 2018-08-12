@@ -14,7 +14,7 @@ let goToUrl (e: React.MouseEvent) =
     Navigation.newUrl href |> List.map (fun f -> f ignore) |> ignore
 
 let viewLink page description =
-  R.a [ ClassName "nav-item nav-link"
+  R.a [ ClassName "nav-item nav-link sidebar-tab"
         Href (Pages.toPath page)
         OnClick goToUrl]
       [ R.str description]

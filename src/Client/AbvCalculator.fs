@@ -9,6 +9,7 @@ open Fable.PowerPack.Fetch.Fetch_types
 
 open ServerCode
 open Shared
+open Client.NavigationMenu
 open Client.Style
 open Client.Pages
 
@@ -65,79 +66,63 @@ let update (msg:Msg) (model:Model): Model*Cmd<Msg> =
 
 let view model (dispatch: Msg -> unit) =
     div [] [
-        nav [ClassName "navbar navbar-expand-lg navbar-dark bg-dark"] [
-            div [ClassName "navbar-brand"] [ str ("Beer Architect") ]  
-            div [ClassName "navbar-nav"] [
-                yield viewLink Page.Home "Home"
-                yield viewLink Page.AbvCalculator "ABV Calculator"
-            ]]
-        div [ClassName "row abv-row"] [
-            div [ClassName "col"] []
-            div [ClassName "col"] [
-                label [] [str ("Original Gravity")]
-                input [
-                    Id "originalGravity" 
-                    ClassName "form-control"
-                    AutoFocus true
-                    HTMLAttr.Type "number"
-                    Step "any"
-                    OnChange (fun ev -> dispatch (SetOriginalGravity !!ev.target?value))
+        navigationBar
+        div [ClassName "container-fluid"] [
+            div [ClassName "row"] [
+                sidebarNavigationMenu
+                div [ClassName "col-md-9 ml-sm-auto col-lg-10 px-4 beer-body"] [
+                    div [ClassName "row abv-row bottom-border"] [h2 [] [str("ABV Calculator")] ]
+                    div [ClassName "row abv-row justify-content-start"] [
+                        div [ClassName "col-8"] [
+                            label [] [str ("Original Gravity")]
+                            input [
+                                Id "originalGravity" 
+                                ClassName "form-control"
+                                AutoFocus true
+                                HTMLAttr.Type "number"
+                                Step "any"
+                                OnChange (fun ev -> dispatch (SetOriginalGravity !!ev.target?value))
+                            ]]]
+                    div [ClassName "row abv-row justify-content-start"] [
+                        div [ClassName "col-8"] [
+                            label [] [str ("Final Gravity")]
+                            input [
+                                Id "finalGravity" 
+                                ClassName "form-control"
+                                AutoFocus false
+                                HTMLAttr.Type "number"
+                                Step "any"
+                                OnChange (fun ev -> dispatch (SetFinalGravity !!ev.target?value))
+                            ]]]
+                    div [ClassName "row abv-row justify-content-start"] [
+                        div [ClassName "col-8"] [
+                            button [
+                                Type "button"
+                                Id "calculateAbv"
+                                ClassName "btn btn-info btn-lg btn-block"
+                                OnClick (fun _ -> dispatch ClickCalculate)
+                            ] [ str "Calculate"]
+                        ]]
+                    div [ClassName "row abv-row justify-content-start"] [
+                        div [ClassName "col-8"
+                             Id "StandardAbv"] [
+                            p [ ClassName "results" ] [ str (sprintf "Standard ABV:  %.2f %%" model.AbvResult.StandardAbv)]
+                        ]
+                    ]
+                    div [ClassName "row abv-row justify-content-start"] [
+                        div [ClassName "col-8"
+                             Id "AlternateAbv"] [
+                            p [ ClassName "results" ] [ str (sprintf "Alternate ABV:  %.2f %%" model.AbvResult.AlternateAbv)]
+                        ]
+                    ]
+                    div [ClassName "row abv-row justify-content-start"] [
+                        div [ClassName "col-8"
+                             Id "TotalCalories"] [
+                            p [ ClassName "results" ] [ str (sprintf "Total Calories:  %.2f per 12 oz." model.AbvResult.TotalCalories)]
+                        ]
+                    ]
                 ]
+                
             ]
-            div [ClassName "col"] []
-        ]
-        div [ClassName "row abv-row"] [
-            div [ClassName "col"] []
-            div [ClassName "col"] [
-                label [] [str ("Final Gravity")]
-                input [
-                    Id "finalGravity" 
-                    ClassName "form-control"
-                    AutoFocus false
-                    HTMLAttr.Type "number"
-                    Step "any"
-                    OnChange (fun ev -> dispatch (SetFinalGravity !!ev.target?value))
-                ]
-            ]
-            div [ClassName "col"] []
-        ]
-        div [ClassName "row abv-row"] [
-            div [ClassName "col"] []
-            div [ClassName "col"] [
-                button [
-                    Type "button"
-                    Id "calculateAbv"
-                    ClassName "btn btn-info btn-lg btn-block"
-                    OnClick (fun _ -> dispatch ClickCalculate)
-                ] [ str "Calculate"]
-            ]
-            div [ClassName "col"] []
-        ]
-        div [ClassName "row abv-row"] [
-            div [ClassName "col"] []
-            div [ClassName "col"
-                 Id "StandardAbv"] [
-                p [ ClassName "lead" ] [ str "Standard ABV: "]
-                p [ ClassName "lead" ] [ str (sprintf "%.2f %%" model.AbvResult.StandardAbv)]
-            ]
-            div [ClassName "col"] []
-        ]
-        div [ClassName "row abv-row"] [
-            div [ClassName "col"] []
-            div [ClassName "col"
-                 Id "AlternateAbv"] [
-                p [ ClassName "lead" ] [ str "Alternate ABV: "]
-                p [ ClassName "lead" ] [ str (sprintf "%.2f %%" model.AbvResult.AlternateAbv)]
-            ]
-            div [ClassName "col"] []
-        ]
-        div [ClassName "row abv-row"] [
-            div [ClassName "col"] []
-            div [ClassName "col"
-                 Id "TotalCalories"] [
-                p [ ClassName "lead" ] [ str "Total Calories: "]
-                p [ ClassName "lead" ] [ str (sprintf "%.2f per 12 oz." model.AbvResult.TotalCalories)]
-            ]
-            div [ClassName "col"] []
         ]
     ]
