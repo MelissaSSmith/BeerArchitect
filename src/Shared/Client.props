@@ -8,6 +8,7 @@
     <Compile Include="../Client/NavigationMenu.fs" Watch="false" />
     <Compile Include="../Client/Home.fs" Watch="false" />
     <Compile Include="../Client/AbvCalculator.fs" Watch="false" />
+    <Compile Include="../Client/SrmCalculator.fs" Watch="false" />
     <Compile Include="../Client/Shared.fs" Watch="false" />
   </ItemGroup>
 </Project>

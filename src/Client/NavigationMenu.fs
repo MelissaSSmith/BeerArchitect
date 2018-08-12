@@ -1,11 +1,7 @@
 module Client.NavigationMenu
 
-open Elmish
 open Fable.Helpers.React
 open Fable.Helpers.React.Props
-open Fable.Core.JsInterop
-open Fable.PowerPack
-open Fable.PowerPack.Fetch.Fetch_types
 open Client.Pages
 open Client.Style
 
@@ -20,6 +16,7 @@ let sidebarNavigationMenu =
             ul [ClassName "nav flex-column nav-pills"] [
                 yield viewLink Page.Home "Home"
                 yield viewLink Page.AbvCalculator "ABV Calculator"
+                yield viewLink Page.SrmCalculator "SRM Calculator"
             ]
         ]
     ]

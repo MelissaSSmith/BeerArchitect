@@ -10,8 +10,6 @@ open Fable.PowerPack.Fetch.Fetch_types
 open ServerCode
 open Shared
 open Client.NavigationMenu
-open Client.Style
-open Client.Pages
 
 type Model = {
     GravityReading : GravityReading
@@ -107,22 +105,14 @@ let view model (dispatch: Msg -> unit) =
                         div [ClassName "col-8"
                              Id "StandardAbv"] [
                             p [ ClassName "results" ] [ str (sprintf "Standard ABV:  %.2f %%" model.AbvResult.StandardAbv)]
-                        ]
-                    ]
+                        ]]
                     div [ClassName "row abv-row justify-content-start"] [
                         div [ClassName "col-8"
                              Id "AlternateAbv"] [
                             p [ ClassName "results" ] [ str (sprintf "Alternate ABV:  %.2f %%" model.AbvResult.AlternateAbv)]
-                        ]
-                    ]
+                        ]]
                     div [ClassName "row abv-row justify-content-start"] [
                         div [ClassName "col-8"
                              Id "TotalCalories"] [
                             p [ ClassName "results" ] [ str (sprintf "Total Calories:  %.2f per 12 oz." model.AbvResult.TotalCalories)]
-                        ]
-                    ]
-                ]
-                
-            ]
-        ]
-    ]
+                        ]]]]]]
