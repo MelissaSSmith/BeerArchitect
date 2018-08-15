@@ -43,3 +43,6 @@ let onEnter msg dispatch =
         dispatch msg
     | _ -> ()
     |> OnKeyDown
+
+let pageHeader title =
+    R.h2 [] [R.str title]
