@@ -20,4 +20,14 @@ type Fermentable =
 
 type SrmHex =
     { SrmKey: int
-      HexValue: string}
+      HexValue: string }
+
+type SrmResult = 
+    { Srm: float
+      Ebc: float
+      HexColor: string }
+
+type SrmInput = 
+    { BatchSize: float 
+      GrainAmounts: int list
+      GrainIds: int list }

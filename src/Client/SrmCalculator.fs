@@ -13,17 +13,24 @@ open Client.NavigationMenu
 open Client.Style
 
 type Model = {
+    SrmInput : SrmInput
+    SrmResult : SrmResult
     ErrorMsg : string }
 
 type Msg =
+    | CompleteSrmCalculation of SrmResult
     | UpdateBatchSize of float
+    | UpdateGrainAmount of string*float
+    | UpdateGrainId of string*int
     | ClickCalculate
     | Error of exn
 
 let init result =
     match result with 
     | _ ->
-        { ErrorMsg = "" }
+        { SrmInput = { BatchSize = 0.0; GrainAmounts = List.init 5 (fun f -> 0); GrainIds = List.init 5 (fun f -> 0)}
+          SrmResult = { Srm = 0.0; Ebc = 0.0; HexColor = "#FFFFFF"}
+          ErrorMsg = "" }
 
 let update (msg:Msg) (model:Model): Model*Cmd<Msg> =
     match msg with
@@ -38,7 +45,7 @@ let view model (dispatch: Msg -> unit) =
         div [ClassName "container-fluid"] [
             div [ClassName "row"] [
                 sidebarNavigationMenu
-                div [ClassName "col-md-9 ml-sm-auto col-lg-10 px-4 beer-body"] [
+                div [ClassName "col-md-12 ml-sm-auto col-lg-12 px-4 beer-body"] [
                     div [ClassName "row beer-row bottom-border"] [ pageHeader "SRM Calculator" ]
                     div [ClassName "col-6"
                          Id "srm-inputs"][
@@ -141,8 +148,20 @@ let view model (dispatch: Msg -> unit) =
                                 Id "calculateSrm"
                                 ClassName "btn btn-info btn-lg btn-block"
                                 OnClick (fun _ -> dispatch ClickCalculate)
-                            ] [ str "Calculate"]
-                        ]                   
+                            ] [ str "Calculate"] ] ]
+                    div [ClassName "col-6"
+                         Id "srm-inputs"][
+                        div [ClassName "row beer-row justify-content-start"] [ 
+                            p [ ClassName "results" ] [ str (sprintf "Standard ABV:  %.2f %%" model.SrmResult.Srm)]
+                        ]
+                        div [ClassName "row beer-row justify-content-start"] [ 
+                            p [ ClassName "results" ] [ str (sprintf "Standard ABV:  %.2f %%" model.SrmResult.Ebc)]
+                        ]
+                        div [ClassName "row beer-row justify-content-center"] [ 
+                            canvas [HTMLAttr.Height "300"
+                                    HTMLAttr.Width "300"
+                                    Style [BackgroundColor model.SrmResult.HexColor] ] []
+                        ]
                     ]
                 ] 
             ] 

@@ -69,7 +69,7 @@ let view model (dispatch: Msg -> unit) =
         div [ClassName "container-fluid"] [
             div [ClassName "row"] [
                 sidebarNavigationMenu
-                div [ClassName "col-md-9 ml-sm-auto col-lg-10 px-4 beer-body"] [
+                div [ClassName "col-md-12 ml-sm-auto col-lg-12 px-4 beer-body"] [
                     div [ClassName "row beer-row bottom-border"] [ pageHeader "ABV Calculator" ]
                     div [ClassName "row beer-row justify-content-start"] [
                         div [ClassName "col-8"] [
