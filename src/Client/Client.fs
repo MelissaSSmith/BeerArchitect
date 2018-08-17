@@ -24,8 +24,8 @@ let urlUpdate (result:Page option) (model: Model) =
         let m = AbvCalculator.init()
         { model with PageModel = AbvCalculatorPageModal m }, Cmd.none
     | Some Page.SrmCalculator ->
-        let m = SrmCalculator.init()
-        { model with PageModel = SrmCalculatorPageModel m}, Cmd.none
+        let m, cmd = SrmCalculator.init() 
+        { model with PageModel = SrmCalculatorPageModel m }, Cmd.map SrmCalculatorMsg cmd
     | Some Page.Home ->
         { model with PageModel = HomePageModel }, Cmd.none
 

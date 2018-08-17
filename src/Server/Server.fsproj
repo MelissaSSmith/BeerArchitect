@@ -8,6 +8,7 @@
     <ItemGroup>
         <Compile Include="Templates.fs" />
         <Compile Include="Pages.fs" />
+        <Compile Include="Fermentables.fs" />
         <Compile Include="AbvCalculator.fs" />
         <Compile Include="SrmCalculator.fs" />
         <Compile Include="WebServer.fs" />

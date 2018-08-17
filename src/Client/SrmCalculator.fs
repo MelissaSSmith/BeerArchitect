@@ -6,11 +6,13 @@ open Fable.Helpers.React.Props
 open Fable.Core.JsInterop
 open Fable.PowerPack
 open Fable.PowerPack.Fetch.Fetch_types
+open System
 
 open ServerCode
 open Shared
 open Client.NavigationMenu
 open Client.Style
+open Client.JqueryEmitter
 
 type Model = {
     SrmInput : SrmInput
@@ -18,26 +20,84 @@ type Model = {
     ErrorMsg : string }
 
 type Msg =
+    | Success of unit
+    | InitializeData
     | CompleteSrmCalculation of SrmResult
-    | UpdateBatchSize of float
-    | UpdateGrainAmount of string*float
-    | UpdateGrainId of string*int
+    | FillInFermentableLists of Fermentable list
+    | SetBatchSize of float
+    | SetGrainAmount of string*float
+    | SetGrainId of string*int
     | ClickCalculate
     | Error of exn
+
+let calculateSrm (inputs:SrmInput) =
+    promise {
+        let body = toJson inputs
+
+        let props =
+            [ RequestProperties.Method HttpMethod.POST
+              Fetch.requestHeaders [
+                  HttpRequestHeaders.ContentType "application/json" ]
+              RequestProperties.Body !^body ]
+        
+        try
+            return! Fetch.fetchAs<SrmResult> ServerUrls.APIUrls.CalculateSrm props
+        with _ ->
+            return! failwithf "An error has occured"
+    }
+
+let getFermentableList a =
+    promise {
+        let props = 
+            [ RequestProperties.Method HttpMethod.GET ]
+        
+        try
+            return! Fetch.fetchAs<Fermentable list> ServerUrls.APIUrls.GetFermentables props
+        with _ ->
+            return! failwithf "An error has occured"
+    }
+
+let fillInFermentableDropdown dropdownId fermentableList = 
+    for f in fermentableList do
+        let newRow = String.Format("<option value={0}>{1} {2}</option>", f.Id, f.Country, f.Name)
+        JQuery.select("#"+dropdownId)
+        |> JQuery.append newRow
+        |> ignore
+
+let fillInFermentableLists fermentableList = 
+    let sortedList = fermentableList
+                    |> Seq.sortBy(fun f -> f.Category)
+                    |> Seq.sortBy(fun f -> f.Country)
+                    |> Seq.sortBy(fun f -> f.Name)
+    ["grain1"; "grain2"; "grain3"; "grain4"; "grain5"]
+    |> List.iter (fun g -> fillInFermentableDropdown g sortedList)
+
+let calculateSrmCmd inputs =
+    Cmd.ofPromise calculateSrm inputs CompleteSrmCalculation Error
+let getFermentableListCmd =
+    Cmd.ofPromise getFermentableList 0 FillInFermentableLists Error
 
 let init result =
     match result with 
     | _ ->
         { SrmInput = { BatchSize = 0.0; GrainAmounts = List.init 5 (fun f -> 0); GrainIds = List.init 5 (fun f -> 0)}
           SrmResult = { Srm = 0.0; Ebc = 0.0; HexColor = "#FFFFFF"}
-          ErrorMsg = "" }
+          ErrorMsg = "" }, getFermentableListCmd
 
 let update (msg:Msg) (model:Model): Model*Cmd<Msg> =
     match msg with
-    | UpdateBatchSize batchSize ->
-        model, Cmd.none
+    | FillInFermentableLists fermentableList ->
+        model, Cmd.ofFunc fillInFermentableLists fermentableList Success Error
+    | CompleteSrmCalculation results ->
+        { model with SrmResult = { model.SrmResult with Srm = results.Srm; Ebc = results.Ebc; HexColor = results.HexColor } }, Cmd.none
+    | SetBatchSize batchSize ->
+        { model with SrmInput = { model.SrmInput with BatchSize = batchSize }}, Cmd.none
+    | ClickCalculate ->
+        model, calculateSrmCmd model.SrmInput
     | Error exn ->
         { model with ErrorMsg = string (exn.Message) }, Cmd.none
+    | _ ->
+        model, Cmd.none
 
 let view model (dispatch: Msg -> unit) =
     div [] [
@@ -57,7 +117,7 @@ let view model (dispatch: Msg -> unit) =
                                 AutoFocus true
                                 HTMLAttr.Type "number"
                                 Step "any"
-                                OnChange (fun ev -> dispatch (UpdateBatchSize !!ev.target?value))
+                                OnChange (fun ev -> dispatch (SetBatchSize !!ev.target?value))
                             ]
                         ]
                         div [ClassName "row beer-row justify-content-start"] [
@@ -78,11 +138,12 @@ let view model (dispatch: Msg -> unit) =
                                                 Step "any" ] ]
                                         th [] [
                                             select [
-                                                Id "grainAmount1" 
+                                                Id "grain1" 
                                                 ClassName "form-control"
-                                                AutoFocus false ] [
-                                                option [ Disabled true 
-                                                         Selected true] [ str "Select Grain ..."] ] ] ]
+                                                AutoFocus false 
+                                                DefaultValue "0"] [
+                                                option [ Disabled true
+                                                         Value "0" ] [ str "Select Grain ..."] ] ] ]
                                     tr [] [
                                         th [] [
                                             input [
@@ -93,11 +154,12 @@ let view model (dispatch: Msg -> unit) =
                                                 Step "any" ] ]
                                         th [] [
                                             select [
-                                                Id "grainAmount2" 
+                                                Id "grain2" 
                                                 ClassName "form-control"
-                                                AutoFocus false ] [
-                                                option [ Disabled true 
-                                                         Selected true] [ str "Select Grain ..."] ] ] ]
+                                                AutoFocus false 
+                                                DefaultValue "0"] [
+                                                option [ Disabled true
+                                                         Value "0" ] [ str "Select Grain ..."] ] ] ]
                                     tr [] [
                                         th [] [
                                             input [
@@ -108,11 +170,12 @@ let view model (dispatch: Msg -> unit) =
                                                 Step "any" ] ]
                                         th [] [
                                             select [
-                                                Id "grainAmount3" 
+                                                Id "grain3" 
                                                 ClassName "form-control"
-                                                AutoFocus false ] [
-                                                option [ Disabled true 
-                                                         Selected true] [ str "Select Grain ..."] ] ] ]
+                                                AutoFocus false 
+                                                DefaultValue "0"] [
+                                                option [ Disabled true
+                                                         Value "0" ] [ str "Select Grain ..."] ] ] ]
                                     tr [] [
                                         th [] [
                                             input [
@@ -123,11 +186,12 @@ let view model (dispatch: Msg -> unit) =
                                                 Step "any" ] ]
                                         th [] [
                                             select [
-                                                Id "grainAmount4" 
+                                                Id "grain4" 
                                                 ClassName "form-control"
-                                                AutoFocus false ] [
-                                                option [ Disabled true 
-                                                         Selected true] [ str "Select Grain ..."] ] ] ]
+                                                AutoFocus false 
+                                                DefaultValue "0"] [
+                                                option [ Disabled true
+                                                         Value "0" ] [ str "Select Grain ..."] ] ] ]
                                     tr [] [
                                         th [] [
                                             input [
@@ -138,13 +202,13 @@ let view model (dispatch: Msg -> unit) =
                                                 Step "any" ] ]
                                         th [] [
                                             select [
-                                                Id "grainAmount5" 
+                                                Id "grain5" 
                                                 ClassName "form-control"
-                                                AutoFocus false ] [
-                                                option [ Disabled true 
-                                                         Selected true] [ str "Select Grain ..."] ] ] ] ] ]
+                                                AutoFocus false 
+                                                DefaultValue "0"] [
+                                                option [ Disabled true
+                                                         Value "0" ] [ str "Select Grain ..."] ] ] ] ] ]
                             button [
-                                Type "button"
                                 Id "calculateSrm"
                                 ClassName "btn btn-info btn-lg btn-block"
                                 OnClick (fun _ -> dispatch ClickCalculate)

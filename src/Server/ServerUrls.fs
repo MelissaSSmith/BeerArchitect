@@ -14,3 +14,5 @@ module APIUrls =
   let CalculateAbv = "/api/abv/calculate"
   [<Literal>]
   let CalculateSrm = "/api/srm/calculate"
+  [<Literal>]
+  let GetFermentables = "/api/fermentable/get"
