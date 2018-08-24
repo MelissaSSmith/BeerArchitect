@@ -80,7 +80,7 @@ let getFermentableListCmd =
 let init result =
     match result with 
     | _ ->
-        { SrmInput = { BatchSize = 0.0; GrainAmounts = List.init 5 (fun f -> 0); GrainIds = List.init 5 (fun f -> 0)}
+        { SrmInput = { BatchSize = 0.0; GrainBill = List.init 5 (fun f -> 0.0,0); GrainIds = List.init 5 (fun f -> 0)}
           SrmResult = { Srm = 0.0; Ebc = 0.0; HexColor = "#FFFFFF"}
           ErrorMsg = "" }, getFermentableListCmd
 
@@ -105,8 +105,9 @@ let view model (dispatch: Msg -> unit) =
         div [ClassName "container-fluid"] [
             div [ClassName "row"] [
                 sidebarNavigationMenu
-                div [ClassName "col-md-12 ml-sm-auto col-lg-12 px-4 beer-body"] [
+                div [ClassName "col-md-10 ml-sm-auto col-lg-10 px-4 beer-body"] [
                     div [ClassName "row beer-row bottom-border"] [ pageHeader "SRM Calculator" ]
+                    div [ClassName "row beer-row"] [
                     div [ClassName "col-6"
                          Id "srm-inputs"][
                         div [ClassName "row beer-row justify-content-start"] [
@@ -213,13 +214,13 @@ let view model (dispatch: Msg -> unit) =
                                 ClassName "btn btn-info btn-lg btn-block"
                                 OnClick (fun _ -> dispatch ClickCalculate)
                             ] [ str "Calculate"] ] ]
-                    div [ClassName "col-6"
+                    div [ClassName "offset-1 col-5"
                          Id "srm-inputs"][
                         div [ClassName "row beer-row justify-content-start"] [ 
-                            p [ ClassName "results" ] [ str (sprintf "Standard ABV:  %.2f %%" model.SrmResult.Srm)]
+                                p [ ClassName "results" ] [ str (sprintf "SRM:  %.2f" model.SrmResult.Srm)]
                         ]
                         div [ClassName "row beer-row justify-content-start"] [ 
-                            p [ ClassName "results" ] [ str (sprintf "Standard ABV:  %.2f %%" model.SrmResult.Ebc)]
+                                p [ ClassName "results" ] [ str (sprintf "EBC:  %.2f" model.SrmResult.Ebc)]
                         ]
                         div [ClassName "row beer-row justify-content-center"] [ 
                             canvas [HTMLAttr.Height "300"
@@ -230,4 +231,5 @@ let view model (dispatch: Msg -> unit) =
                 ] 
             ] 
         ]
-    ]
+    ]      
+]
