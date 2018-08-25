@@ -72,9 +72,7 @@ let fillInFermentableDropdown dropdownId fermentableList =
 
 let fillInFermentableLists fermentableList = 
     let sortedList = fermentableList
-                    |> Seq.sortBy(fun f -> f.Category)
                     |> Seq.sortBy(fun f -> f.Country)
-                    |> Seq.sortBy(fun f -> f.Name)
     ["grain-1"; "grain-2"; "grain-3"; "grain-4"; "grain-5"]
     |> List.iter (fun g -> fillInFermentableDropdown g sortedList)
 
