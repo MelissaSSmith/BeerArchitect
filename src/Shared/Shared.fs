@@ -30,4 +30,5 @@ type SrmResult =
 type SrmInput = 
     { BatchSize: float 
       GrainIds: int list
+      GrainAmounts: float list
       GrainBill: list<float*int> }

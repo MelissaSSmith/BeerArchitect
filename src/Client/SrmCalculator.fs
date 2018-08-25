@@ -13,6 +13,7 @@ open Shared
 open Client.NavigationMenu
 open Client.Style
 open Client.JqueryEmitter
+open Fable.Import.Browser
 
 type Model = {
     SrmInput : SrmInput
@@ -25,10 +26,15 @@ type Msg =
     | CompleteSrmCalculation of SrmResult
     | FillInFermentableLists of Fermentable list
     | SetBatchSize of float
-    | SetGrainAmount of string*float
-    | SetGrainId of string*int
+    | SetGrainAmount of int*float
+    | SetGrainId of int*int
     | ClickCalculate
     | Error of exn
+
+let inline charToInt c = int c - int '0'
+
+let updateElement place newValue list =
+    list |> List.mapi (fun index value -> if index = place then newValue else value ) 
 
 let calculateSrm (inputs:SrmInput) =
     promise {
@@ -69,7 +75,7 @@ let fillInFermentableLists fermentableList =
                     |> Seq.sortBy(fun f -> f.Category)
                     |> Seq.sortBy(fun f -> f.Country)
                     |> Seq.sortBy(fun f -> f.Name)
-    ["grain1"; "grain2"; "grain3"; "grain4"; "grain5"]
+    ["grain-1"; "grain-2"; "grain-3"; "grain-4"; "grain-5"]
     |> List.iter (fun g -> fillInFermentableDropdown g sortedList)
 
 let calculateSrmCmd inputs =
@@ -80,7 +86,7 @@ let getFermentableListCmd =
 let init result =
     match result with 
     | _ ->
-        { SrmInput = { BatchSize = 0.0; GrainBill = List.init 5 (fun f -> 0.0,0); GrainIds = List.init 5 (fun f -> 0)}
+        { SrmInput = { BatchSize = 0.0; GrainBill = List.init 5 (fun f -> 0.0,0); GrainIds = List.init 5 (fun f -> 0); GrainAmounts = List.init 5 (fun f -> 0.0)}
           SrmResult = { Srm = 0.0; Ebc = 0.0; HexColor = "#FFFFFF"}
           ErrorMsg = "" }, getFermentableListCmd
 
@@ -92,7 +98,14 @@ let update (msg:Msg) (model:Model): Model*Cmd<Msg> =
         { model with SrmResult = { model.SrmResult with Srm = results.Srm; Ebc = results.Ebc; HexColor = results.HexColor } }, Cmd.none
     | SetBatchSize batchSize ->
         { model with SrmInput = { model.SrmInput with BatchSize = batchSize }}, Cmd.none
+    | SetGrainAmount (inputId, grainAmount) ->
+        let grainAmounts = model.SrmInput.GrainAmounts
+        { model with SrmInput = { model.SrmInput with GrainAmounts = updateElement inputId grainAmount grainAmounts }}, Cmd.none
+    | SetGrainId (inputId, grainId) ->
+        let grainIds = model.SrmInput.GrainIds
+        { model with SrmInput = { model.SrmInput with GrainIds = updateElement inputId grainId grainIds }}, Cmd.none
     | ClickCalculate ->
+        console.log(model.SrmInput.GrainIds)
         model, calculateSrmCmd model.SrmInput
     | Error exn ->
         { model with ErrorMsg = string (exn.Message) }, Cmd.none
@@ -132,80 +145,91 @@ let view model (dispatch: Msg -> unit) =
                                     tr [] [
                                         th [] [
                                             input [
-                                                Id "grainAmount1" 
+                                                Id "grain-amount-1" 
                                                 ClassName "form-control"
                                                 AutoFocus false
                                                 HTMLAttr.Type "number"
-                                                Step "any" ] ]
+                                                Step "any" 
+                                                Name "grain-amount-1"
+                                                OnChange (fun ev -> dispatch (SetGrainAmount (1, !!ev.target?value) ) ) ] ]
                                         th [] [
                                             select [
-                                                Id "grain1" 
+                                                Id "grain-1" 
                                                 ClassName "form-control"
                                                 AutoFocus false 
+                                                OnChange (fun ev -> dispatch (SetGrainId (1, !!ev.target?value) ) )
                                                 DefaultValue "0"] [
                                                 option [ Disabled true
                                                          Value "0" ] [ str "Select Grain ..."] ] ] ]
                                     tr [] [
                                         th [] [
                                             input [
-                                                Id "grainAmount2" 
+                                                Id "grain-amount-2" 
                                                 ClassName "form-control"
                                                 AutoFocus false
                                                 HTMLAttr.Type "number"
-                                                Step "any" ] ]
+                                                Step "any"
+                                                OnChange (fun ev -> dispatch (SetGrainAmount (2, !!ev.target?value) ) ) ] ]
                                         th [] [
                                             select [
-                                                Id "grain2" 
+                                                Id "grain-2" 
                                                 ClassName "form-control"
                                                 AutoFocus false 
+                                                OnChange (fun ev -> dispatch (SetGrainId (2, !!ev.target?value) ) )
                                                 DefaultValue "0"] [
                                                 option [ Disabled true
                                                          Value "0" ] [ str "Select Grain ..."] ] ] ]
                                     tr [] [
                                         th [] [
                                             input [
-                                                Id "grainAmount3" 
+                                                Id "grain-amount-3" 
                                                 ClassName "form-control"
                                                 AutoFocus false
                                                 HTMLAttr.Type "number"
-                                                Step "any" ] ]
+                                                Step "any" 
+                                                OnChange (fun ev -> dispatch (SetGrainAmount (3, !!ev.target?value) ) ) ] ]
                                         th [] [
                                             select [
-                                                Id "grain3" 
+                                                Id "grain-3" 
                                                 ClassName "form-control"
                                                 AutoFocus false 
+                                                OnChange (fun ev -> dispatch (SetGrainId (3, !!ev.target?value) ) )
                                                 DefaultValue "0"] [
                                                 option [ Disabled true
                                                          Value "0" ] [ str "Select Grain ..."] ] ] ]
                                     tr [] [
                                         th [] [
                                             input [
-                                                Id "grainAmount4" 
+                                                Id "grain-amount-4" 
                                                 ClassName "form-control"
                                                 AutoFocus false
                                                 HTMLAttr.Type "number"
-                                                Step "any" ] ]
+                                                Step "any"
+                                                OnChange (fun ev -> dispatch (SetGrainAmount (4, !!ev.target?value) ) ) ] ]
                                         th [] [
                                             select [
-                                                Id "grain4" 
+                                                Id "grain-4" 
                                                 ClassName "form-control"
                                                 AutoFocus false 
+                                                OnChange (fun ev -> dispatch (SetGrainId (4, !!ev.target?value) ) )
                                                 DefaultValue "0"] [
                                                 option [ Disabled true
                                                          Value "0" ] [ str "Select Grain ..."] ] ] ]
                                     tr [] [
                                         th [] [
                                             input [
-                                                Id "grainAmount5" 
+                                                Id "grain-amount-5" 
                                                 ClassName "form-control"
                                                 AutoFocus false
                                                 HTMLAttr.Type "number"
-                                                Step "any" ] ]
+                                                Step "any"
+                                                OnChange (fun ev -> dispatch (SetGrainAmount (5, !!ev.target?value) ) ) ] ]
                                         th [] [
                                             select [
-                                                Id "grain5" 
+                                                Id "grain-5" 
                                                 ClassName "form-control"
                                                 AutoFocus false 
+                                                OnChange (fun ev -> dispatch (SetGrainId (5, !!ev.target?value) ) )
                                                 DefaultValue "0"] [
                                                 option [ Disabled true
                                                          Value "0" ] [ str "Select Grain ..."] ] ] ] ] ]

@@ -6,6 +6,7 @@ open Giraffe
 open Giraffe.TokenRouter
 open RequestErrors
 open Microsoft.AspNetCore.Http
+open Client
 
 let webApp : HttpHandler =
     let apiPathPrefix = PathString("/api")
@@ -23,5 +24,6 @@ let webApp : HttpHandler =
         ]
         POST [
             route APIUrls.CalculateAbv AbvCalculator.calculate
+            route APIUrls.CalculateSrm SrmCalculator.calculate
         ]
     ]

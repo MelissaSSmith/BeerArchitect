@@ -31,3 +31,6 @@ module JQuery =
 
     [<Emit("$0.val()")>]
     let value (_: IJQuery) : string = jsNative
+
+    [<Emit("$1.attr($0)")>]
+    let attr (_: string) (_: IJQuery) : string = jsNative
