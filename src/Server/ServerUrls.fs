@@ -6,7 +6,9 @@ module PageUrls =
   [<Literal>]
   let AbvCalculator = "/abv-calculator"
   [<Literal>]
-  let ASrmCalculator = "/srm-calculator"
+  let SrmCalculator = "/srm-calculator"
+  [<Literal>]
+  let IbuCalculator = "/ibu-calculator"
 
 module APIUrls =
 
@@ -16,3 +18,5 @@ module APIUrls =
   let CalculateSrm = "/api/srm/calculate"
   [<Literal>]
   let GetFermentables = "/api/fermentable/get"
+  [<Literal>]
+  let CalculateIbu = "/api/ibu/calculate"

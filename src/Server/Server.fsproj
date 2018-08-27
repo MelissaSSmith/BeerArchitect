@@ -11,6 +11,7 @@
         <Compile Include="Fermentables.fs" />
         <Compile Include="AbvCalculator.fs" />
         <Compile Include="SrmCalculator.fs" />
+        <Compile Include="IbuCalculator.fs" />
         <Compile Include="WebServer.fs" />
         <Compile Include="Server.fs" />
     </ItemGroup>

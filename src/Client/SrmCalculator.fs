@@ -13,7 +13,6 @@ open Shared
 open Client.NavigationMenu
 open Client.Style
 open Client.JqueryEmitter
-open Fable.Import.Browser
 
 type Model = {
     SrmInput : SrmInput
@@ -72,7 +71,7 @@ let fillInFermentableDropdown dropdownId fermentableList =
 
 let fillInFermentableLists fermentableList = 
     let sortedList = fermentableList
-                    |> Seq.sortBy(fun f -> f.Country)
+                    |> Seq.sortBy(fun f -> f.Category)
     ["grain-1"; "grain-2"; "grain-3"; "grain-4"; "grain-5"]
     |> List.iter (fun g -> fillInFermentableDropdown g sortedList)
 
@@ -103,7 +102,6 @@ let update (msg:Msg) (model:Model): Model*Cmd<Msg> =
         let grainIds = model.SrmInput.GrainIds
         { model with SrmInput = { model.SrmInput with GrainIds = updateElement inputId grainId grainIds }}, Cmd.none
     | ClickCalculate ->
-        console.log(model.SrmInput.GrainIds)
         model, calculateSrmCmd model.SrmInput
     | Error exn ->
         { model with ErrorMsg = string (exn.Message) }, Cmd.none
@@ -124,7 +122,7 @@ let view model (dispatch: Msg -> unit) =
                         div [ClassName "row beer-row justify-content-start"] [
                             label [] [ str "Batch Size (gallons)" ]
                             input [
-                                Id "batchSize" 
+                                Id "batch-size" 
                                 ClassName "form-control"
                                 AutoFocus true
                                 HTMLAttr.Type "number"
@@ -148,7 +146,6 @@ let view model (dispatch: Msg -> unit) =
                                                 AutoFocus false
                                                 HTMLAttr.Type "number"
                                                 Step "any" 
-                                                Name "grain-amount-1"
                                                 OnChange (fun ev -> dispatch (SetGrainAmount (1, !!ev.target?value) ) ) ] ]
                                         th [] [
                                             select [
@@ -232,12 +229,12 @@ let view model (dispatch: Msg -> unit) =
                                                 option [ Disabled true
                                                          Value "0" ] [ str "Select Grain ..."] ] ] ] ] ]
                             button [
-                                Id "calculateSrm"
+                                Id "calculate-srm"
                                 ClassName "btn btn-info btn-lg btn-block"
                                 OnClick (fun _ -> dispatch ClickCalculate)
                             ] [ str "Calculate"] ] ]
                     div [ClassName "offset-1 col-5"
-                         Id "srm-inputs"][
+                         Id "srm-results"][
                         div [ClassName "row beer-row justify-content-start"] [ 
                                 p [ ClassName "results" ] [ str (sprintf "SRM:  %.2f" model.SrmResult.Srm)]
                         ]

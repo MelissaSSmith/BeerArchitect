@@ -17,6 +17,7 @@ let sidebarNavigationMenu =
                 yield viewLink Page.Home "Home"
                 yield viewLink Page.AbvCalculator "ABV Calculator"
                 yield viewLink Page.SrmCalculator "SRM Calculator"
+                yield viewLink Page.IbuCalculator "IBU Calculator"
             ]
         ]
     ]
