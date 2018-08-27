@@ -32,3 +32,24 @@ type SrmInput =
       GrainIds: int list
       GrainAmounts: float list
       GrainBill: list<float*int> }
+
+type HopIbuInput = 
+    { Ounces: float
+      AlphaAcids: float
+      BoilTime: float
+      Type: int }
+
+type IbuInput = 
+    { BoilSize: float
+      BatchSize: float
+      TargetOriginalGravity: float
+      HopIbuInputs: HopIbuInput list }
+
+type HopIbuResult =
+    { Utilization: float
+      Ibus: float }
+
+type IbuResult = 
+    { EstimatedBoilGravity: float
+      TotalIbu: float
+      HopIbuResults: HopIbuResult list}
