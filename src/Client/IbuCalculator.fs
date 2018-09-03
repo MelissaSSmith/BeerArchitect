@@ -4,6 +4,7 @@ open Elmish
 open Fable.Helpers.React
 open Fable.Helpers.React.Props
 open Fable.Core.JsInterop
+open Fable.Import.Browser
 open Fable.PowerPack
 open Fable.PowerPack.Fetch.Fetch_types
 open System
@@ -22,9 +23,37 @@ type Msg =
     | SetBoilSize of float
     | SetBatchSize of float
     | SetTargetOriginalGravity of float
+    | SetHopOunces of int*float
+    | SetHopAlphaAcids of int*float
+    | SetHopBoilTime of int*float
+    | SetHopType of int*int
     | FinishIbuCalculation of IbuResult
     | ClickCalculate
     | Error of exn
+
+let inline charToInt c = int c - int '0'
+
+let updateElement place newValue list =
+    list |> List.mapi (fun index value -> if index = place then newValue else value )
+
+let calculateIbu (inputs:IbuInput) =
+    promise {
+        let body = toJson inputs
+
+        let props = 
+            [ RequestProperties.Method HttpMethod.POST
+              Fetch.requestHeaders [
+                  HttpRequestHeaders.ContentType "application/json" ]
+              RequestProperties.Body !^body ]
+
+        try 
+            return! Fetch.fetchAs<IbuResult> ServerUrls.APIUrls.CalculateIbu props
+        with _ ->
+            return failwithf "An error has occured"
+    }
+
+let calculateIbuCmd inputs = 
+    Cmd.ofPromise calculateIbu inputs FinishIbuCalculation Error
 
 let init result = 
     match result with
@@ -35,10 +64,35 @@ let init result =
 
 let update (msg:Msg) (model:Model): Model*Cmd<Msg> =
     match msg with
+    | SetBoilSize boilSize ->
+        { model with IbuInput = { model.IbuInput with BoilSize = boilSize }}, Cmd.none
+    | SetBatchSize batchSize ->
+        { model with IbuInput = { model.IbuInput with BatchSize = batchSize }}, Cmd.none
+    | SetTargetOriginalGravity targetOriginalGravity ->
+        { model with IbuInput = { model.IbuInput with TargetOriginalGravity = targetOriginalGravity }}, Cmd.none
+    | SetHopOunces (inputId, ounces) ->
+        let hopInputList = model.IbuInput.HopIbuInputs
+        let hopInput = { List.item inputId hopInputList with Ounces = ounces }
+        { model with IbuInput = { model.IbuInput with HopIbuInputs = updateElement inputId hopInput hopInputList }}, Cmd.none
+    | SetHopAlphaAcids (inputId, alphaAcids) ->
+        let hopInputList = model.IbuInput.HopIbuInputs 
+        let hopInput = { List.item inputId hopInputList with AlphaAcids = alphaAcids }
+        { model with IbuInput = { model.IbuInput with HopIbuInputs = updateElement inputId hopInput hopInputList }}, Cmd.none
+    | SetHopBoilTime (inputId, boilTime) ->
+        let hopInputList = model.IbuInput.HopIbuInputs
+        let hopInput = { List.item inputId hopInputList with BoilTime = boilTime }
+        { model with IbuInput = { model.IbuInput with HopIbuInputs = updateElement inputId hopInput hopInputList }}, Cmd.none
+    | SetHopType (inputId, hopType) ->
+        let hopInputList = model.IbuInput.HopIbuInputs
+        let hopInput = { List.item inputId hopInputList with Type = hopType }
+        { model with IbuInput = { model.IbuInput with HopIbuInputs = updateElement inputId hopInput hopInputList }}, Cmd.none
+    | ClickCalculate ->
+        model, calculateIbuCmd model.IbuInput
+    | FinishIbuCalculation results ->
+        console.log(results.HopIbuResults)
+        { model with IbuResult = { model.IbuResult with EstimatedBoilGravity = results.EstimatedBoilGravity; TotalIbu = results.TotalIbu; HopIbuResults = results.HopIbuResults }}, Cmd.none
     | Error exn ->
         { model with ErrorMsg = string (exn.Message) }, Cmd.none
-    | _ ->
-        model, Cmd.none
 
 let view model (dispatch: Msg -> unit) =
     div [] [
@@ -86,7 +140,7 @@ let view model (dispatch: Msg -> unit) =
                             ]
                         ]
                         div [ClassName "row beer-row justify-content-start"] [
-                            table [ClassName "table table-striped"] [
+                            table [ClassName "table table-sm table-striped"] [
                                 thead [] [
                                     tr [] [
                                         th [Scope "col"] [ str "Ounces" ]
@@ -104,26 +158,30 @@ let view model (dispatch: Msg -> unit) =
                                                 ClassName "form-control"
                                                 AutoFocus false
                                                 HTMLAttr.Type "number"
-                                                Step "any"  ] ]
+                                                Step "any" 
+                                                OnChange (fun ev -> dispatch (SetHopOunces (0, !!ev.target?value) ) ) ] ]
                                         th [] [
                                             input [
                                                 Id "alpha-acids-1" 
                                                 ClassName "form-control"
                                                 AutoFocus false
                                                 HTMLAttr.Type "number"
-                                                Step "any"  ] ]
+                                                Step "any" 
+                                                OnChange (fun ev -> dispatch (SetHopAlphaAcids (0, !!ev.target?value) ) ) ] ]
                                         th [] [
                                             input [
                                                 Id "boil-time-1" 
                                                 ClassName "form-control"
                                                 AutoFocus false
                                                 HTMLAttr.Type "number"
-                                                Step "any"  ] ]
+                                                Step "any"
+                                                OnChange (fun ev -> dispatch (SetHopBoilTime (0, !!ev.target?value) ) ) ] ]
                                         th [] [
                                             select [
                                                 Id "hop-type-1" 
                                                 ClassName "form-control"
                                                 AutoFocus false 
+                                                OnChange (fun ev -> dispatch (SetHopType (0, !!ev.target?value) ) ) 
                                                 DefaultValue "1"] [
                                                     option [ Value "1" ] [ str "Whole/Plug"]
                                                     option [ Value "2" ] [ str "Pellet"]  ] ]
@@ -132,6 +190,210 @@ let view model (dispatch: Msg -> unit) =
                                         ]
                                         th [] [
                                             p [] [str (sprintf "%.2f" model.IbuResult.HopIbuResults.Head.Ibus)]
+                                        ] ]
+                                    tr [] [
+                                        th [] [
+                                            input [
+                                                Id "hop-ounces-2" 
+                                                ClassName "form-control"
+                                                AutoFocus false
+                                                HTMLAttr.Type "number"
+                                                Step "any" 
+                                                OnChange (fun ev -> dispatch (SetHopOunces (1, !!ev.target?value) ) ) ] ]
+                                        th [] [
+                                            input [
+                                                Id "alpha-acids-2" 
+                                                ClassName "form-control"
+                                                AutoFocus false
+                                                HTMLAttr.Type "number"
+                                                Step "any" 
+                                                OnChange (fun ev -> dispatch (SetHopAlphaAcids (1, !!ev.target?value) ) ) ] ]
+                                        th [] [
+                                            input [
+                                                Id "boil-time-2" 
+                                                ClassName "form-control"
+                                                AutoFocus false
+                                                HTMLAttr.Type "number"
+                                                Step "any"
+                                                OnChange (fun ev -> dispatch (SetHopBoilTime (1, !!ev.target?value) ) ) ] ]
+                                        th [] [
+                                            select [
+                                                Id "hop-type-2" 
+                                                ClassName "form-control"
+                                                AutoFocus false 
+                                                OnChange (fun ev -> dispatch (SetHopType (1, !!ev.target?value) ) ) 
+                                                DefaultValue "1"] [
+                                                    option [ Value "1" ] [ str "Whole/Plug"]
+                                                    option [ Value "2" ] [ str "Pellet"]  ] ]
+                                        th [] [
+                                            p [] [str (sprintf "%.4f" model.IbuResult.HopIbuResults.Tail.Head.Utilization)]
+                                        ]
+                                        th [] [
+                                            p [] [str (sprintf "%.2f" model.IbuResult.HopIbuResults.Tail.Head.Ibus)]
+                                        ]
+                                    ]
+                                    tr [] [
+                                        th [] [
+                                            input [
+                                                Id "hop-ounces-3" 
+                                                ClassName "form-control"
+                                                AutoFocus false
+                                                HTMLAttr.Type "number"
+                                                Step "any" 
+                                                OnChange (fun ev -> dispatch (SetHopOunces (2, !!ev.target?value) ) ) ] ]
+                                        th [] [
+                                            input [
+                                                Id "alpha-acids-3" 
+                                                ClassName "form-control"
+                                                AutoFocus false
+                                                HTMLAttr.Type "number"
+                                                Step "any" 
+                                                OnChange (fun ev -> dispatch (SetHopAlphaAcids (2, !!ev.target?value) ) ) ] ]
+                                        th [] [
+                                            input [
+                                                Id "boil-time-3" 
+                                                ClassName "form-control"
+                                                AutoFocus false
+                                                HTMLAttr.Type "number"
+                                                Step "any"
+                                                OnChange (fun ev -> dispatch (SetHopBoilTime (2, !!ev.target?value) ) ) ] ]
+                                        th [] [
+                                            select [
+                                                Id "hop-type-3" 
+                                                ClassName "form-control"
+                                                AutoFocus false 
+                                                OnChange (fun ev -> dispatch (SetHopType (2, !!ev.target?value) ) ) 
+                                                DefaultValue "1"] [
+                                                    option [ Value "1" ] [ str "Whole/Plug"]
+                                                    option [ Value "2" ] [ str "Pellet"]  ] ]
+                                        th [] [
+                                            p [] [str (sprintf "%.4f" model.IbuResult.HopIbuResults.Tail.Tail.Head.Utilization)]
+                                        ]
+                                        th [] [
+                                            p [] [str (sprintf "%.2f" model.IbuResult.HopIbuResults.Tail.Tail.Head.Ibus)]
+                                        ]
+                                    ]
+                                    tr [] [
+                                        th [] [
+                                            input [
+                                                Id "hop-ounces-4" 
+                                                ClassName "form-control"
+                                                AutoFocus false
+                                                HTMLAttr.Type "number"
+                                                Step "any" 
+                                                OnChange (fun ev -> dispatch (SetHopOunces (3, !!ev.target?value) ) ) ] ]
+                                        th [] [
+                                            input [
+                                                Id "alpha-acids-4" 
+                                                ClassName "form-control"
+                                                AutoFocus false
+                                                HTMLAttr.Type "number"
+                                                Step "any" 
+                                                OnChange (fun ev -> dispatch (SetHopAlphaAcids (3, !!ev.target?value) ) ) ] ]
+                                        th [] [
+                                            input [
+                                                Id "boil-time-4" 
+                                                ClassName "form-control"
+                                                AutoFocus false
+                                                HTMLAttr.Type "number"
+                                                Step "any"
+                                                OnChange (fun ev -> dispatch (SetHopBoilTime (3, !!ev.target?value) ) ) ] ]
+                                        th [] [
+                                            select [
+                                                Id "hop-type-4" 
+                                                ClassName "form-control"
+                                                AutoFocus false 
+                                                OnChange (fun ev -> dispatch (SetHopType (3, !!ev.target?value) ) ) 
+                                                DefaultValue "1"] [
+                                                    option [ Value "1" ] [ str "Whole/Plug"]
+                                                    option [ Value "2" ] [ str "Pellet"]  ] ]
+                                        th [] [
+                                            p [] [str (sprintf "%.4f" model.IbuResult.HopIbuResults.Tail.Tail.Tail.Head.Utilization)]
+                                        ]
+                                        th [] [
+                                            p [] [str (sprintf "%.2f" model.IbuResult.HopIbuResults.Tail.Tail.Tail.Head.Ibus)]
+                                        ]
+                                    ]
+                                    tr [] [
+                                        th [] [
+                                            input [
+                                                Id "hop-ounces-5" 
+                                                ClassName "form-control"
+                                                AutoFocus false
+                                                HTMLAttr.Type "number"
+                                                Step "any" 
+                                                OnChange (fun ev -> dispatch (SetHopOunces (4, !!ev.target?value) ) ) ] ]
+                                        th [] [
+                                            input [
+                                                Id "alpha-acids-5" 
+                                                ClassName "form-control"
+                                                AutoFocus false
+                                                HTMLAttr.Type "number"
+                                                Step "any" 
+                                                OnChange (fun ev -> dispatch (SetHopAlphaAcids (4, !!ev.target?value) ) ) ] ]
+                                        th [] [
+                                            input [
+                                                Id "boil-time-5" 
+                                                ClassName "form-control"
+                                                AutoFocus false
+                                                HTMLAttr.Type "number"
+                                                Step "any"
+                                                OnChange (fun ev -> dispatch (SetHopBoilTime (4, !!ev.target?value) ) ) ] ]
+                                        th [] [
+                                            select [
+                                                Id "hop-type-5" 
+                                                ClassName "form-control"
+                                                AutoFocus false 
+                                                OnChange (fun ev -> dispatch (SetHopType (4, !!ev.target?value) ) ) 
+                                                DefaultValue "1"] [
+                                                    option [ Value "1" ] [ str "Whole/Plug"]
+                                                    option [ Value "2" ] [ str "Pellet"]  ] ]
+                                        th [] [
+                                            p [] [str (sprintf "%.4f" model.IbuResult.HopIbuResults.Tail.Tail.Tail.Tail.Head.Utilization)]
+                                        ]
+                                        th [] [
+                                            p [] [str (sprintf "%.2f" model.IbuResult.HopIbuResults.Tail.Tail.Tail.Tail.Head.Ibus)]
+                                        ]
+                                    ]
+                                    tr [] [
+                                        th [] [
+                                            input [
+                                                Id "hop-ounces-6" 
+                                                ClassName "form-control"
+                                                AutoFocus false
+                                                HTMLAttr.Type "number"
+                                                Step "any" 
+                                                OnChange (fun ev -> dispatch (SetHopOunces (5, !!ev.target?value) ) ) ] ]
+                                        th [] [
+                                            input [
+                                                Id "alpha-acids-6" 
+                                                ClassName "form-control"
+                                                AutoFocus false
+                                                HTMLAttr.Type "number"
+                                                Step "any" 
+                                                OnChange (fun ev -> dispatch (SetHopAlphaAcids (5, !!ev.target?value) ) ) ] ]
+                                        th [] [
+                                            input [
+                                                Id "boil-time-6" 
+                                                ClassName "form-control"
+                                                AutoFocus false
+                                                HTMLAttr.Type "number"
+                                                Step "any"
+                                                OnChange (fun ev -> dispatch (SetHopBoilTime (5, !!ev.target?value) ) ) ] ]
+                                        th [] [
+                                            select [
+                                                Id "hop-type-6" 
+                                                ClassName "form-control"
+                                                AutoFocus false 
+                                                OnChange (fun ev -> dispatch (SetHopType (5, !!ev.target?value) ) ) 
+                                                DefaultValue "1"] [
+                                                    option [ Value "1" ] [ str "Whole/Plug"]
+                                                    option [ Value "2" ] [ str "Pellet"]  ] ]
+                                        th [] [
+                                            p [] [str (sprintf "%.4f" model.IbuResult.HopIbuResults.Tail.Tail.Tail.Tail.Tail.Head.Utilization)]
+                                        ]
+                                        th [] [
+                                            p [] [str (sprintf "%.2f" model.IbuResult.HopIbuResults.Tail.Tail.Tail.Tail.Tail.Head.Ibus)]
                                         ]
                                     ]
                                 ]

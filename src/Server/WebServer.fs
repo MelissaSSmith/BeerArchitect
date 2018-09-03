@@ -25,5 +25,6 @@ let webApp : HttpHandler =
         POST [
             route APIUrls.CalculateAbv AbvCalculator.calculate
             route APIUrls.CalculateSrm SrmCalculator.calculate
+            route APIUrls.CalculateIbu IbuCalculator.calculate
         ]
     ]

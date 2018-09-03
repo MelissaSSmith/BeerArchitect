@@ -131,7 +131,7 @@ let view model (dispatch: Msg -> unit) =
                             ]
                         ]
                         div [ClassName "row beer-row justify-content-start"] [
-                            table [ClassName "table table-striped"] [
+                            table [ClassName "table table-sm table-striped"] [
                                 thead [] [
                                     tr [] [
                                         th [Scope "col"] [ str "Pounds" ]
