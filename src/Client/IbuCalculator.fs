@@ -7,10 +7,10 @@ open Fable.Core.JsInterop
 open Fable.Import.Browser
 open Fable.PowerPack
 open Fable.PowerPack.Fetch.Fetch_types
-open System
 
 open ServerCode
 open Shared
+open Client.HopAlphaAcidTable
 open Client.NavigationMenu
 open Client.Style
 
@@ -29,6 +29,7 @@ type Msg =
     | SetHopType of int*int
     | FinishIbuCalculation of IbuResult
     | ClickCalculate
+    | OpenHopAlphaAcidTable
     | Error of exn
 
 let inline charToInt c = int c - int '0'
@@ -91,6 +92,8 @@ let update (msg:Msg) (model:Model): Model*Cmd<Msg> =
     | FinishIbuCalculation results ->
         console.log(results.HopIbuResults)
         { model with IbuResult = { model.IbuResult with EstimatedBoilGravity = results.EstimatedBoilGravity; TotalIbu = results.TotalIbu; HopIbuResults = results.HopIbuResults }}, Cmd.none
+    | OpenHopAlphaAcidTable ->
+        model, Cmd.none
     | Error exn ->
         { model with ErrorMsg = string (exn.Message) }, Cmd.none
 
@@ -398,7 +401,15 @@ let view model (dispatch: Msg -> unit) =
                                     ]
                                 ]
                             ]
-                            div [ClassName "offset-9 col-3"] [
+                            div [ClassName "offset-7 col-2"] [
+                                button [
+                                    Type "button"
+                                    ClassName "btn btn-link"
+                                    DataToggle "modal"
+                                    DataTarget "#hop-alpha-acid-modal" 
+                                ] [ str "Hops Alpha Acid Table" ]
+                            ]
+                            div [ClassName "col-3"] [
                                 button [
                                     Id "calculate-ibu"
                                     ClassName "btn btn-info btn-lg btn-block"
@@ -410,12 +421,7 @@ let view model (dispatch: Msg -> unit) =
                                     p [ClassName "results"] [ str (sprintf "Estimated Boil Gravity: %.3f" model.IbuResult.EstimatedBoilGravity) ]
                                 ]
                                 div [ClassName "row beer-row justify-content-start"] [
-                                    p [ClassName "results"] [ str (sprintf "Total IBU: %.2f" model.IbuResult.TotalIbu)]
-                                ]
-                            ]
-                        ]
-                    ]
-                ]
-            ]
-        ]
-    ]
+                                    p [ClassName "results"] [ str (sprintf "Total IBU: %.2f" model.IbuResult.TotalIbu) ]
+                                ] ]
+                        ] ] ] ] ] 
+        hopAlphaAcidModal ] 

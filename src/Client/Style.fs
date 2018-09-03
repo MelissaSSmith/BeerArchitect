@@ -7,6 +7,12 @@ open Fable.PowerPack
 open Elmish.Browser.Navigation
 module R = Fable.Helpers.React
 
+type HTMLAttr = 
+     | [<CompiledName("data-dismiss")>] DataDismiss of string
+     | [<CompiledName("data-target")>] DataTarget of string
+     | [<CompiledName("aria-label")>] AriaLabel of string
+     | [<CompiledName("aria-hidden")>] AriaHidden of string
+     interface IHTMLProp 
 
 let goToUrl (e: React.MouseEvent) =
     e.preventDefault()
