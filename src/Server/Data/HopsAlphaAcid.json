@@ -1,0 +1,334 @@
+[
+    {
+       "Hops": "Admira",
+       "AverageAlphaAcids": 14.5
+    },
+    {
+       "Hops": "Ahtanum",
+       "AverageAlphaAcids": 5.5
+    },
+    {
+       "Hops": "Amarillo®",
+       "AverageAlphaAcids": 8.6
+    },
+    {
+       "Hops": "Aquila",
+       "AverageAlphaAcids": 7
+    },
+    {
+       "Hops": "B. C. Goldings",
+       "AverageAlphaAcids": 5
+    },
+    {
+       "Hops": "Banner",
+       "AverageAlphaAcids": 10
+    },
+    {
+       "Hops": "Bramling Cross",
+       "AverageAlphaAcids": 6.5
+    },
+    {
+       "Hops": "Brewer's Gold",
+       "AverageAlphaAcids": 9
+    },
+    {
+       "Hops": "Bullion",
+       "AverageAlphaAcids": 7.5
+    },
+    {
+       "Hops": "Cascade",
+       "AverageAlphaAcids": 7
+    },
+    {
+       "Hops": "Centennial",
+       "AverageAlphaAcids": 7.8
+    },
+    {
+       "Hops": "Challenger",
+       "AverageAlphaAcids": 8.5
+    },
+    {
+       "Hops": "Chinook",
+       "AverageAlphaAcids": 13
+    },
+    {
+       "Hops": "Citra",
+       "AverageAlphaAcids": 11
+    },
+    {
+       "Hops": "Cluster",
+       "AverageAlphaAcids": 6.5
+    },
+    {
+       "Hops": "Columbus",
+       "AverageAlphaAcids": 15
+    },
+    {
+       "Hops": "Comet",
+       "AverageAlphaAcids": 10
+    },
+    {
+       "Hops": "Crystal",
+       "AverageAlphaAcids": 4.3
+    },
+    {
+       "Hops": "Domesic Hallertau",
+       "AverageAlphaAcids": 3.9
+    },
+    {
+       "Hops": "East Kent Goldings",
+       "AverageAlphaAcids": 5
+    },
+    {
+       "Hops": "Eroica",
+       "AverageAlphaAcids": 12
+    },
+    {
+       "Hops": "First Gold",
+       "AverageAlphaAcids": 7.5
+    },
+    {
+       "Hops": "Fuggles",
+       "AverageAlphaAcids": 4.5
+    },
+    {
+       "Hops": "Galena",
+       "AverageAlphaAcids": 13
+    },
+    {
+       "Hops": "Glacier",
+       "AverageAlphaAcids": 5.5
+    },
+    {
+       "Hops": "Goldings",
+       "AverageAlphaAcids": 4.5
+    },
+    {
+       "Hops": "Hallertau Mittelfruh",
+       "AverageAlphaAcids": 3.75
+    },
+    {
+       "Hops": "Hallertau Hersbrucker",
+       "AverageAlphaAcids": 4
+    },
+    {
+       "Hops": "Herald",
+       "AverageAlphaAcids": 12
+    },
+    {
+       "Hops": "Hersbrucker",
+       "AverageAlphaAcids": 4
+    },
+    {
+       "Hops": "Horizon",
+       "AverageAlphaAcids": 12.5
+    },
+    {
+       "Hops": "Huller Bitterer",
+       "AverageAlphaAcids": 5.75
+    },
+    {
+       "Hops": "Kent Goldings",
+       "AverageAlphaAcids": 5
+    },
+    {
+       "Hops": "Liberty",
+       "AverageAlphaAcids": 4
+    },
+    {
+       "Hops": "Lublin",
+       "AverageAlphaAcids": 4.5
+    },
+    {
+       "Hops": "Magnum",
+       "AverageAlphaAcids": 15
+    },
+    {
+       "Hops": "Millenium",
+       "AverageAlphaAcids": 15.5
+    },
+    {
+       "Hops": "Mount Hood",
+       "AverageAlphaAcids": 4.8
+    },
+    {
+       "Hops": "Mount Rainier",
+       "AverageAlphaAcids": 6.2
+    },
+    {
+       "Hops": "Motueka",
+       "AverageAlphaAcids": 7
+    },
+    {
+       "Hops": "Nelson Sauvin",
+       "AverageAlphaAcids": 12.5
+    },
+    {
+       "Hops": "Newport",
+       "AverageAlphaAcids": 15.5
+    },
+    {
+       "Hops": "Northdown",
+       "AverageAlphaAcids": 8.6
+    },
+    {
+       "Hops": "Northern Brewer",
+       "AverageAlphaAcids": 7.8
+    },
+    {
+       "Hops": "Nugget",
+       "AverageAlphaAcids": 14
+    },
+    {
+       "Hops": "Olympic",
+       "AverageAlphaAcids": 12
+    },
+    {
+       "Hops": "Omega",
+       "AverageAlphaAcids": 10
+    },
+    {
+       "Hops": "Orion",
+       "AverageAlphaAcids": 7
+    },
+    {
+       "Hops": "Pacific Gem",
+       "AverageAlphaAcids": 15.4
+    },
+    {
+       "Hops": "Perle",
+       "AverageAlphaAcids": 8.2
+    },
+    {
+       "Hops": "Phoenix",
+       "AverageAlphaAcids": 10
+    },
+    {
+       "Hops": "Pioneer",
+       "AverageAlphaAcids": 9
+    },
+    {
+       "Hops": "Pride of Ringwood",
+       "AverageAlphaAcids": 10
+    },
+    {
+       "Hops": "Progress",
+       "AverageAlphaAcids": 6.25
+    },
+    {
+       "Hops": "Record",
+       "AverageAlphaAcids": 6.5
+    },
+    {
+       "Hops": "Saaz",
+       "AverageAlphaAcids": 3.5
+    },
+    {
+       "Hops": "Santiam",
+       "AverageAlphaAcids": 6.5
+    },
+    {
+       "Hops": "Satus",
+       "AverageAlphaAcids": 13
+    },
+    {
+       "Hops": "Simcoe",
+       "AverageAlphaAcids": 12.7
+    },
+    {
+       "Hops": "Sorachi Ace",
+       "AverageAlphaAcids": 11.1
+    },
+    {
+       "Hops": "Spalt",
+       "AverageAlphaAcids": 4.5
+    },
+    {
+       "Hops": "Sterling",
+       "AverageAlphaAcids": 8.7
+    },
+    {
+       "Hops": "Sticklebract",
+       "AverageAlphaAcids": 11.5
+    },
+    {
+       "Hops": "Strisselspalt",
+       "AverageAlphaAcids": 3.5
+    },
+    {
+       "Hops": "Styrian Goldings",
+       "AverageAlphaAcids": 5.5
+    },
+    {
+       "Hops": "Super Alpha",
+       "AverageAlphaAcids": 13
+    },
+    {
+       "Hops": "Super Styrians",
+       "AverageAlphaAcids": 9
+    },
+    {
+       "Hops": "Summit",
+       "AverageAlphaAcids": 18.5
+    },
+    {
+       "Hops": "Talisman",
+       "AverageAlphaAcids": 8
+    },
+    {
+       "Hops": "Target",
+       "AverageAlphaAcids": 11.5
+    },
+    {
+       "Hops": "Tettnanger",
+       "AverageAlphaAcids": 4.5
+    },
+    {
+       "Hops": "Tomahawk",
+       "AverageAlphaAcids": 15
+    },
+    {
+       "Hops": "Ultra",
+       "AverageAlphaAcids": 4.5
+    },
+    {
+       "Hops": "Vanguard",
+       "AverageAlphaAcids": 5
+    },
+    {
+       "Hops": "Warrior",
+       "AverageAlphaAcids": 16
+    },
+    {
+       "Hops": "Whitbread Golding",
+       "AverageAlphaAcids": 6
+    },
+    {
+       "Hops": "Willamette",
+       "AverageAlphaAcids": 4.5
+    },
+    {
+       "Hops": "Wye Target",
+       "AverageAlphaAcids": 10
+    },
+    {
+       "Hops": "Yamhill Goldings",
+       "AverageAlphaAcids": 4
+    },
+    {
+       "Hops": "Yakima Cluster",
+       "AverageAlphaAcids": 7
+    },
+    {
+       "Hops": "Yeoman",
+       "AverageAlphaAcids": 7.25
+    },
+    {
+       "Hops": "Zenith",
+       "AverageAlphaAcids": 9
+    },
+    {
+       "Hops": "Zeus",
+       "AverageAlphaAcids": 16
+    }
+ ]

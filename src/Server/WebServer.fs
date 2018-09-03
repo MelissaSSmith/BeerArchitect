@@ -21,6 +21,7 @@ let webApp : HttpHandler =
         GET [
             route PageUrls.Home Pages.home
             route APIUrls.GetFermentables Fermentables.getAllFermentables
+            route APIUrls.GetHopAlphaAcids Hops.getAllHopAlphaAcids
         ]
         POST [
             route APIUrls.CalculateAbv AbvCalculator.calculate

@@ -52,4 +52,8 @@ type HopIbuResult =
 type IbuResult = 
     { EstimatedBoilGravity: float
       TotalIbu: float
-      HopIbuResults: HopIbuResult list}
+      HopIbuResults: HopIbuResult list }
+
+type HopAlphaAcid = 
+    { Hops: string
+      AverageAlphaAcids: float }

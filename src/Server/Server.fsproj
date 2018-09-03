@@ -9,6 +9,7 @@
         <Compile Include="Templates.fs" />
         <Compile Include="Pages.fs" />
         <Compile Include="Fermentables.fs" />
+        <Compile Include="Hops.fs" />
         <Compile Include="AbvCalculator.fs" />
         <Compile Include="SrmCalculator.fs" />
         <Compile Include="IbuCalculator.fs" />
