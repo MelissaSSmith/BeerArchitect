@@ -33,6 +33,10 @@ type SrmInput =
       GrainAmounts: float list
       GrainBill: list<float*int> }
 
+type HopType =
+    | Pellet
+    | Whole
+
 type HopIbuInput = 
     { Ounces: float
       AlphaAcids: float

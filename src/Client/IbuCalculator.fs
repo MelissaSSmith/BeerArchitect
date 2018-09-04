@@ -4,7 +4,6 @@ open Elmish
 open Fable.Helpers.React
 open Fable.Helpers.React.Props
 open Fable.Core.JsInterop
-open Fable.Import.Browser
 open Fable.PowerPack
 open Fable.PowerPack.Fetch.Fetch_types
 
@@ -107,7 +106,6 @@ let update (msg:Msg) (model:Model): Model*Cmd<Msg> =
     | ClickCalculate ->
         model, calculateIbuCmd model.IbuInput
     | FinishIbuCalculation results ->
-        console.log(results.HopIbuResults)
         { model with IbuResult = { model.IbuResult with EstimatedBoilGravity = results.EstimatedBoilGravity; TotalIbu = results.TotalIbu; HopIbuResults = results.HopIbuResults }}, Cmd.none
     | GetHopAlphaAcids ->
         model, getHopAlphaAcidListCmd

@@ -27,9 +27,8 @@ let ibusOzGal ouncesOfHops aAPercentage utilizationPercentage finalVolume =
 
 let adjustForPelletHops hopType ibu =
     match hopType with
-    | 2 -> ibu + (ibu * 0.10)
+    | 2 -> ibu + (ibu * 0.10) //Pellet Hops
     | _ -> ibu
-
 
 let calculateHopIbus hopIbuInputs hopUtilizations finalVolume = 
     List.zip hopIbuInputs hopUtilizations

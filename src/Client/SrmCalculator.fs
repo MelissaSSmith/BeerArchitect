@@ -12,11 +12,11 @@ open ServerCode
 open Shared
 open Client.NavigationMenu
 open Client.Style
-open Client.JqueryEmitter
 
 type Model = {
     SrmInput : SrmInput
     SrmResult : SrmResult
+    FermentableList : Fermentable list
     ErrorMsg : string }
 
 type Msg =
@@ -62,18 +62,8 @@ let getFermentableList a =
             return! failwithf "An error has occured"
     }
 
-let fillInFermentableDropdown dropdownId fermentableList = 
-    for f in fermentableList do
-        let newRow = String.Format("<option value={0}>{1} {2}</option>", f.Id, f.Country, f.Name)
-        JQuery.select("#"+dropdownId)
-        |> JQuery.append newRow
-        |> ignore
-
-let fillInFermentableLists fermentableList = 
-    let sortedList = fermentableList
-                    |> Seq.sortBy(fun f -> f.Category)
-    ["grain-1"; "grain-2"; "grain-3"; "grain-4"; "grain-5"]
-    |> List.iter (fun g -> fillInFermentableDropdown g sortedList)
+let fermentableOption fermentable =
+    option [Value (sprintf "%i" fermentable.Id) ] [str (sprintf "%s %s" fermentable.Country  fermentable.Name)]
 
 let calculateSrmCmd inputs =
     Cmd.ofPromise calculateSrm inputs CompleteSrmCalculation Error
@@ -85,12 +75,13 @@ let init result =
     | _ ->
         { SrmInput = { BatchSize = 0.0; GrainBill = List.init 5 (fun f -> 0.0,0); GrainIds = List.init 5 (fun f -> 0); GrainAmounts = List.init 5 (fun f -> 0.0)}
           SrmResult = { Srm = 0.0; Ebc = 0.0; HexColor = "#FFFFFF"}
+          FermentableList = List.empty
           ErrorMsg = "" }, getFermentableListCmd
 
 let update (msg:Msg) (model:Model): Model*Cmd<Msg> =
     match msg with
     | FillInFermentableLists fermentableList ->
-        model, Cmd.ofFunc fillInFermentableLists fermentableList Success Error
+        { model with FermentableList = fermentableList }, Cmd.none
     | CompleteSrmCalculation results ->
         { model with SrmResult = { model.SrmResult with Srm = results.Srm; Ebc = results.Ebc; HexColor = results.HexColor } }, Cmd.none
     | SetBatchSize batchSize ->
@@ -154,8 +145,7 @@ let view model (dispatch: Msg -> unit) =
                                                 AutoFocus false 
                                                 OnChange (fun ev -> dispatch (SetGrainId (1, !!ev.target?value) ) )
                                                 DefaultValue "0"] [
-                                                option [ Disabled true
-                                                         Value "0" ] [ str "Select Grain ..."] ] ] ]
+                                                for f in model.FermentableList do yield fermentableOption f ] ] ]
                                     tr [] [
                                         th [] [
                                             input [
@@ -172,8 +162,7 @@ let view model (dispatch: Msg -> unit) =
                                                 AutoFocus false 
                                                 OnChange (fun ev -> dispatch (SetGrainId (2, !!ev.target?value) ) )
                                                 DefaultValue "0"] [
-                                                option [ Disabled true
-                                                         Value "0" ] [ str "Select Grain ..."] ] ] ]
+                                                for f in model.FermentableList do yield fermentableOption f ] ] ]
                                     tr [] [
                                         th [] [
                                             input [
@@ -190,8 +179,7 @@ let view model (dispatch: Msg -> unit) =
                                                 AutoFocus false 
                                                 OnChange (fun ev -> dispatch (SetGrainId (3, !!ev.target?value) ) )
                                                 DefaultValue "0"] [
-                                                option [ Disabled true
-                                                         Value "0" ] [ str "Select Grain ..."] ] ] ]
+                                                for f in model.FermentableList do yield fermentableOption f ] ] ]
                                     tr [] [
                                         th [] [
                                             input [
@@ -208,8 +196,7 @@ let view model (dispatch: Msg -> unit) =
                                                 AutoFocus false 
                                                 OnChange (fun ev -> dispatch (SetGrainId (4, !!ev.target?value) ) )
                                                 DefaultValue "0"] [
-                                                option [ Disabled true
-                                                         Value "0" ] [ str "Select Grain ..."] ] ] ]
+                                                for f in model.FermentableList do yield fermentableOption f ] ] ]
                                     tr [] [
                                         th [] [
                                             input [
@@ -226,8 +213,7 @@ let view model (dispatch: Msg -> unit) =
                                                 AutoFocus false 
                                                 OnChange (fun ev -> dispatch (SetGrainId (5, !!ev.target?value) ) )
                                                 DefaultValue "0"] [
-                                                option [ Disabled true
-                                                         Value "0" ] [ str "Select Grain ..."] ] ] ] ] ]
+                                                for f in model.FermentableList do yield fermentableOption f ] ] ] ] ]
                             button [
                                 Id "calculate-srm"
                                 ClassName "btn btn-info btn-lg btn-block"
