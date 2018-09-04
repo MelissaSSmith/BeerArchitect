@@ -17,6 +17,7 @@ open Client.Style
 type Model = {
     IbuInput : IbuInput
     IbuResult : IbuResult
+    HopAlphaAcidList : HopAlphaAcid list
     ErrorMsg : string }
 
 type Msg =
@@ -29,13 +30,28 @@ type Msg =
     | SetHopType of int*int
     | FinishIbuCalculation of IbuResult
     | ClickCalculate
-    | OpenHopAlphaAcidTable
+    | GetHopAlphaAcids
+    | FillHopAlphaAcidTable of HopAlphaAcid list
     | Error of exn
 
 let inline charToInt c = int c - int '0'
 
 let updateElement place newValue list =
     list |> List.mapi (fun index value -> if index = place then newValue else value )
+
+let getHopAlphaAcidList a =
+    promise {
+        let props = 
+            [ RequestProperties.Method HttpMethod.GET ]
+
+        try
+            return! Fetch.fetchAs<HopAlphaAcid list> ServerUrls.APIUrls.GetHopAlphaAcids props
+        with _ ->
+            return failwithf "An error has occured"
+    }
+
+let getHopAlphaAcidListCmd =
+    Cmd.ofPromise getHopAlphaAcidList 0 FillHopAlphaAcidTable Error
 
 let calculateIbu (inputs:IbuInput) =
     promise {
@@ -61,7 +77,8 @@ let init result =
     | _ ->
         {IbuInput = { BoilSize = 0.0; BatchSize = 0.0; TargetOriginalGravity = 0.0; HopIbuInputs = List.init 6 (fun f -> { Ounces = 0.0; AlphaAcids = 0.0; BoilTime = 0.0; Type = 1 } ) } 
          IbuResult = { EstimatedBoilGravity = 0.0; TotalIbu = 0.0; HopIbuResults = List.init 6 (fun f -> { Utilization = 0.0; Ibus = 0.0 } ) }
-         ErrorMsg = "" }, Cmd.none
+         HopAlphaAcidList = List.init 1 (fun _ -> { Hops = ""; AverageAlphaAcids = 0.0 })
+         ErrorMsg = "" }, getHopAlphaAcidListCmd
 
 let update (msg:Msg) (model:Model): Model*Cmd<Msg> =
     match msg with
@@ -92,8 +109,10 @@ let update (msg:Msg) (model:Model): Model*Cmd<Msg> =
     | FinishIbuCalculation results ->
         console.log(results.HopIbuResults)
         { model with IbuResult = { model.IbuResult with EstimatedBoilGravity = results.EstimatedBoilGravity; TotalIbu = results.TotalIbu; HopIbuResults = results.HopIbuResults }}, Cmd.none
-    | OpenHopAlphaAcidTable ->
-        model, Cmd.none
+    | GetHopAlphaAcids ->
+        model, getHopAlphaAcidListCmd
+    | FillHopAlphaAcidTable hopAlphaAcidList ->
+        { model with HopAlphaAcidList = hopAlphaAcidList }, Cmd.none
     | Error exn ->
         { model with ErrorMsg = string (exn.Message) }, Cmd.none
 
@@ -424,4 +443,4 @@ let view model (dispatch: Msg -> unit) =
                                     p [ClassName "results"] [ str (sprintf "Total IBU: %.2f" model.IbuResult.TotalIbu) ]
                                 ] ]
                         ] ] ] ] ] 
-        hopAlphaAcidModal ] 
+        hopAlphaAcidModal model.HopAlphaAcidList ] 

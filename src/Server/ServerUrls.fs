@@ -21,4 +21,4 @@ module APIUrls =
   [<Literal>]
   let CalculateIbu = "/api/ibu/calculate"
   [<Literal>]
-  let GetHopAlphaAcids = "api/hops/get-alpha-acids"
+  let GetHopAlphaAcids = "/api/hops/get-alpha-acids"

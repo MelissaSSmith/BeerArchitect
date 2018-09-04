@@ -59,3 +59,11 @@
 .right-input {
     padding-right: 0;
 }
+
+.reference-modal-header {
+    border-bottom: none;
+}
+
+.reference-modal-footer {
+    border-top: none;
+}
