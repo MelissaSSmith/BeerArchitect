@@ -1,5 +1,9 @@
 namespace Shared
 
+type TemperatureUnits =
+    | Farenheit
+    | Celsius
+
 type GravityReading = 
     { OriginalGravity: float
       FinalGravity: float }
@@ -61,3 +65,12 @@ type IbuResult =
 type HopAlphaAcid = 
     { Hops: string
       AverageAlphaAcids: float }
+
+type HydrometerAdjustInput =
+    { MeasuredGravity: float
+      TemperatureReading: float
+      CalibrationTemperature: float
+      TemperatureUnit: TemperatureUnits }
+
+type HydrometerAdjustResult = 
+    { CorrectedGravity: float }

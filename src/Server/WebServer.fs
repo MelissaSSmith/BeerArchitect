@@ -27,5 +27,6 @@ let webApp : HttpHandler =
             route APIUrls.CalculateAbv AbvCalculator.calculate
             route APIUrls.CalculateSrm SrmCalculator.calculate
             route APIUrls.CalculateIbu IbuCalculator.calculate
+            route APIUrls.CalculateHydrometerAdjustment HydrometerTempCalculator.calculate
         ]
     ]

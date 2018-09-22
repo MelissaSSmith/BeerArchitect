@@ -13,6 +13,7 @@
         <Compile Include="AbvCalculator.fs" />
         <Compile Include="SrmCalculator.fs" />
         <Compile Include="IbuCalculator.fs" />
+        <Compile Include="HydrometerTempCalculator.fs" />
         <Compile Include="WebServer.fs" />
         <Compile Include="Server.fs" />
     </ItemGroup>

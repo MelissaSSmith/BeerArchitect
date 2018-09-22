@@ -22,3 +22,5 @@ module APIUrls =
   let CalculateIbu = "/api/ibu/calculate"
   [<Literal>]
   let GetHopAlphaAcids = "/api/hops/get-alpha-acids"
+  [<Literal>]
+  let CalculateHydrometerAdjustment = "/api/hydrometer-temp/calculate"

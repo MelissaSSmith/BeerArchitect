@@ -26,9 +26,12 @@ let urlUpdate (result:Page option) (model: Model) =
     | Some Page.SrmCalculator ->
         let m, cmd = SrmCalculator.init() 
         { model with PageModel = SrmCalculatorPageModel m }, Cmd.map SrmCalculatorMsg cmd
-    |Some Page.IbuCalculator ->
+    | Some Page.IbuCalculator ->
         let m, cmd = IbuCalculator.init()
         { model with PageModel = IbuCalculatorPageModel m }, Cmd.map IbuCalculatorMsg cmd
+    | Some Page.HydrometerTempCalculator ->
+        let m, cmd = HydrometerTempCalculator.init()
+        { model with PageModel = HydrometerTempCalculatorPageModel m }, Cmd.map HydrometerTempCalculatorMsg cmd
     | Some Page.Home ->
         { model with PageModel = HomePageModel }, Cmd.none
 
@@ -70,6 +73,14 @@ let update msg model =
                     Cmd.map IbuCalculatorMsg cmd
                 ]
     | IbuCalculatorMsg _,_ -> model, Navigation.newUrl (toPath Page.IbuCalculator)
+    | HydrometerTempCalculatorMsg msg, HydrometerTempCalculatorPageModel m ->
+        let m, cmd = HydrometerTempCalculator.update msg m
+        { model with 
+            PageModel = HydrometerTempCalculatorPageModel m },
+                Cmd.batch [
+                    Cmd.map HydrometerTempCalculatorMsg cmd
+                ]
+    | HydrometerTempCalculatorMsg _,_ -> model, Navigation.newUrl (toPath Page.HydrometerTempCalculator)
 
 
 Program.mkProgram init update view

@@ -18,6 +18,7 @@ let sidebarNavigationMenu =
                 yield viewLink Page.AbvCalculator "ABV Calculator"
                 yield viewLink Page.SrmCalculator "SRM Calculator"
                 yield viewLink Page.IbuCalculator "IBU Calculator"
+                yield viewLink Page.HydrometerTempCalculator "Hydrometer Adjustment Calculator"
             ]
         ]
     ]
