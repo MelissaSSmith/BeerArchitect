@@ -4,6 +4,7 @@ open Elmish
 open Fable.Helpers.React
 open Fable.Helpers.React.Props
 open Fable.Core.JsInterop
+open Fable.Import.Browser
 open Fable.PowerPack
 open Fable.PowerPack.Fetch.Fetch_types
 
@@ -81,6 +82,8 @@ let update (msg:Msg) (model:Model) : Model*Cmd<Msg> =
         let unit = changeTemperatureUnit selectedUnit
         let calibratedTemp = convertTemp model.HydrometerAdjustInput.CalibrationTemperature unit
         let tempReading = convertTemp model.HydrometerAdjustInput.TemperatureReading unit
+        document.getElementById("calibration")?value <- sprintf "%.0f" calibratedTemp
+        document.getElementById("temperature")?value <- sprintf "%.0f" tempReading
         { model with HydrometerAdjustInput = { model.HydrometerAdjustInput with TemperatureUnit = unit; CalibrationTemperature = calibratedTemp; TemperatureReading = tempReading } }, Cmd.none
     | CompleteCalculation result ->
         { model with HydrometerAdjustResult = { model.HydrometerAdjustResult with CorrectedGravity = result.CorrectedGravity } }, Cmd.none
@@ -132,7 +135,7 @@ let view model (dispatch: Msg -> unit) =
                                 AutoFocus false
                                 HTMLAttr.Type "number"
                                 Step "any"
-                                //DefaultValue (sprintf "%.0f" model.HydrometerAdjustInput.TemperatureReading)
+                                DefaultValue "70"
                                 OnChange (fun ev -> dispatch (SetTemperatureReading !!ev.target?value))
                             ] ] ]
                     div [ClassName "row beer-row"] [
@@ -144,7 +147,7 @@ let view model (dispatch: Msg -> unit) =
                                 AutoFocus false
                                 HTMLAttr.Type "number"
                                 Step "any"
-                                //DefaultValue (sprintf "%.0f" model.HydrometerAdjustInput.CalibrationTemperature)
+                                DefaultValue "68"
                                 OnChange (fun ev -> dispatch (SetCalibratedTemperature !!ev.target?value))
                             ] ] ]
                     div [ClassName "row beer-row"] [
