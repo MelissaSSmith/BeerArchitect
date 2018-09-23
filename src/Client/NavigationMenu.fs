@@ -19,6 +19,7 @@ let sidebarNavigationMenu =
                 yield viewLink Page.SrmCalculator "SRM Calculator"
                 yield viewLink Page.IbuCalculator "IBU Calculator"
                 yield viewLink Page.HydrometerTempCalculator "Hydrometer Adjustment Calculator"
+                yield viewLink Page.AllGrainCalculator "All Grain OG/FG Calculator"
             ]
         ]
     ]

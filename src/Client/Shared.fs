@@ -6,6 +6,7 @@ type PageModel =
     | SrmCalculatorPageModel of SrmCalculator.Model
     | IbuCalculatorPageModel of IbuCalculator.Model
     | HydrometerTempCalculatorPageModel of HydrometerTempCalculator.Model
+    | AllGrainCalculatorPageModel of AllGrainCalculator.Model
 
 type Model =
     { PageModel : PageModel }
@@ -15,6 +16,7 @@ type Msg =
     | SrmCalculatorMsg of SrmCalculator.Msg
     | IbuCalculatorMsg of IbuCalculator.Msg
     | HydrometerTempCalculatorMsg of HydrometerTempCalculator.Msg
+    | AllGrainCalculatorMsg of AllGrainCalculator.Msg
 
 open Fable.Helpers.React
 
@@ -30,6 +32,8 @@ let viewPage model dispatch =
         IbuCalculator.view m (IbuCalculatorMsg >> dispatch)
     | HydrometerTempCalculatorPageModel m ->
         HydrometerTempCalculator.view m (HydrometerTempCalculatorMsg >> dispatch)
+    | AllGrainCalculatorPageModel m ->
+        AllGrainCalculator.view m (AllGrainCalculatorMsg >> dispatch)
 
 let view model dispatch =
     div [] [ viewPage model dispatch ]

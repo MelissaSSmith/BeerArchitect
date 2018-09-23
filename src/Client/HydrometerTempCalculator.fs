@@ -19,7 +19,6 @@ type Model = {
     ErrorMsg : string }
 
 type Msg =
-    | ChangeEvent
     | SetMeasuredGravity of float
     | SetTemperatureReading of float
     | SetCalibratedTemperature of float
@@ -91,8 +90,6 @@ let update (msg:Msg) (model:Model) : Model*Cmd<Msg> =
         model, calculateHydrometerAdustmentCmd model.HydrometerAdjustInput
     | Error exn ->
         { model with ErrorMsg = string (exn.Message) }, Cmd.none
-    | _ ->
-        model, Cmd.none
 
 let view model (dispatch: Msg -> unit) =
     div [] [
