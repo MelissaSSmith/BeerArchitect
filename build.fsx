@@ -101,15 +101,43 @@ Target.create "Run" (fun _ ->
     |> ignore
 )
 
+let dockerUser = "melissasmith358"
+let dockerImageName =  "beerarchitect"
+let dockerFullName = sprintf "%s/%s" dockerUser dockerImageName
+
+// --------------------------------------------------------------------------------------
+// Release Scripts
+
+Target.create "Bundle" (fun _ ->
+    let serverDir = Path.combine deployDir "Server"
+    let clientDir = Path.combine deployDir "Client"
+    let publicDir = Path.combine clientDir "public"
+
+    let publishArgs = sprintf "publish -c Release -o \"%s\"" serverDir
+    runDotNet publishArgs serverPath
+
+    Shell.copyDir publicDir "src/Client/public" FileFilter.allFiles
+)
+
+Target.create "Docker" (fun _ ->
+    let buildArgs = sprintf "build -t %s ." dockerFullName
+    runTool "docker" buildArgs "."
+
+    let tagArgs = sprintf "tag %s %s" dockerFullName dockerFullName
+    runTool "docker" tagArgs "."
+)
+
 
 open Fake.Core.TargetOperators
 
 "Clean"
     ==> "InstallClient"
     ==> "Build"
+    ==> "Bundle"
+    ==> "Docker"
 
 "InstallClient"
     ==> "RestoreServer"
     ==> "Run"
 
-Target.runOrDefault "Build"
+Target.runOrDefaultWithArguments "Build"
