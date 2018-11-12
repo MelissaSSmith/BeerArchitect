@@ -1,6 +1,7 @@
 module ServerCode.Pages
 
 open Giraffe
+open FSharp.Control.Tasks.V2
 open Client.Shared
 
 let home: HttpHandler = fun _ ctx ->

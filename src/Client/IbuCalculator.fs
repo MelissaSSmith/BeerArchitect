@@ -6,6 +6,11 @@ open Fable.Helpers.React.Props
 open Fable.Core.JsInterop
 open Fable.PowerPack
 open Fable.PowerPack.Fetch.Fetch_types
+#if FABLE_COMPILER
+open Thoth.Json
+#else
+open Thoth.Json.Net
+#endif
 
 open ServerCode
 open Shared
@@ -44,7 +49,9 @@ let getHopAlphaAcidList a =
             [ RequestProperties.Method HttpMethod.GET ]
 
         try
-            return! Fetch.fetchAs<HopAlphaAcid list> ServerUrls.APIUrls.GetHopAlphaAcids props
+            let! result = Fetch.fetch ServerUrls.APIUrls.GetHopAlphaAcids props
+            let! text = result.text()
+            return Decode.Auto.unsafeFromString<HopAlphaAcid list> text
         with _ ->
             return failwithf "An error has occured"
     }
@@ -54,7 +61,7 @@ let getHopAlphaAcidListCmd =
 
 let calculateIbu (inputs:IbuInput) =
     promise {
-        let body = toJson inputs
+        let body = Encode.Auto.toString(0, inputs) 
 
         let props = 
             [ RequestProperties.Method HttpMethod.POST
@@ -63,7 +70,9 @@ let calculateIbu (inputs:IbuInput) =
               RequestProperties.Body !^body ]
 
         try 
-            return! Fetch.fetchAs<IbuResult> ServerUrls.APIUrls.CalculateIbu props
+            let! result = Fetch.fetch ServerUrls.APIUrls.CalculateIbu props
+            let! text = result.text()
+            return Decode.Auto.unsafeFromString<IbuResult> text
         with _ ->
             return failwithf "An error has occured"
     }

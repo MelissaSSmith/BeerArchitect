@@ -6,6 +6,11 @@ open Fable.Helpers.React.Props
 open Fable.Core.JsInterop
 open Fable.PowerPack
 open Fable.PowerPack.Fetch.Fetch_types
+#if FABLE_COMPILER
+open Thoth.Json
+#else
+open Thoth.Json.Net
+#endif
 
 open ServerCode
 open Shared
@@ -26,7 +31,7 @@ type Msg =
 
 let calculateAbv (readings:GravityReading) =
     promise {
-        let body = toJson readings
+        let body = Encode.Auto.toString(0, readings)
 
         let props =
             [ RequestProperties.Method HttpMethod.POST
@@ -35,7 +40,9 @@ let calculateAbv (readings:GravityReading) =
               RequestProperties.Body !^body ]
 
         try 
-            return! Fetch.fetchAs<AbvResult> ServerUrls.APIUrls.CalculateAbv props
+            let! result = Fetch.fetch ServerUrls.APIUrls.CalculateAbv props
+            let! text = result.text()
+            return Decode.Auto.unsafeFromString<AbvResult> text
         with _ ->
             return! failwithf "An error has occured"
     }

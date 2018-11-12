@@ -33,7 +33,13 @@
       "Category": "Grain",
       "Type": "Acidulated malt",
       "DegreesLovibond": 3.4,
-      "PPG": 27
+      "PPG": 27,
+      "Potential": 1.027,
+      "Yield": 58.7,
+      "CoarseFineDifference": 1.5,
+      "Moisture": 4.0,
+      "DiastaticPower": 0.0,
+      "Protein": 6.0
     },
     {
       "Id": 4,
@@ -69,7 +75,13 @@
       "Category": "Grain",
       "Type": "Base malt",
       "DegreesLovibond": 27,
-      "PPG": 32
+      "PPG": 32,
+      "Potential": 1.035,
+      "Yield": 75.0,
+      "CoarseFineDifference": 1.5,
+      "Moisture": 2.8,
+      "DiastaticPower": 20.0,
+      "Protein": 10.0
     },
     {
       "Id": 8,

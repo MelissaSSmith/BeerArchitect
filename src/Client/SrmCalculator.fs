@@ -6,6 +6,11 @@ open Fable.Helpers.React.Props
 open Fable.Core.JsInterop
 open Fable.PowerPack
 open Fable.PowerPack.Fetch.Fetch_types
+#if FABLE_COMPILER
+open Thoth.Json
+#else
+open Thoth.Json.Net
+#endif
 
 open ServerCode
 open Shared
@@ -36,7 +41,7 @@ let updateElement place newValue list =
 
 let calculateSrm (inputs:SrmInput) =
     promise {
-        let body = toJson inputs
+        let body = Encode.Auto.toString(0, inputs)
 
         let props =
             [ RequestProperties.Method HttpMethod.POST
@@ -45,7 +50,9 @@ let calculateSrm (inputs:SrmInput) =
               RequestProperties.Body !^body ]
         
         try
-            return! Fetch.fetchAs<SrmResult> ServerUrls.APIUrls.CalculateSrm props
+            let! result = Fetch.fetch ServerUrls.APIUrls.CalculateSrm props
+            let! text = result.text()
+            return Decode.Auto.unsafeFromString<SrmResult> text
         with _ ->
             return! failwithf "An error has occured"
     }
@@ -56,7 +63,9 @@ let getFermentableList a =
             [ RequestProperties.Method HttpMethod.GET ]
         
         try
-            return! Fetch.fetchAs<Fermentable list> ServerUrls.APIUrls.GetFermentables props
+            let! result = Fetch.fetch ServerUrls.APIUrls.GetFermentables props
+            let! text = result.text()
+            return Decode.Auto.unsafeFromString<Fermentable list> text
         with _ ->
             return! failwithf "An error has occured"
     }

@@ -4,6 +4,7 @@ open Giraffe
 open Microsoft.AspNetCore.Http
 open System
 open System.IO
+open FSharp.Control.Tasks.V2
 
 open ServerCode.Fermentables
 open Shared

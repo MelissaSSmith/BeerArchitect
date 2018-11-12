@@ -1,76 +1,90 @@
-var path = require("path");
-var webpack = require("webpack");
-var fableUtils = require("fable-utils");
+const path = require("path");
+const webpack = require("webpack");
+const MinifyPlugin = require("terser-webpack-plugin");
 
-function resolve(filePath) {
-    return path.join(__dirname, filePath)
+var CONFIG = {
+    fsharpEntry: 
+        ["whatwg-fetch",
+            "@babel/polyfill",
+            "./src/Client/Client.fsproj"
+        ],
+    outputDir: "./public",
+    devServerPort: undefined,
+    devServerProxy: {
+        '/api/*': {
+            target: 'http://localhost:' + (process.env.SUAVE_FABLE_PORT || "8085"),
+            changeOrigin: true
+        }
+    },
+    contentBase: __dirname,
+    babel: {
+        presets: [
+            ["@babel/preset-env", {
+                "targets": {
+                    "browsers": ["last 2 versions"]
+                },
+                "modules": false,
+                "useBuiltIns": "usage",
+            }]
+        ],
+        plugins: ["@babel/plugin-transform-runtime"]
+    }
 }
-
-var babelOptions = fableUtils.resolveBabelOptions({
-    presets: [
-        ["env", {
-            "targets": {
-                "browsers": ["last 2 versions"]
-            },
-            "modules": false
-        }]
-    ],
-    plugins: ["transform-runtime"]
-});
 
 
 var isProduction = process.argv.indexOf("-p") >= 0;
-var port = process.env.SUAVE_FABLE_PORT || "8085";
 console.log("Bundling for " + (isProduction ? "production" : "development") + "...");
 
+var commonPlugins = [
+];
+
 module.exports = {
-    devtool: "source-map",
-    entry: resolve('./Client.fsproj'),
-    mode: isProduction ? "production" : "development",
+    mode: "development",
+    entry: CONFIG.fsharpEntry,
     output: {
-        path: resolve('./public/js'),
-        publicPath: "/js",
-        filename: "bundle.js"
-    },
-    resolve: {
-        modules: [resolve("../../node_modules/")]
-    },
-    devServer: {
-        proxy: {
-            '/api/*': {
-                target: 'http://localhost:' + port,
-                changeOrigin: true
+        path: path.join(__dirname, CONFIG.outputDir),
+        filename: '[name].js'
+    }, 
+    devtool: isProduction ? undefined : "source-map",
+    optimization: {
+        splitChunks: {
+            cacheGroups: {
+                commons: {
+                    test: /node_modules/,
+                    name: "vendors",
+                    chunks: "all"
+                }
             }
         },
-        contentBase: "./public",
+        minimizer: isProduction ? [new MinifyPlugin()] : []
+    },
+    plugins: isProduction ?
+        commonPlugins
+        : commonPlugins.concat([
+            new webpack.HotModuleReplacementPlugin(),
+        ]),
+    devServer: {
+        proxy: CONFIG.devServerProxy,
+        publicPath: "/",
         hot: true,
         inline: true,
         historyApiFallback: true,
+        contentBase: CONFIG.contentBase
     },
     module: {
         rules: [
             {
                 test: /\.fs(x|proj)?$/,
-                use: {
-                    loader: "fable-loader",
-                    options: {
-                        babel: babelOptions,
-                        define: isProduction ? [] : ["DEBUG"]
-                    }
-                }
+                use: "fable-loader"
             },
             {
                 test: /\.js$/,
                 exclude: /node_modules/,
                 use: {
                     loader: 'babel-loader',
-                    options: babelOptions
+                    options: CONFIG.babel
                 },
             }
         ]
-    },
-    plugins: isProduction ? [] : [
-        new webpack.HotModuleReplacementPlugin(),
-        new webpack.NamedModulesPlugin()
-    ]
+    }
 };

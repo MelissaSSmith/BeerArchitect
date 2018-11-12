@@ -7,6 +7,11 @@ open Fable.Core.JsInterop
 open Fable.Import.Browser
 open Fable.PowerPack
 open Fable.PowerPack.Fetch.Fetch_types
+#if FABLE_COMPILER
+open Thoth.Json
+#else
+open Thoth.Json.Net
+#endif
 
 open ServerCode
 open Shared
@@ -45,7 +50,7 @@ let convertTemp temp unit =
 
 let calculateHydrometerAdjustment (input:HydrometerAdjustInput) = 
     promise {
-        let body = toJson input
+        let body = Encode.Auto.toString(0, input)
 
         let props =
             [ RequestProperties.Method HttpMethod.POST
@@ -54,7 +59,9 @@ let calculateHydrometerAdjustment (input:HydrometerAdjustInput) =
               RequestProperties.Body !^body ]
 
         try
-            return! Fetch.fetchAs<HydrometerAdjustResult> ServerUrls.APIUrls.CalculateHydrometerAdjustment props
+            let! result = Fetch.fetch ServerUrls.APIUrls.CalculateHydrometerAdjustment props
+            let! text = result.text()
+            return Decode.Auto.unsafeFromString<HydrometerAdjustResult> text
         with _ ->
             return! failwithf "An error has occured"
     }

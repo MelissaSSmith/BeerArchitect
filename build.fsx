@@ -8,6 +8,7 @@
 
 open System
 
+open Fake
 open Fake.Core
 open Fake.DotNet
 open Fake.IO
@@ -16,9 +17,12 @@ let serverPath = Path.getFullName "./src/Server"
 let clientPath = Path.getFullName "./src/Client"
 let deployDir = Path.getFullName "./deploy"
 
+let dotnetcliVersion = DotNet.Versions.FromGlobalJson(DotNet.CliInstallOptions.Default)
+let mutable dotnetExePath = "dotnet"
+
 let platformTool tool winTool =
     let tool = if Environment.isUnix then tool else winTool
-    match Process.tryFindFileOnPath tool with
+    match ProcessUtils.tryFindFileOnPath tool with
     | Some t -> t
     | _ ->
         let errorMsg =
@@ -30,21 +34,18 @@ let platformTool tool winTool =
 let nodeTool = platformTool "node" "node.exe"
 let yarnTool = platformTool "yarn" "yarn.cmd"
 
-let install = lazy DotNet.install DotNet.Release_2_1_300
+let install = lazy DotNet.install DotNet.Versions.Release_2_1_300
 
 let inline withWorkDir wd =
     DotNet.Options.lift install.Value
     >> DotNet.Options.withWorkingDirectory wd
 
 let runTool cmd args workingDir =
-    let result =
-        Process.execSimple (fun info ->
-            { info with
-                FileName = cmd
-                WorkingDirectory = workingDir
-                Arguments = args })
-            TimeSpan.MaxValue
-    if result <> 0 then failwithf "'%s %s' failed" cmd args
+    Command.RawCommand(cmd, Arguments.OfArgs[args])
+    |> CreateProcess.fromCommand
+    |> CreateProcess.withWorkingDirectory workingDir
+    |> CreateProcess.withTimeout TimeSpan.MaxValue
+    |> Proc.run
 
 let runDotNet cmd workingDir =
     let result =
@@ -52,14 +53,11 @@ let runDotNet cmd workingDir =
     if result.ExitCode <> 0 then failwithf "'dotnet %s' failed in %s" cmd workingDir
 
 let openBrowser url =
-    let result =
-        //https://github.com/dotnet/corefx/issues/10361
-        Process.execSimple (fun info ->
-            { info with
-                FileName = url
-                UseShellExecute = true })
-            TimeSpan.MaxValue
-    if result <> 0 then failwithf "opening browser failed"
+    Command.ShellCommand(url)
+    |> CreateProcess.fromCommand
+    |> CreateProcess.withTimeout TimeSpan.MaxValue
+    |> Proc.run
+    |> ignore
 
 Target.create "Clean" (fun _ ->
     Shell.cleanDirs [deployDir]
@@ -67,11 +65,10 @@ Target.create "Clean" (fun _ ->
 
 Target.create "InstallClient" (fun _ ->
     printfn "Node version:"
-    runTool nodeTool "--version" __SOURCE_DIRECTORY__
+    runTool nodeTool "--version" __SOURCE_DIRECTORY__ |> ignore
     printfn "Yarn version:"
-    runTool yarnTool "--version" __SOURCE_DIRECTORY__
-    runTool yarnTool "install --frozen-lockfile" __SOURCE_DIRECTORY__
-    runDotNet "restore" clientPath
+    runTool yarnTool "--version" __SOURCE_DIRECTORY__ |> ignore
+    runTool yarnTool "install --frozen-lockfile" __SOURCE_DIRECTORY__ |> ignore
 )
 
 Target.create "RestoreServer" (fun _ ->
@@ -80,19 +77,21 @@ Target.create "RestoreServer" (fun _ ->
 
 Target.create "Build" (fun _ ->
     runDotNet "build" serverPath
-    runDotNet "fable webpack -- -p" clientPath
+    runDotNet "restore" clientPath
+    runDotNet "fable webpack-cli -- --config src/Client/webpack.config.js -p" clientPath
 )
 
 Target.create "Run" (fun _ ->
+    runDotNet "restore" clientPath
     let server = async {
         runDotNet "watch run" serverPath
     }
     let client = async {
-        runDotNet "fable webpack-dev-server" clientPath
+        runDotNet "fable webpack-cli -- --config src/Client/webpack.config.js -p" clientPath
     }
     let browser = async {
         Threading.Thread.Sleep 5000
-        openBrowser "http://localhost:8080"
+        openBrowser "http://localhost:8085"
     }
 
     [ server; client; browser ]
@@ -119,13 +118,13 @@ Target.create "Bundle" (fun _ ->
     Shell.copyDir publicDir "src/Client/public" FileFilter.allFiles
 )
 
-Target.create "Docker" (fun _ ->
-    let buildArgs = sprintf "build -t %s ." dockerFullName
-    runTool "docker" buildArgs "."
+// Target.create "Docker" (fun _ ->
+//     let buildArgs = sprintf "build -t %s ." dockerFullName
+//     runTool "docker" buildArgs "."
 
-    let tagArgs = sprintf "tag %s %s" dockerFullName dockerFullName
-    runTool "docker" tagArgs "."
-)
+//     let tagArgs = sprintf "tag %s %s" dockerFullName dockerFullName
+//     runTool "docker" tagArgs "."
+// )
 
 
 open Fake.Core.TargetOperators
@@ -134,7 +133,6 @@ open Fake.Core.TargetOperators
     ==> "InstallClient"
     ==> "Build"
     ==> "Bundle"
-    ==> "Docker"
 
 "InstallClient"
     ==> "RestoreServer"

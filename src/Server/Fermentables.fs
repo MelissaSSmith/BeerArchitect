@@ -4,6 +4,7 @@ open Giraffe
 open Microsoft.AspNetCore.Http
 open Newtonsoft.Json
 open System.IO
+open FSharp.Control.Tasks.V2
 open Shared
 
 [<Literal>]

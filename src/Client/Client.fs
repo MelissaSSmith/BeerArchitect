@@ -7,10 +7,16 @@ open Elmish.HMR
 
 open Fable.Core.JsInterop
 open Fable.Import
+#if FABLE_COMPILER
+open Thoth.Json
+#else
+open Thoth.Json.Net
+#endif
 
 open Client
 open Client.Pages
 open Shared 
+open Thoth.Json
 
 let handleNotFound (model: Model) =
     Browser.console.error("Error parsing url: " + Browser.window.location.href)
@@ -42,7 +48,7 @@ let init result =
     let stateJson: string option = !!Browser.window?__INIT_MODEL__
     match stateJson, result with
     | Some json, Some Page.Home ->
-        let model: Model = ofJson json
+        let model: Model = Decode.Auto.unsafeFromString<Model> json
         { model with PageModel = HomePageModel }, Cmd.none
     | _ ->
         let model =

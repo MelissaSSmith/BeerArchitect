@@ -27,7 +27,7 @@ let hopAlphaAcidTable hopAlphaAcidList =
 let hopAlphaAcidModal hopAlphaAcidList =
     div [ClassName "modal fade"
          Id "hop-alpha-acid-modal"
-         TabIndex -1.0
+         TabIndex -1
          Role "dialog"
          AriaHidden "true"] [
         div [ClassName "modal-dialog"
