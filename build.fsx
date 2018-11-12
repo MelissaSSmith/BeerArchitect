@@ -17,9 +17,6 @@ let serverPath = Path.getFullName "./src/Server"
 let clientPath = Path.getFullName "./src/Client"
 let deployDir = Path.getFullName "./deploy"
 
-let dotnetcliVersion = DotNet.Versions.FromGlobalJson(DotNet.CliInstallOptions.Default)
-let mutable dotnetExePath = "dotnet"
-
 let platformTool tool winTool =
     let tool = if Environment.isUnix then tool else winTool
     match ProcessUtils.tryFindFileOnPath tool with
@@ -68,7 +65,7 @@ Target.create "InstallClient" (fun _ ->
     runTool nodeTool "--version" __SOURCE_DIRECTORY__ |> ignore
     printfn "Yarn version:"
     runTool yarnTool "--version" __SOURCE_DIRECTORY__ |> ignore
-    runTool yarnTool "install --frozen-lockfile" __SOURCE_DIRECTORY__ |> ignore
+    runTool yarnTool "install" __SOURCE_DIRECTORY__ |> ignore
 )
 
 Target.create "RestoreServer" (fun _ ->
@@ -100,9 +97,10 @@ Target.create "Run" (fun _ ->
     |> ignore
 )
 
-let dockerUser = "melissasmith358"
-let dockerImageName =  "beerarchitect"
-let dockerFullName = sprintf "%s/%s" dockerUser dockerImageName
+let dockerUser = Environment.environVarOrDefault "DockerUser" ""
+let dockerPassword = Environment.environVarOrDefault "DockerPassword" ""
+let dockerLoginServer = Environment.environVarOrDefault "DockerLoginServer" ""
+let dockerImageName =  Environment.environVarOrDefault "DockerImageName" ""
 
 // --------------------------------------------------------------------------------------
 // Release Scripts
@@ -112,20 +110,39 @@ Target.create "Bundle" (fun _ ->
     let clientDir = Path.combine deployDir "Client"
     let publicDir = Path.combine clientDir "public"
 
-    let publishArgs = sprintf "publish -c Release -o \"%s\"" serverDir
+    let publishArgs = sprintf "publish -c Release -o %s" serverDir
     runDotNet publishArgs serverPath
 
     Shell.copyDir publicDir "src/Client/public" FileFilter.allFiles
 )
 
-// Target.create "Docker" (fun _ ->
-//     let buildArgs = sprintf "build -t %s ." dockerFullName
-//     runTool "docker" buildArgs "."
+Target.create "CreateDockerImage" (fun _ ->
+    if String.IsNullOrEmpty dockerUser then
+        failwithf "docker username not given."
+    if String.IsNullOrEmpty dockerImageName then
+        failwithf "docker image Name not given."
+    Command.RawCommand("docker", Arguments.OfArgs[sprintf "build -t %s/%s ." dockerUser dockerImageName])
+    |> CreateProcess.fromCommand
+    |> CreateProcess.withTimeout TimeSpan.MaxValue
+    |> Proc.run
+    |> ignore
+)
 
-//     let tagArgs = sprintf "tag %s %s" dockerFullName dockerFullName
-//     runTool "docker" tagArgs "."
-// )
+Target.create "Deploy" (fun _ ->
+    Command.RawCommand("docker", Arguments.OfArgs[sprintf "login %s --username %s --password %s ." dockerLoginServer dockerUser dockerPassword])
+    |> CreateProcess.fromCommand
+    |> CreateProcess.withWorkingDirectory deployDir
+    |> CreateProcess.withTimeout TimeSpan.MaxValue
+    |> Proc.run
+    |> ignore
 
+    Command.RawCommand("docker", Arguments.OfArgs[sprintf "push %s/%s" dockerUser dockerImageName])
+    |> CreateProcess.fromCommand
+    |> CreateProcess.withWorkingDirectory deployDir
+    |> CreateProcess.withTimeout TimeSpan.MaxValue
+    |> Proc.run
+    |> ignore
+)
 
 open Fake.Core.TargetOperators
 
@@ -133,6 +150,8 @@ open Fake.Core.TargetOperators
     ==> "InstallClient"
     ==> "Build"
     ==> "Bundle"
+    ==> "CreateDockerImage"
+    ==> "Deploy"
 
 "InstallClient"
     ==> "RestoreServer"
