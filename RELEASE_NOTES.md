@@ -1,2 +1,2 @@
-0.1.0 - 2018-11-04
-    First deployment to Docker
+### 0.0.1 - 2018-11-13
+* Initial Release

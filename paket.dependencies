@@ -27,6 +27,10 @@ group Build
     nuget FSharp.Core 4.3.4 // https://github.com/fsharp/FAKE/issues/2001
     nuget FAKE
     nuget Fake.Core.Target
+    nuget Fake.Core.ReleaseNotes
+    nuget Fake.DotNet.AssemblyInfoFile
+    nuget Fake.DotNet.MsBuild
     nuget Fake.DotNet.Cli
     nuget Fake.IO.FileSystem
+    nuget Fake.Tools.Git
 

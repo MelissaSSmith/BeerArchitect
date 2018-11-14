@@ -7,11 +7,15 @@
 #endif
 
 open System
+open System.IO
 
 open Fake
 open Fake.Core
 open Fake.DotNet
 open Fake.IO
+open Fake.Tools
+open Fake.IO.FileSystemOperators
+open Fake.IO.Globbing.Operators
 
 let serverPath = Path.getFullName "./src/Server"
 let clientPath = Path.getFullName "./src/Client"
@@ -97,13 +101,54 @@ Target.create "Run" (fun _ ->
     |> ignore
 )
 
-let dockerUser = Environment.environVarOrDefault "DockerUser" ""
-let dockerPassword = Environment.environVarOrDefault "DockerPassword" ""
-let dockerLoginServer = Environment.environVarOrDefault "DockerLoginServer" ""
-let dockerImageName =  Environment.environVarOrDefault "DockerImageName" ""
-
 // --------------------------------------------------------------------------------------
 // Release Scripts
+
+let dockerUser = Environment.getBuildParam "DockerUser"
+let dockerPassword = Environment.getBuildParam "DockerPassword"
+let dockerLoginServer = Environment.getBuildParam "DockerLoginServer"
+let dockerImageName =  Environment.getBuildParam "DockerImageName"
+
+let releaseNotes = File.ReadAllLines "RELEASE_NOTES.md"
+
+let releaseNotesData =
+    releaseNotes
+    |> ReleaseNotes.parseAll
+
+let release = List.head releaseNotesData
+
+Target.create "SetReleaseNotes" (fun _ ->
+    let lines = [
+            "module internal ReleaseNotes"
+            ""
+            (sprintf "let Version = %s" release.NugetVersion)
+            ""
+            (sprintf "let IsPrerelease = %b" (release.SemVer.PreRelease <> None))
+            ""
+            "let Notes = "] @ Array.toList releaseNotes @ [""]
+    File.WriteAllLines("src/Client/ReleaseNotes.fs",lines)
+)
+
+Target.create "PrepareRelease" (fun _ ->
+    Git.Branches.checkout "" false "master"
+    Git.CommandHelper.directRunGitCommand "" "fetch origin" |> ignore
+    Git.CommandHelper.directRunGitCommand "" "fetch origin --tags" |> ignore
+
+    Git.Staging.stageAll ""
+    Git.Commit.exec "" (sprintf "Bumping version to %O" release.NugetVersion)
+    Git.Branches.pushBranch "" "origin" "master"
+
+    let tagName = string release.NugetVersion
+    Git.Branches.tag "" tagName
+    Git.Branches.pushTag "" "origin" tagName
+
+    let result =
+        Process.execSimple (fun info ->
+            { info with
+                FileName = "docker"
+                Arguments = sprintf "tag %s/%s %s/%s:%s" dockerUser dockerImageName dockerUser dockerImageName release.NugetVersion}) TimeSpan.MaxValue
+    if result <> 0 then failwith "Docker tag failed"
+)
 
 Target.create "Bundle" (fun _ ->
     let serverDir = Path.combine deployDir "Server"
@@ -150,7 +195,9 @@ open Fake.Core.TargetOperators
     ==> "InstallClient"
     ==> "Build"
     ==> "Bundle"
+    ==> "SetReleaseNotes"
     ==> "CreateDockerImage"
+    ==> "PrepareRelease"
     ==> "Deploy"
 
 "InstallClient"
