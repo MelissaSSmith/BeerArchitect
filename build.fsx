@@ -104,10 +104,10 @@ Target.create "Run" (fun _ ->
 // --------------------------------------------------------------------------------------
 // Release Scripts
 
-let dockerUser = Environment.getBuildParam "DockerUser"
-let dockerPassword = Environment.getBuildParam "DockerPassword"
-let dockerLoginServer = Environment.getBuildParam "DockerLoginServer"
-let dockerImageName =  Environment.getBuildParam "DockerImageName"
+let dockerUser = "melissasmith358"
+let dockerPassword = "V!ncentW!lli@m1920"
+let dockerLoginServer = "docker.io"
+let dockerImageName =  "beerarchitect"
 
 let releaseNotes = File.ReadAllLines "RELEASE_NOTES.md"
 
