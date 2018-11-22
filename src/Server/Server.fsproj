@@ -3,7 +3,6 @@
     <PropertyGroup>
         <OutputType>Exe</OutputType>
         <TargetFramework>netcoreapp2.1</TargetFramework>
-        <RuntimeFrameworkVersion>2.1.1</RuntimeFrameworkVersion>
     </PropertyGroup>
     <Import Project="../Shared/Shared.props" />
     <ItemGroup>
