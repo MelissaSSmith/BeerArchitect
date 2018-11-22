@@ -1,5 +1,5 @@
 FROM microsoft/aspnetcore
-COPY /deploy /
-WORKDIR /Server
+COPY /deploy .
+WORKDIR .
 EXPOSE 8085
-ENTRYPOINT [ "dotnet", "Server.dll" ]
+ENTRYPOINT ["dotnet", "Server.dll"]
