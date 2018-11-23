@@ -157,14 +157,27 @@ Target.create "PrepareRelease" (fun _ ->
 )
 
 Target.create "Bundle" (fun _ ->
-    let serverDir = Path.combine deployDir "Server"
-    let clientDir = Path.combine deployDir "Client"
-    let publicDir = Path.combine clientDir "public"
+    let dotnetOpts = install.Value (DotNet.Options.Create())
+    let result =
+        Process.execSimple (fun info ->
+            { info with
+                FileName = dotnetOpts.DotNetCliPath
+                WorkingDirectory = serverPath
+                Arguments = "publish -c Release -o \"" + Path.getFullName deployDir + "\"" }) TimeSpan.MaxValue
+    if result <> 0 then failwith "Publish failed"
 
-    let publishArgs = sprintf "publish -c Release -o %s" serverDir
-    runDotNet publishArgs serverPath
+    let clientDir = deployDir </> "client"
+    let publicDir = clientDir </> "public"
+    let jsDir = clientDir </> "js"
+    let cssDir = clientDir </> "css"
+    let imageDir = clientDir </> "Images"
 
-    Shell.copyDir publicDir "src/Client/public" FileFilter.allFiles
+    !! "src/Client/public/**/*.*" |> Shell.copyFiles publicDir
+    !! "src/Client/js/**/*.*" |> Shell.copyFiles jsDir
+    !! "src/Client/css/**/*.*" |> Shell.copyFiles cssDir
+    !! "src/Client/Images/**/*.*" |> Shell.copyFiles imageDir
+
+    "src/Client/public/index.html" |> Shell.copyFile clientDir
 )
 
 Target.create "CreateDockerImage" (fun _ ->
