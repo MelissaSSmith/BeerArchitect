@@ -3,3 +3,6 @@
 
 ### 0.0.8 - 2018-11-23
 * Bumping Release
+
+### 0.0.9 - 2018-11-23
+* Including data

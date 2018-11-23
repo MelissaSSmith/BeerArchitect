@@ -171,13 +171,13 @@ Target.create "Bundle" (fun _ ->
     let jsDir = clientDir </> "js"
     let cssDir = clientDir </> "css"
     let imageDir = clientDir </> "Images"
+    let dataDir = deployDir </> "Data"
 
     !! "src/Client/public/**/*.*" |> Shell.copyFiles publicDir
     !! "src/Client/js/**/*.*" |> Shell.copyFiles jsDir
     !! "src/Client/css/**/*.*" |> Shell.copyFiles cssDir
     !! "src/Client/Images/**/*.*" |> Shell.copyFiles imageDir
-
-    "src/Client/public/index.html" |> Shell.copyFile clientDir
+    !! "src/Server/Data/**/*.*" |> Shell.copyFiles dataDir
 )
 
 Target.create "CreateDockerImage" (fun _ ->

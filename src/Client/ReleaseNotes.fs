@@ -1,6 +1,6 @@
 module internal ReleaseNotes
 
-let Version = 0.0.8
+let Version = 0.0.9
 
 let IsPrerelease = false
 
@@ -10,4 +10,7 @@ let Notes =
 
 ### 0.0.8 - 2018-11-23
 * Bumping Release
+
+### 0.0.9 - 2018-11-23
+* Including data
 
