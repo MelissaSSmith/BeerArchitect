@@ -1,6 +1,6 @@
 module internal ReleaseNotes
 
-let Version = 0.0.4
+let Version = 0.0.5
 
 let IsPrerelease = false
 
@@ -16,4 +16,7 @@ let Notes =
 
 ### 0.0.4 - 2018-11-23
 * Bumping Release Number
+
+### 0.0.5 - 2018-11-23
+* Fix gitignore file
 

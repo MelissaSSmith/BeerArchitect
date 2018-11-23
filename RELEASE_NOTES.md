@@ -9,3 +9,6 @@
 
 ### 0.0.4 - 2018-11-23
 * Bumping Release Number
+
+### 0.0.5 - 2018-11-23
+* Fix gitignore file
