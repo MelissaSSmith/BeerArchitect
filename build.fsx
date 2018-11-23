@@ -110,10 +110,10 @@ Target.create "Run" (fun _ ->
 
 // --------------------------------------------------------------------------------------
 // Release Scripts
-let dockerUser = Environment.environVarOrDefault "DockerUser" String.Empty
-let dockerPassword = Environment.environVarOrDefault "DockerPassword" String.Empty
-let dockerLoginServer = Environment.environVarOrDefault "DockerLoginServer" String.Empty
-let dockerImageName = Environment.environVarOrDefault "DockerImageName" String.Empty
+let dockerUser = Environment.environVar "DockerUser"
+let dockerPassword = Environment.environVar "DockerPassword"
+let dockerLoginServer = Environment.environVar "DockerLoginServer"
+let dockerImageName = Environment.environVar "DockerImageName"
 
 let releaseNotes = File.ReadAllLines "RELEASE_NOTES.md"
 
