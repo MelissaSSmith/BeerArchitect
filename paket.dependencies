@@ -23,9 +23,8 @@ clitool dotnet-fable
 group Build
     storage: none
     source https://api.nuget.org/v3/index.json
+    framework: netstandard2.0
 
-    nuget FSharp.Core 4.3.4 // https://github.com/fsharp/FAKE/issues/2001
-    nuget FAKE
     nuget Fake.Core.Target
     nuget Fake.Core.ReleaseNotes
     nuget Fake.DotNet.AssemblyInfoFile

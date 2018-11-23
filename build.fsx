@@ -9,17 +9,23 @@
 open System
 open System.IO
 
-open Fake
-open Fake.Core
 open Fake.DotNet
+open Fake.Core
 open Fake.IO
 open Fake.Tools
 open Fake.IO.FileSystemOperators
 open Fake.IO.Globbing.Operators
 
-let serverPath = Path.getFullName "./src/Server"
-let clientPath = Path.getFullName "./src/Client"
-let deployDir = Path.getFullName "./deploy"
+let clientPath = "./src/Client" |> Path.getFullName
+let serverPath = "./src/Server/" |> Path.getFullName
+let deployDir = "./deploy"
+
+let dotnetcliVersion = DotNet.getSDKVersionFromGlobalJson()
+let install = lazy DotNet.install (fun info -> { DotNet.Versions.FromGlobalJson info with Version = DotNet.Version dotnetcliVersion })
+let inline withWorkDir wd =
+    DotNet.Options.lift install.Value
+    >> DotNet.Options.withWorkingDirectory wd
+let inline dotnetSimple arg = DotNet.Options.lift install.Value arg
 
 let platformTool tool winTool =
     let tool = if Environment.isUnix then tool else winTool
@@ -32,14 +38,15 @@ let platformTool tool winTool =
             "See https://safe-stack.github.io/docs/quickstart/#install-pre-requisites for more info"
         failwith errorMsg
 
+do if not Environment.isWindows then
+    // We have to set the FrameworkPathOverride so that dotnet sdk invocations know
+    // where to look for full-framework base class libraries
+    let mono = platformTool "mono" "mono"
+    let frameworkPath = IO.Path.GetDirectoryName(mono) </> ".." </> "lib" </> "mono" </> "4.5"
+    Environment.setEnvironVar "FrameworkPathOverride" frameworkPath
+
 let nodeTool = platformTool "node" "node.exe"
 let yarnTool = platformTool "yarn" "yarn.cmd"
-
-let install = lazy DotNet.install DotNet.Versions.Release_2_1_300
-
-let inline withWorkDir wd =
-    DotNet.Options.lift install.Value
-    >> DotNet.Options.withWorkingDirectory wd
 
 let runTool cmd args workingDir =
     Command.RawCommand(cmd, Arguments.OfArgs[args])
@@ -103,11 +110,10 @@ Target.create "Run" (fun _ ->
 
 // --------------------------------------------------------------------------------------
 // Release Scripts
-
-let dockerUser = Environment.getBuildParam "DockerUser"
-let dockerPassword = Environment.getBuildParam "DockerPassword"
-let dockerLoginServer = Environment.getBuildParam "DockerLoginServer"
-let dockerImageName =  Environment.getBuildParam "DockerImageName"
+let dockerUser = Environment.environVarOrDefault "DockerUser" String.Empty
+let dockerPassword = Environment.environVarOrDefault "DockerPassword" String.Empty
+let dockerLoginServer = Environment.environVarOrDefault "DockerLoginServer" String.Empty
+let dockerImageName = Environment.environVarOrDefault "DockerImageName" String.Empty
 
 let releaseNotes = File.ReadAllLines "RELEASE_NOTES.md"
 
@@ -166,27 +172,31 @@ Target.create "CreateDockerImage" (fun _ ->
         failwithf "docker username not given."
     if String.IsNullOrEmpty dockerImageName then
         failwithf "docker image Name not given."
-    Command.RawCommand("docker", Arguments.OfArgs[sprintf "build -t %s/%s ." dockerUser dockerImageName])
-    |> CreateProcess.fromCommand
-    |> CreateProcess.withTimeout TimeSpan.MaxValue
-    |> Proc.run
-    |> ignore
+    let result =
+        Process.execSimple (fun info ->
+            { info with
+                FileName = "docker"
+                UseShellExecute = false
+                Arguments = sprintf "build -t %s/%s ." dockerUser dockerImageName }) TimeSpan.MaxValue
+    if result <> 0 then failwith "Docker build failed"
 )
 
 Target.create "Deploy" (fun _ ->
-    Command.RawCommand("docker", Arguments.OfArgs[sprintf "login %s --username %s --password %s ." dockerLoginServer dockerUser dockerPassword])
-    |> CreateProcess.fromCommand
-    |> CreateProcess.withWorkingDirectory deployDir
-    |> CreateProcess.withTimeout TimeSpan.MaxValue
-    |> Proc.run
-    |> ignore
+    let result =
+        Process.execSimple (fun info ->
+            { info with
+                FileName = "docker"
+                WorkingDirectory = deployDir
+                Arguments = sprintf "login %s --username \"%s\" --password \"%s\"" dockerLoginServer dockerUser dockerPassword }) TimeSpan.MaxValue
+    if result <> 0 then failwith "Docker login failed"
 
-    Command.RawCommand("docker", Arguments.OfArgs[sprintf "push %s/%s" dockerUser dockerImageName])
-    |> CreateProcess.fromCommand
-    |> CreateProcess.withWorkingDirectory deployDir
-    |> CreateProcess.withTimeout TimeSpan.MaxValue
-    |> Proc.run
-    |> ignore
+    let result =
+        Process.execSimple (fun info ->
+            { info with
+                FileName = "docker"
+                WorkingDirectory = deployDir
+                Arguments = sprintf "push %s/%s" dockerUser dockerImageName }) TimeSpan.MaxValue
+    if result <> 0 then failwith "Docker push failed"
 )
 
 open Fake.Core.TargetOperators
