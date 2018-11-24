@@ -48,7 +48,7 @@ let index (model: Model option) =
           ]
         link [ _rel "stylesheet"; _href "style.css" ]
         script [ _src "https://code.jquery.com/jquery-3.2.1.min.js" ] []
-        link [ _rel "shortcut icon"; _type "image/png"; _href "/Images/safe_favicon.png" ]
+        link [ _rel "shortcut icon"; _type "image/png"; _href "safe_favicon.png" ]
       ]
       body [] [
         div [ _id "beer-architect-main"; ] [
@@ -57,6 +57,6 @@ let index (model: Model option) =
         script [ ] [ rawText (sprintf "var __INIT_MODEL__ = %s" jsonState) ]
         script [ _src "https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" ] []
         script [ _src "https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" ] []
-        script [ _src "./js/bundle.js" ] []
+        script [ _src "bundle.js" ] []
       ]
     ]
