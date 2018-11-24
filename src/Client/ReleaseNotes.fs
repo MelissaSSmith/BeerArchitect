@@ -1,6 +1,6 @@
 module internal ReleaseNotes
 
-let Version = 0.0.9
+let Version = 0.0.10
 
 let IsPrerelease = false
 
@@ -13,4 +13,7 @@ let Notes =
 
 ### 0.0.9 - 2018-11-23
 * Including data
+
+### 0.0.10 - 2018-11-23
+* Fix Template
 
