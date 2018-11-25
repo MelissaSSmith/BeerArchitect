@@ -7,5 +7,5 @@
 ### 0.0.9 - 2018-11-23
 * Including data
 
-### 0.0.11 - 2018-11-23
-* Fix Template
+### 0.0.12 - 2018-11-23
+* Switch to client side
