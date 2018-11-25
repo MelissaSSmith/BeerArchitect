@@ -16,7 +16,6 @@ open Thoth.Json.Net
 open Client
 open Client.Pages
 open Shared 
-open Thoth.Json
 
 let handleNotFound (model: Model) =
     Browser.console.error("Error parsing url: " + Browser.window.location.href)

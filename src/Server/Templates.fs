@@ -48,7 +48,7 @@ let index (model: Model option) =
           ]
         link [ _rel "stylesheet"; _href "style.css" ]
         script [ _src "https://code.jquery.com/jquery-3.2.1.min.js" ] []
-        link [ _rel "shortcut icon"; _type "image/png"; _href "safe_favicon.png" ]
+        link [ _rel "shortcut icon"; _type "image/png"; _href "/Images/beer_favicon.png" ]
       ]
       body [] [
         div [ _id "beer-architect-main"; ] [

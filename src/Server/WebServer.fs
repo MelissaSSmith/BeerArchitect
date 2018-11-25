@@ -5,21 +5,21 @@ open ServerCode.ServerUrls
 open Giraffe
 open Giraffe.TokenRouter
 open RequestErrors
-open Microsoft.AspNetCore.Http
 open Client
+open ServerCode.ServerUrls
 
 let webApp : HttpHandler =
-    let apiPathPrefix = PathString("/api")
     let notfound: HttpHandler =
         fun next ctx ->
-            if ctx.Request.Path.StartsWithSegments(apiPathPrefix) then
-                NOT_FOUND "Page not found" next ctx
-            else
-                Pages.notfound next ctx
+            NOT_FOUND "Page not found" next ctx
 
     router notfound [
         GET [
             route PageUrls.Home Pages.home
+            route PageUrls.AbvCalculator Pages.abvCalculator
+            route PageUrls.SrmCalculator Pages.srmCalculator
+            route PageUrls.HydrometerCalculator Pages.hydrometerCalculator
+            route PageUrls.AllGrainCalculator Pages.allGrainCalculator
             route APIUrls.GetFermentables Fermentables.getAllFermentables
             route APIUrls.GetHopAlphaAcids Hops.getAllHopAlphaAcids
         ]

@@ -9,6 +9,10 @@ module PageUrls =
   let SrmCalculator = "/srm-calculator"
   [<Literal>]
   let IbuCalculator = "/ibu-calculator"
+  [<Literal>]
+  let HydrometerCalculator = "/hydrometer-temp-calculator"
+  [<Literal>]
+  let AllGrainCalculator = "/all-grain-calculator"
 
 module APIUrls =
 

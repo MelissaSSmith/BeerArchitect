@@ -17,7 +17,7 @@ let toPath =
     | Page.SrmCalculator -> "/srm-calculator"
     | Page.IbuCalculator -> "/ibu-calculator"
     | Page.HydrometerTempCalculator -> "/hydrometer-temp-calculator"
-    | Page.AllGrainCalculator -> "/allgrain-ogfg-calculator"
+    | Page.AllGrainCalculator -> "/all-grain-calculator"
     
 let pageParser : Parser<Page -> Page,_> =
     oneOf
@@ -26,6 +26,6 @@ let pageParser : Parser<Page -> Page,_> =
           map Page.SrmCalculator (s "srm-calculator")
           map Page.IbuCalculator (s "ibu-calculator")
           map Page.HydrometerTempCalculator (s "hydrometer-temp-calculator") 
-          map Page.AllGrainCalculator (s "allgrain-ogfg-calculator")]
+          map Page.AllGrainCalculator (s "all-grain-calculator")]
 
 let urlParser location = parsePath pageParser location

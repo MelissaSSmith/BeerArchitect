@@ -12,5 +12,55 @@ let home: HttpHandler = fun _ ctx ->
         return! ctx.WriteHtmlViewAsync (Templates.index (Some model))
     }
 
+let abvCalculator: HttpHandler = fun _ ctx ->
+    task {
+        let model: Model = {
+            PageModel =
+                let m = Client.AbvCalculator.init None
+                PageModel.AbvCalculatorPageModal m
+        }
+        return! ctx.WriteHtmlViewAsync (Templates.index (Some model))
+    }
+
+let srmCalculator: HttpHandler = fun _ ctx ->
+    task {
+        let model: Model = {
+            PageModel =
+                let m,_ = Client.SrmCalculator.init None
+                PageModel.SrmCalculatorPageModel m
+        }
+        return! ctx.WriteHtmlViewAsync (Templates.index (Some model))
+    }
+
+let ibuCalculator: HttpHandler = fun _ ctx ->
+    task {
+        let model: Model = {
+            PageModel =
+                let m,_ = Client.IbuCalculator.init None
+                PageModel.IbuCalculatorPageModel m
+        }
+        return! ctx.WriteHtmlViewAsync (Templates.index (Some model))
+    }
+
+let hydrometerCalculator: HttpHandler = fun _ ctx ->
+    task {
+        let model: Model = {
+            PageModel =
+                let m,_ = Client.HydrometerTempCalculator.init None
+                PageModel.HydrometerTempCalculatorPageModel m
+        }
+        return! ctx.WriteHtmlViewAsync (Templates.index (Some model))
+    }
+
+let allGrainCalculator: HttpHandler = fun _ ctx ->
+    task {
+        let model: Model = {
+            PageModel =
+                let m,_ = Client.AllGrainCalculator.init None
+                PageModel.AllGrainCalculatorPageModel m
+        }
+        return! ctx.WriteHtmlViewAsync (Templates.index (Some model))
+    }
+
 let notfound: HttpHandler = fun _ ctx ->
     ctx.WriteHtmlViewAsync (Templates.index None)

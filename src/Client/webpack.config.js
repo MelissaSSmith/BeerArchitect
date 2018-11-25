@@ -65,7 +65,6 @@ module.exports = {
         ]),
     devServer: {
         proxy: CONFIG.devServerProxy,
-        publicPath: "/",
         hot: true,
         inline: true,
         historyApiFallback: true,
