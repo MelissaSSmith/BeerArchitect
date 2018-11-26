@@ -6,7 +6,6 @@ open Giraffe
 open Giraffe.TokenRouter
 open RequestErrors
 open Client
-open ServerCode.ServerUrls
 
 let webApp : HttpHandler =
     let notfound: HttpHandler =
