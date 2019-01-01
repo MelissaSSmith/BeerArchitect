@@ -8,7 +8,7 @@ var CONFIG = {
             "@babel/polyfill",
             "./src/Client/Client.fsproj"
         ],
-    outputDir: "./public",
+    outputDir: './public',
     devServerPort: undefined,
     devServerProxy: {
         '/api/*': {
@@ -16,7 +16,7 @@ var CONFIG = {
             changeOrigin: true
         }
     },
-    contentBase: __dirname,
+    contentBase: path.join(__dirname, './public'),
     babel: {
         presets: [
             ["@babel/preset-env", {
@@ -65,6 +65,7 @@ module.exports = {
         ]),
     devServer: {
         proxy: CONFIG.devServerProxy,
+        port: 8080,
         hot: true,
         inline: true,
         historyApiFallback: true,

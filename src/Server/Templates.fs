@@ -53,6 +53,6 @@ let index (model: Model option) =
         script [ ] [ rawText (sprintf "var __INIT_MODEL__ = %s" jsonState) ]
         script [ _src "https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" ] []
         script [ _src "https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" ] []
-        script [ _src "bundle.js" ] []
+        script [ _src "./js/bundle.js" ] []
       ]
     ]

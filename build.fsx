@@ -77,6 +77,7 @@ Target.create "InstallClient" (fun _ ->
     printfn "Yarn version:"
     runTool yarnTool "--version" __SOURCE_DIRECTORY__ |> ignore
     runTool yarnTool "install" __SOURCE_DIRECTORY__ |> ignore
+    runDotNet "restore" clientPath
 )
 
 Target.create "RestoreServer" (fun _ ->
@@ -85,21 +86,19 @@ Target.create "RestoreServer" (fun _ ->
 
 Target.create "Build" (fun _ ->
     runDotNet "build" serverPath
-    runDotNet "restore" clientPath
-    runDotNet "fable webpack-cli -- --config src/Client/webpack.config.js -p" clientPath
+    runDotNet "fable webpack -- --config src/Client/webpack.config.js -p" clientPath
 )
 
 Target.create "Run" (fun _ ->
-    runDotNet "restore" clientPath
     let server = async {
         runDotNet "watch run" serverPath
     }
     let client = async {
-        runDotNet "fable webpack-cli -- --config src/Client/webpack.config.js -p" clientPath
+        runDotNet "fable webpack-dev-server -- --config src/Client/webpack.config.js" clientPath
     }
     let browser = async {
         Threading.Thread.Sleep 5000
-        openBrowser "http://localhost:8085"
+        openBrowser "http://localhost:8080"
     }
 
     [ server; client; browser ]

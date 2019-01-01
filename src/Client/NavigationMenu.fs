@@ -33,7 +33,7 @@ let navigationBar =
         ]
     ]
 let sidebarNavigationMenu =
-    nav [ClassName "col-2 d-none d-md-block sidebar"] [
+    nav [ClassName "col-md-2 d-none d-md-block sidebar"] [
         div [ClassName "navigation-menu"] [
             navigationList
         ]

@@ -3,6 +3,7 @@
     "dependencies": {
         "@babel/polyfill": "^7.0.0",
         "@babel/runtime": "^7.1.5",
+        "fable": "^1.0.2",
         "react": "16.6.3",
         "react-bootstrap": "0.32.4",
         "react-dom": "16.6.3",
