@@ -128,7 +128,7 @@ let view model (dispatch: Msg -> unit) =
         navigationBar
         div [ClassName "container-fluid"] [
             sidebarNavigationMenu
-            div [ClassName "col-md-10 ml-sm-auto col-lg-10 px-4 beer-body"] [
+            div [ClassName "col-md-10 ml-sm-auto beer-body"] [
                 div [ClassName "row beer-row bottom-border"] [ pageHeader "IBU Calculator" ]
                 div [ClassName "row beer-row"] [
                     div [ClassName "col-12"
@@ -145,7 +145,7 @@ let view model (dispatch: Msg -> unit) =
                                     OnChange (fun ev -> dispatch (SetBoilSize !!ev.target?value))
                                 ]
                             ]
-                            div [ClassName "col"] [
+                            div [ClassName "col center-input"] [
                                 label [] [ str "Batch Size (gallons)" ]
                                 input [
                                     Id "batch-size" 
@@ -427,7 +427,7 @@ let view model (dispatch: Msg -> unit) =
                                     ]
                                 ]
                             ]
-                            div [ClassName "offset-7 col-2"] [
+                            div [ClassName "col-9"] [
                                 button [
                                     Type "button"
                                     ClassName "btn btn-link"

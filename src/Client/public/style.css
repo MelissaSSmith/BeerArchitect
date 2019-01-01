@@ -41,6 +41,8 @@
 
 .beer-body {
     padding-top: 48px;
+    padding-right: 0;
+    padding-left: 0;
 }
 
 .results {
@@ -51,10 +53,17 @@
 
 .left-input {
     padding-left: 0;
+    padding-right: 0;
 }
 
 .right-input {
     padding-right: 0;
+    padding-left: 0;
+}
+
+.center-input {
+    padding-right: 0.15rem;
+    padding-left: 0.15rem;
 }
 
 .reference-modal-header {
@@ -78,5 +87,40 @@
     }
     .nav-btn {
         display: none;
+    }
+    .left-input {
+        padding-right: unset;
+    }
+    
+    .right-input {
+        padding-left: unset;
+    }
+
+    .center-input {
+        padding-right: 15px;
+        padding-left: 15px;
+    }
+
+    .beer-body {
+        padding-right: 15px;
+        padding-left: 15px;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 876px) {
+    .center-input {
+        padding-right: 0.05rem;
+        padding-left: 0.05rem;
+    }
+    .beer-body {
+        padding-right: 0.1rem !important;
+        padding-left: 0.1rem !important;
+    }
+    #ibu-inputs {
+        padding-right: 3px;
+        padding-left: 3px;
+    }
+    h2 {
+        padding-left: 10px;
     }
 }
