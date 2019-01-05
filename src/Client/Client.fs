@@ -21,7 +21,7 @@ let handleNotFound (model: Model) =
     Browser.console.error("Error parsing url: " + Browser.window.location.href)
     ( model, Navigation.modifyUrl (toPath Page.Home) )
 
-let urlUpdate (result:Page option) (model: Model) =
+let urlUpdate (result: Page option) (model: Model) =
     match result with
     | None ->
         handleNotFound model
