@@ -69,10 +69,7 @@ let getFermentableList a =
         with _ ->
             return! failwithf "An error has occured"
     }
-
-let fermentableOption fermentable =
-    option [Value (sprintf "%i" fermentable.Id) ] [str (sprintf "%s %s" fermentable.Country  fermentable.Name)]
-
+    
 let calculateSrmCmd inputs =
     Cmd.ofPromise calculateSrm inputs CompleteSrmCalculation Error
 let getFermentableListCmd =
@@ -137,91 +134,36 @@ let view model (dispatch: Msg -> unit) =
                                             th [Scope "col"] [ str "Grain" ]
                                         ] ]
                                     tbody [] [
-                                        tr [] [
-                                            th [] [
-                                                input [
-                                                    Id "grain-amount-1" 
-                                                    ClassName "form-control"
-                                                    AutoFocus false
-                                                    HTMLAttr.Type "number"
-                                                    Step "any" 
-                                                    OnChange (fun ev -> dispatch (SetGrainAmount (1, !!ev.target?value) ) ) ] ]
-                                            th [] [
-                                                select [
-                                                    Id "grain-1" 
-                                                    ClassName "form-control"
-                                                    AutoFocus false 
-                                                    OnChange (fun ev -> dispatch (SetGrainId (1, !!ev.target?value) ) )
-                                                    DefaultValue "0"] [
-                                                    for f in model.FermentableList do yield fermentableOption f ] ] ]
-                                        tr [] [
-                                            th [] [
-                                                input [
-                                                    Id "grain-amount-2" 
-                                                    ClassName "form-control"
-                                                    AutoFocus false
-                                                    HTMLAttr.Type "number"
-                                                    Step "any"
-                                                    OnChange (fun ev -> dispatch (SetGrainAmount (2, !!ev.target?value) ) ) ] ]
-                                            th [] [
-                                                select [
-                                                    Id "grain-2" 
-                                                    ClassName "form-control"
-                                                    AutoFocus false 
-                                                    OnChange (fun ev -> dispatch (SetGrainId (2, !!ev.target?value) ) )
-                                                    DefaultValue "0"] [
-                                                    for f in model.FermentableList do yield fermentableOption f ] ] ]
-                                        tr [] [
-                                            th [] [
-                                                input [
-                                                    Id "grain-amount-3" 
-                                                    ClassName "form-control"
-                                                    AutoFocus false
-                                                    HTMLAttr.Type "number"
-                                                    Step "any" 
-                                                    OnChange (fun ev -> dispatch (SetGrainAmount (3, !!ev.target?value) ) ) ] ]
-                                            th [] [
-                                                select [
-                                                    Id "grain-3" 
-                                                    ClassName "form-control"
-                                                    AutoFocus false 
-                                                    OnChange (fun ev -> dispatch (SetGrainId (3, !!ev.target?value) ) )
-                                                    DefaultValue "0"] [
-                                                    for f in model.FermentableList do yield fermentableOption f ] ] ]
-                                        tr [] [
-                                            th [] [
-                                                input [
-                                                    Id "grain-amount-4" 
-                                                    ClassName "form-control"
-                                                    AutoFocus false
-                                                    HTMLAttr.Type "number"
-                                                    Step "any"
-                                                    OnChange (fun ev -> dispatch (SetGrainAmount (4, !!ev.target?value) ) ) ] ]
-                                            th [] [
-                                                select [
-                                                    Id "grain-4" 
-                                                    ClassName "form-control"
-                                                    AutoFocus false 
-                                                    OnChange (fun ev -> dispatch (SetGrainId (4, !!ev.target?value) ) )
-                                                    DefaultValue "0"] [
-                                                    for f in model.FermentableList do yield fermentableOption f ] ] ]
-                                        tr [] [
-                                            th [] [
-                                                input [
-                                                    Id "grain-amount-5" 
-                                                    ClassName "form-control"
-                                                    AutoFocus false
-                                                    HTMLAttr.Type "number"
-                                                    Step "any"
-                                                    OnChange (fun ev -> dispatch (SetGrainAmount (5, !!ev.target?value) ) ) ] ]
-                                            th [] [
-                                                select [
-                                                    Id "grain-5" 
-                                                    ClassName "form-control"
-                                                    AutoFocus false 
-                                                    OnChange (fun ev -> dispatch (SetGrainId (5, !!ev.target?value) ) )
-                                                    DefaultValue "0"] [
-                                                    for f in model.FermentableList do yield fermentableOption f ] ] ] ] ]
+                                        FermentableTable.fermentableRowComponent {
+                                            rowId = 1
+                                            fermentableList = model.FermentableList
+                                            setGrainAmount = (fun ev -> dispatch (SetGrainAmount (1, !!ev.target?value) ) )
+                                            setGrainId = (fun ev -> dispatch (SetGrainId (1, !!ev.target?value) ) )
+                                        }
+                                        FermentableTable.fermentableRowComponent {
+                                            rowId = 2
+                                            fermentableList = model.FermentableList
+                                            setGrainAmount = (fun ev -> dispatch (SetGrainAmount (2, !!ev.target?value) ) )
+                                            setGrainId = (fun ev -> dispatch (SetGrainId (2, !!ev.target?value) ) )
+                                        }
+                                        FermentableTable.fermentableRowComponent {
+                                            rowId = 3
+                                            fermentableList = model.FermentableList
+                                            setGrainAmount = (fun ev -> dispatch (SetGrainAmount (3, !!ev.target?value) ) )
+                                            setGrainId = (fun ev -> dispatch (SetGrainId (3, !!ev.target?value) ) )
+                                        }
+                                        FermentableTable.fermentableRowComponent {
+                                            rowId = 4
+                                            fermentableList = model.FermentableList
+                                            setGrainAmount = (fun ev -> dispatch (SetGrainAmount (4, !!ev.target?value) ) )
+                                            setGrainId = (fun ev -> dispatch (SetGrainId (4, !!ev.target?value) ) )
+                                        }
+                                        FermentableTable.fermentableRowComponent {
+                                            rowId = 5
+                                            fermentableList = model.FermentableList
+                                            setGrainAmount = (fun ev -> dispatch (SetGrainAmount (5, !!ev.target?value) ) )
+                                            setGrainId = (fun ev -> dispatch (SetGrainId (5, !!ev.target?value) ) )
+                                        } ] ]
                                 button [
                                     Id "calculate-srm"
                                     ClassName "btn btn-info btn-lg btn-block"
