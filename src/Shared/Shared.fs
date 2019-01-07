@@ -22,6 +22,9 @@ type Fermentable =
       DegreesLovibond: float
       Ppg: float }
 
+type FermentableTable =
+    { FermentableList: Fermentable list }
+
 type SrmHex =
     { SrmKey: int
       HexValue: string }
