@@ -20,17 +20,15 @@ open Client.Style
 type Model = {
     SrmInput : SrmInput
     SrmResult : SrmResult
-    FermentableList : Fermentable list
+    FermentableTableModel : FermentableTable.Model
     ErrorMsg : string }
 
 type Msg =
     | Success of unit
     | InitializeData
     | CompleteSrmCalculation of SrmResult
-    | FillInFermentableLists of Fermentable list
     | SetBatchSize of float
-    | SetGrainAmount of int*float
-    | SetGrainId of int*int
+    | FermentableTableMsg of FermentableTable.Msg
     | ClickCalculate
     | Error of exn
 
@@ -57,46 +55,37 @@ let calculateSrm (inputs:SrmInput) =
             return! failwithf "An error has occured"
     }
 
-let getFermentableList a =
-    promise {
-        let props = 
-            [ RequestProperties.Method HttpMethod.GET ]
-        
-        try
-            let! result = Fetch.fetch ServerUrls.APIUrls.GetFermentables props
-            let! text = result.text()
-            return Decode.Auto.unsafeFromString<Fermentable list> text
-        with _ ->
-            return! failwithf "An error has occured"
-    }
-    
 let calculateSrmCmd inputs =
     Cmd.ofPromise calculateSrm inputs CompleteSrmCalculation Error
-let getFermentableListCmd =
-    Cmd.ofPromise getFermentableList 0 FillInFermentableLists Error
 
 let init result =
+    let subModel, cmd = FermentableTable.init 5
     match result with 
     | _ ->
         { SrmInput = { BatchSize = 0.0; GrainBill = List.init 5 (fun f -> 0.0,0); GrainIds = List.init 5 (fun f -> 0); GrainAmounts = List.init 5 (fun f -> 0.0)}
           SrmResult = { Srm = 0.0; Ebc = 0.0; HexColor = "#FFFFFF"}
-          FermentableList = List.empty
-          ErrorMsg = "" }, getFermentableListCmd
+          FermentableTableModel = subModel
+          ErrorMsg = "" }, 
+            Cmd.batch [
+                Cmd.map FermentableTableMsg cmd ]
 
 let update (msg:Msg) (model:Model): Model*Cmd<Msg> =
     match msg with
-    | FillInFermentableLists fermentableList ->
-        { model with FermentableList = fermentableList }, Cmd.none
     | CompleteSrmCalculation results ->
         { model with SrmResult = { model.SrmResult with Srm = results.Srm; Ebc = results.Ebc; HexColor = results.HexColor } }, Cmd.none
     | SetBatchSize batchSize ->
         { model with SrmInput = { model.SrmInput with BatchSize = batchSize }}, Cmd.none
-    | SetGrainAmount (inputId, grainAmount) ->
-        let grainAmounts = model.SrmInput.GrainAmounts
-        { model with SrmInput = { model.SrmInput with GrainAmounts = updateElement inputId grainAmount grainAmounts }}, Cmd.none
-    | SetGrainId (inputId, grainId) ->
-        let grainIds = model.SrmInput.GrainIds
-        { model with SrmInput = { model.SrmInput with GrainIds = updateElement inputId grainId grainIds }}, Cmd.none
+    | FermentableTableMsg msg ->
+        match msg with 
+        | FermentableTable.Msg.SetGrainAmount (inputId, grainAmount)->
+            let grainAmounts = model.SrmInput.GrainAmounts
+            { model with SrmInput = { model.SrmInput with GrainAmounts = updateElement inputId grainAmount grainAmounts }}, Cmd.none
+        | FermentableTable.Msg.SetGrainId (inputId, grainId) ->
+            let grainIds = model.SrmInput.GrainIds
+            { model with SrmInput = { model.SrmInput with GrainIds = updateElement inputId grainId grainIds }}, Cmd.none
+        | _ ->
+            let submodel, cmd = FermentableTable.update msg model.FermentableTableModel
+            { model with FermentableTableModel = submodel}, Cmd.map FermentableTableMsg cmd
     | ClickCalculate ->
         model, calculateSrmCmd model.SrmInput
     | Error exn ->
@@ -127,43 +116,7 @@ let view model (dispatch: Msg -> unit) =
                                 ]
                             ]
                             div [ClassName "row beer-row justify-content-start"] [
-                                table [ClassName "table table-sm table-striped"] [
-                                    thead [] [
-                                        tr [] [
-                                            th [Scope "col"] [ str "Pounds" ]
-                                            th [Scope "col"] [ str "Grain" ]
-                                        ] ]
-                                    tbody [] [
-                                        FermentableTable.fermentableRowComponent {
-                                            rowId = 1
-                                            fermentableList = model.FermentableList
-                                            setGrainAmount = (fun ev -> dispatch (SetGrainAmount (1, !!ev.target?value) ) )
-                                            setGrainId = (fun ev -> dispatch (SetGrainId (1, !!ev.target?value) ) )
-                                        }
-                                        FermentableTable.fermentableRowComponent {
-                                            rowId = 2
-                                            fermentableList = model.FermentableList
-                                            setGrainAmount = (fun ev -> dispatch (SetGrainAmount (2, !!ev.target?value) ) )
-                                            setGrainId = (fun ev -> dispatch (SetGrainId (2, !!ev.target?value) ) )
-                                        }
-                                        FermentableTable.fermentableRowComponent {
-                                            rowId = 3
-                                            fermentableList = model.FermentableList
-                                            setGrainAmount = (fun ev -> dispatch (SetGrainAmount (3, !!ev.target?value) ) )
-                                            setGrainId = (fun ev -> dispatch (SetGrainId (3, !!ev.target?value) ) )
-                                        }
-                                        FermentableTable.fermentableRowComponent {
-                                            rowId = 4
-                                            fermentableList = model.FermentableList
-                                            setGrainAmount = (fun ev -> dispatch (SetGrainAmount (4, !!ev.target?value) ) )
-                                            setGrainId = (fun ev -> dispatch (SetGrainId (4, !!ev.target?value) ) )
-                                        }
-                                        FermentableTable.fermentableRowComponent {
-                                            rowId = 5
-                                            fermentableList = model.FermentableList
-                                            setGrainAmount = (fun ev -> dispatch (SetGrainAmount (5, !!ev.target?value) ) )
-                                            setGrainId = (fun ev -> dispatch (SetGrainId (5, !!ev.target?value) ) )
-                                        } ] ]
+                                FermentableTable.view model.FermentableTableModel (dispatch << FermentableTableMsg)
                                 button [
                                     Id "calculate-srm"
                                     ClassName "btn btn-info btn-lg btn-block"
