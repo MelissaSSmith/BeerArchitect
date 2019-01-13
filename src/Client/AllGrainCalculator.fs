@@ -4,9 +4,13 @@ open Elmish
 open Fable.Helpers.React
 open Fable.Helpers.React.Props
 open Fable.Core.JsInterop
-open Fable.Import.Browser
 open Fable.PowerPack
 open Fable.PowerPack.Fetch.Fetch_types
+#if FABLE_COMPILER
+open Thoth.Json
+#else
+open Thoth.Json.Net
+#endif
 
 open ServerCode
 open Shared
@@ -28,6 +32,27 @@ type Msg =
     | ClickCalculate
     | CompleteAllGrainCalculation of AllGrainResult
     | Error of exn
+
+let calculateAllGrainEstimations (inputs:AllGrainInput) = 
+    promise {
+        let body = Encode.Auto.toString(0, inputs)
+
+        let props = 
+            [ RequestProperties.Method HttpMethod.POST
+              Fetch.requestHeaders [
+                  HttpRequestHeaders.ContentType "application/json" ]
+              RequestProperties.Body !^body ]
+        
+        try
+            let! result = Fetch.fetch ServerUrls.APIUrls.CalculateAllGrainEstimations props
+            let! text = result.text()
+            return Decode.Auto.unsafeFromString<AllGrainResult> text
+        with _ ->
+            return! failwithf "An error has occured"
+    }
+
+let calculateAllGrainEstimationsCmd inputs =
+    Cmd.ofPromise calculateAllGrainEstimations inputs CompleteAllGrainCalculation Error
 
 let getYeastTolerance inputValue =
     match inputValue with
@@ -82,10 +107,10 @@ let update (msg:Msg) (model:Model) : Model*Cmd<Msg> =
         | _ ->
             let submodel, cmd = FermentableTable.update msg model.FermentableTableModel
             { model with FermentableTableModel = submodel}, Cmd.map FermentableTableMsg cmd
+    | ClickCalculate ->
+        model, calculateAllGrainEstimationsCmd model.AllGrainInput
     | Error exn ->
         { model with ErrorMsg = string (exn.Message) }, Cmd.none
-    | _ ->
-        model, Cmd.none
 
 let view model (dispatch: Msg -> unit) =
     div [] [
@@ -161,6 +186,11 @@ let view model (dispatch: Msg -> unit) =
                             ]
                             div [ClassName "row beer-row justify-content-start"] [
                                 FermentableTable.view model.FermentableTableModel (dispatch << FermentableTableMsg)
+                                button [
+                                    Id "calculate-estimations"
+                                    ClassName "btn btn-info btn-lg btn-block"
+                                    OnClick (fun _ -> dispatch ClickCalculate)
+                                ] [ str "Calculate"]
                             ]
                         ]
                         div [ClassName "col-12"

@@ -28,3 +28,5 @@ module APIUrls =
   let GetHopAlphaAcids = "/api/hops/get-alpha-acids"
   [<Literal>]
   let CalculateHydrometerAdjustment = "/api/hydrometer-temp/calculate"
+  [<Literal>]
+  let CalculateAllGrainEstimations = "/api/all-grain/calculate"

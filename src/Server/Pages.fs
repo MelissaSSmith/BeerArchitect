@@ -62,5 +62,15 @@ let allGrainCalculator: HttpHandler = fun _ ctx ->
         return! ctx.WriteHtmlViewAsync (Templates.index (Some model))
     }
 
+let yeastProfiles: HttpHandler = fun _ ctx ->
+    task {
+        let model: Model = {
+            PageModel = 
+                let m = Client.YeastProfiles.init None
+                PageModel.YeastProfilesPageModel m
+        }
+        return! ctx.WriteHtmlViewAsync (Templates.index (Some model))
+    }
+
 let notfound: HttpHandler = fun _ ctx ->
     ctx.WriteHtmlViewAsync (Templates.index None)
