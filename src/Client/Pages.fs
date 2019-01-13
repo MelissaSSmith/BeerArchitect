@@ -9,6 +9,7 @@ type Page =
     | IbuCalculator
     | HydrometerTempCalculator
     | AllGrainCalculator
+    | YeastProfiles
 
 let toPath =
     function
@@ -18,6 +19,7 @@ let toPath =
     | Page.IbuCalculator -> "/ibu-calculator"
     | Page.HydrometerTempCalculator -> "/hydrometer-temp-calculator"
     | Page.AllGrainCalculator -> "/all-grain-calculator"
+    | Page.YeastProfiles -> "/yeast-profiles"
     
 let pageParser : Parser<Page -> Page,_> =
     oneOf
@@ -26,6 +28,7 @@ let pageParser : Parser<Page -> Page,_> =
           map Page.SrmCalculator (s "srm-calculator")
           map Page.IbuCalculator (s "ibu-calculator")
           map Page.HydrometerTempCalculator (s "hydrometer-temp-calculator") 
-          map Page.AllGrainCalculator (s "all-grain-calculator")]
+          map Page.AllGrainCalculator (s "all-grain-calculator")
+          map Page.YeastProfiles (s "yeast-profiles")]
 
 let urlParser location = parsePath pageParser location

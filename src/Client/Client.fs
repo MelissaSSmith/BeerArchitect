@@ -40,6 +40,9 @@ let urlUpdate (result: Page option) (model: Model) =
     | Some Page.AllGrainCalculator ->
         let m, cmd = AllGrainCalculator.init()
         { model with PageModel = AllGrainCalculatorPageModel m }, Cmd.map AllGrainCalculatorMsg cmd
+    | Some Page.YeastProfiles ->
+        let m = YeastProfiles.init()
+        { model with PageModel = YeastProfilesPageModel m }, Cmd.none
     | Some Page.Home ->
         { model with PageModel = HomePageModel }, Cmd.none
 
@@ -97,6 +100,14 @@ let update msg model =
                     Cmd.map AllGrainCalculatorMsg cmd
                 ]
     | AllGrainCalculatorMsg _,_ -> model, Navigation.newUrl (toPath Page.AllGrainCalculator)
+    | YeastProfilesMsg msg, YeastProfilesPageModel m ->
+        let m, cmd = YeastProfiles.update msg m
+        { model with
+            PageModel = YeastProfilesPageModel m},
+                Cmd.batch [
+                    Cmd.map YeastProfilesMsg cmd
+                ]
+    | YeastProfilesMsg _, _ -> model, Navigation.newUrl (toPath Page.YeastProfiles)
 
 
 Program.mkProgram init update view

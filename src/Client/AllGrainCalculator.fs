@@ -153,7 +153,7 @@ let view model (dispatch: Msg -> unit) =
                                     p [] [ 
                                         str "Most yeasts fall into the medium category" 
                                         a [
-                                            Href "/ibu-calculator"
+                                            Href "/yeast-profiles"
                                             Target "_blank"
                                             ClassName "btn btn-link"] [ str "Yeast Strength Tables" ]
                                     ]

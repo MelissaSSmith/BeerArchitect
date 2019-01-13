@@ -12,6 +12,7 @@
     <Compile Include="../Client/IbuCalculator.fs" Watch="false" />
     <Compile Include="../Client/HydrometerTempCalculator.fs" Watch="false" />
     <Compile Include="../Client/AllGrainCalculator.fs" Watch="false" />
+    <Compile Include="../Client/YeastProfiles.fs" Watch="false" />
     <Compile Include="../Client/Shared.fs" Watch="false" />
   </ItemGroup>
 </Project>
