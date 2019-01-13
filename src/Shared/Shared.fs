@@ -74,3 +74,23 @@ type HydrometerAdjustInput =
 
 type HydrometerAdjustResult = 
     { CorrectedGravity: float }
+
+type YeastTolerance =
+    | Low
+    | Medium
+    | High
+
+type AllGrainInput =
+    { PreBoilSize: float
+      BatchSize: float
+      Effciency: float
+      YeastTolerance: YeastTolerance
+      GrainIds: int list
+      GrainAmounts: float list
+      GrainBill: list<float*int> }
+
+type AllGrainResult =
+    { EstPreBoilOG: float
+      EstOG: float
+      EstFG: float
+      EstABV: float }

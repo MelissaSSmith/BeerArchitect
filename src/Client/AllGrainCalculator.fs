@@ -14,33 +14,71 @@ open Client.NavigationMenu
 open Client.Style
 
 type Model = {
-    FermentableList : Fermentable list
+    AllGrainInput : AllGrainInput
+    AllGrainResult: AllGrainResult
     FermentableTableModel : FermentableTable.Model
     ErrorMsg : string }
 
 type Msg =
+    | SetPreBoilSize of float
+    | SetBatchSize of float
+    | SetEfficiency of float
+    | SetYeastTolerance of int
     | FermentableTableMsg of FermentableTable.Msg
     | ClickCalculate
+    | CompleteAllGrainCalculation of AllGrainResult
     | Error of exn
 
+let getYeastTolerance inputValue =
+    match inputValue with
+    | 1 -> YeastTolerance.Low
+    | 2 -> YeastTolerance.Medium
+    | 3 -> YeastTolerance.High
+    | _ -> YeastTolerance.Medium
+
+let initInput listSize = 
+    { PreBoilSize = 0.0
+      BatchSize = 0.0
+      Effciency = 0.0
+      YeastTolerance = YeastTolerance.Medium
+      GrainBill = List.init listSize (fun f -> 0.0,0)
+      GrainIds = List.init listSize (fun f -> 0)
+      GrainAmounts = List.init listSize (fun f -> 0.0) }
+
 let init result =
-    let subModel, cmd = FermentableTable.init 5
+    let initialSize = 5
+    let table, cmd = FermentableTable.init initialSize
+    let input = initInput initialSize
     match result with 
     | _ -> 
-        { FermentableList = List.empty
-          FermentableTableModel = subModel
+        { AllGrainInput = input
+          AllGrainResult = { EstPreBoilOG = 0.0; EstOG = 0.0; EstFG = 0.0; EstABV = 0.0 }
+          FermentableTableModel = table
           ErrorMsg = "" }, 
             Cmd.batch [
                 Cmd.map FermentableTableMsg cmd ]
 
 let update (msg:Msg) (model:Model) : Model*Cmd<Msg> =
     match msg with
+    | CompleteAllGrainCalculation allGrainResult ->
+        { model with AllGrainResult = allGrainResult }, Cmd.none
+    | SetPreBoilSize preBoilSize ->
+        { model with AllGrainInput = { model.AllGrainInput with PreBoilSize = preBoilSize } }, Cmd.none
+    | SetBatchSize batchSize ->
+        { model with AllGrainInput = { model.AllGrainInput with BatchSize = batchSize } }, Cmd.none
+    | SetEfficiency efficiency ->
+        { model with AllGrainInput = { model.AllGrainInput with Effciency = efficiency } }, Cmd.none
+    | SetYeastTolerance yeastTolerance ->
+        let tolerance = getYeastTolerance yeastTolerance
+        { model with AllGrainInput = { model.AllGrainInput with YeastTolerance = tolerance } }, Cmd.none
     | FermentableTableMsg msg ->
         match msg with 
         | FermentableTable.Msg.SetGrainAmount (inputId, grainAmount)->
-            model, Cmd.none
+            let grainAmounts = model.AllGrainInput.GrainAmounts
+            { model with AllGrainInput = { model.AllGrainInput with GrainAmounts = FermentableTable.updateElement inputId grainAmount grainAmounts }}, Cmd.none
         | FermentableTable.Msg.SetGrainId (inputId, grainId) ->
-            model, Cmd.none
+            let grainIds = model.AllGrainInput.GrainIds
+            { model with AllGrainInput = { model.AllGrainInput with GrainIds = FermentableTable.updateElement inputId grainId grainIds }}, Cmd.none
         | _ ->
             let submodel, cmd = FermentableTable.update msg model.FermentableTableModel
             { model with FermentableTableModel = submodel}, Cmd.map FermentableTableMsg cmd
@@ -58,9 +96,86 @@ let view model (dispatch: Msg -> unit) =
                 div [ClassName "col-md-10 ml-sm-auto col-lg-10 px-4 beer-body"] [
                     div [ClassName "row beer-row bottom-border"] [ pageHeader "All Grain OG, FG, ABV Calculator"]
                     div [ClassName "row beer-row"] [
-                        div [ClassName "col-10"] [
+                        div [ClassName "col-12"
+                             Id "all-grain-inputs"] [
+                            div [ClassName "row beer-row justify-content-start"] [
+                                div [ClassName "col left-input"] [
+                                    label [] [ str "Pre-Boil Wort Collected (gallons)" ]
+                                    input [
+                                        Id "pre-boil-size" 
+                                        ClassName "form-control"
+                                        AutoFocus true
+                                        HTMLAttr.Type "number"
+                                        Step "any"
+                                        OnChange (fun ev -> dispatch (SetPreBoilSize !!ev.target?value))
+                                    ]
+                                ]
+                                div [ClassName "col right-input"] [
+                                    label [] [ str "Post-Boil Batch Size (gallons)" ]
+                                    input [
+                                        Id "batch-size" 
+                                        ClassName "form-control"
+                                        AutoFocus false
+                                        HTMLAttr.Type "number"
+                                        Step "any"
+                                        OnChange (fun ev -> dispatch (SetBatchSize !!ev.target?value))
+                                    ]
+                                ]
+                            ]
+                            div [ClassName "row beer-row justify-content-start"] [ 
+                                div [ClassName "col left-input"] [
+                                    label [] [ str "Efficiency (%)" ]
+                                    input [
+                                        Id "efficiency" 
+                                        ClassName "form-control"
+                                        AutoFocus false
+                                        HTMLAttr.Type "number"
+                                        Step "any"
+                                        OnChange (fun ev -> dispatch (SetEfficiency !!ev.target?value))
+                                    ]
+                                ]
+                                div [ClassName "col right-input"] [
+                                    label [] [ str "Yeast Alcohol Tolerance" ]
+                                    select [
+                                        Id "hop-type-1" 
+                                        ClassName "form-control"
+                                        AutoFocus false 
+                                        OnChange (fun ev -> dispatch (SetYeastTolerance !!ev.target?value ) ) 
+                                        DefaultValue "2"] [
+                                            option [ Value "1" ] [ str "Low - Attenution ~ 66%" ]
+                                            option [ Value "2" ] [ str "Medium - Attenution ~ 72%" ]  
+                                            option [ Value "3" ] [ str "High - Attenution ~ 77%" ]  
+                                        ]
+                                ]
+                            ]
+                            div [ClassName "row beer-row justify-content-start"] [
+                                div [ClassName "col left-input info-text"] [
+                                    p [] [ 
+                                        str "Most yeasts fall into the medium category" 
+                                        a [
+                                            Href "/ibu-calculator"
+                                            Target "_blank"
+                                            ClassName "btn btn-link"] [ str "Yeast Strength Tables" ]
+                                    ]
+                                ]
+                            ]
                             div [ClassName "row beer-row justify-content-start"] [
                                 FermentableTable.view model.FermentableTableModel (dispatch << FermentableTableMsg)
+                            ]
+                        ]
+                        div [ClassName "col-12"
+                             Id "all-grain-results"] [ 
+                            div [ClassName "row beer-row justify-content-start"] [ 
+                                    p [ ClassName "results" ] [ str (sprintf "Estimated Pre Boil OG:  %.2f" model.AllGrainResult.EstPreBoilOG)]
+                            ]
+                            div [ClassName "row beer-row justify-content-start"] [ 
+                                    p [ ClassName "results" ] [ str (sprintf "Estimated Original Gravity:  %.2f" model.AllGrainResult.EstOG)]
+                            ]
+                            div [ClassName "row beer-row justify-content-start"] [ 
+                                    p [ ClassName "results" ] [ str (sprintf "Estimated Final Gravity:  %.2f" model.AllGrainResult.EstFG)]
+                            ]
+                            div [ClassName "row beer-row justify-content-start"] [ 
+                                    p [ ClassName "results" ] [ str (sprintf "Estimated Alcohol By Volume:  %.2f" model.AllGrainResult.EstABV)]
                             ]
                         ]
                     ]

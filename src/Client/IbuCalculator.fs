@@ -134,7 +134,7 @@ let view model (dispatch: Msg -> unit) =
                     div [ClassName "col-12"
                          Id "ibu-inputs"] [
                         div [ClassName "row beer-row justify-content-start"] [
-                            div [ClassName "col left-input"] [
+                            div [ClassName "col first-input"] [
                                 label [] [ str "Boil Size (gallons)" ]
                                 input [
                                     Id "boil-size" 
@@ -156,7 +156,7 @@ let view model (dispatch: Msg -> unit) =
                                     OnChange (fun ev -> dispatch (SetBatchSize !!ev.target?value))
                                 ]
                             ]
-                            div [ClassName "col right-input"] [
+                            div [ClassName "col last-input"] [
                                 label [] [ str "Target Original Gravity (OG)" ]
                                 input [
                                     Id "target-original-gravity" 

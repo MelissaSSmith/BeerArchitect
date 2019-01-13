@@ -28,6 +28,9 @@ type Msg =
     | SetGrainId of int*int
     | Error of exn
 
+let updateElement place newValue list =
+    list |> List.mapi (fun index value -> if index = place then newValue else value ) 
+
 let getFermentableList a =
     promise {
         let props = 

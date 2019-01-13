@@ -53,12 +53,10 @@
 
 .left-input {
     padding-left: 0;
-    padding-right: 0;
 }
 
 .right-input {
     padding-right: 0;
-    padding-left: 0;
 }
 
 .center-input {
@@ -72,6 +70,24 @@
 
 .reference-modal-footer {
     border-top: none;
+}
+
+.info-text {
+    display: inline-block;
+}
+
+.info-text p {
+    margin-bottom: 0;
+}
+
+.first-input {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.last-input {
+    padding-right: 0;
+    padding-left: 0;
 }
 
 @media (min-width: 768px) {
@@ -88,11 +104,11 @@
     .nav-btn {
         display: none;
     }
-    .left-input {
+    .first-input {
         padding-right: unset;
     }
     
-    .right-input {
+    .last-input {
         padding-left: unset;
     }
 

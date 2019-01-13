@@ -34,9 +34,6 @@ type Msg =
 
 let inline charToInt c = int c - int '0'
 
-let updateElement place newValue list =
-    list |> List.mapi (fun index value -> if index = place then newValue else value ) 
-
 let calculateSrm (inputs:SrmInput) =
     promise {
         let body = Encode.Auto.toString(0, inputs)
@@ -72,17 +69,17 @@ let init result =
 let update (msg:Msg) (model:Model): Model*Cmd<Msg> =
     match msg with
     | CompleteSrmCalculation results ->
-        { model with SrmResult = { model.SrmResult with Srm = results.Srm; Ebc = results.Ebc; HexColor = results.HexColor } }, Cmd.none
+        { model with SrmResult = results }, Cmd.none
     | SetBatchSize batchSize ->
         { model with SrmInput = { model.SrmInput with BatchSize = batchSize }}, Cmd.none
     | FermentableTableMsg msg ->
         match msg with 
         | FermentableTable.Msg.SetGrainAmount (inputId, grainAmount)->
             let grainAmounts = model.SrmInput.GrainAmounts
-            { model with SrmInput = { model.SrmInput with GrainAmounts = updateElement inputId grainAmount grainAmounts }}, Cmd.none
+            { model with SrmInput = { model.SrmInput with GrainAmounts = FermentableTable.updateElement inputId grainAmount grainAmounts }}, Cmd.none
         | FermentableTable.Msg.SetGrainId (inputId, grainId) ->
             let grainIds = model.SrmInput.GrainIds
-            { model with SrmInput = { model.SrmInput with GrainIds = updateElement inputId grainId grainIds }}, Cmd.none
+            { model with SrmInput = { model.SrmInput with GrainIds = FermentableTable.updateElement inputId grainId grainIds }}, Cmd.none
         | _ ->
             let submodel, cmd = FermentableTable.update msg model.FermentableTableModel
             { model with FermentableTableModel = submodel}, Cmd.map FermentableTableMsg cmd
