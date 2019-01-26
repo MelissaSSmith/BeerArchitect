@@ -196,16 +196,16 @@ let view model (dispatch: Msg -> unit) =
                         div [ClassName "col-12"
                              Id "all-grain-results"] [ 
                             div [ClassName "row beer-row justify-content-start"] [ 
-                                    p [ ClassName "results" ] [ str (sprintf "Estimated Pre Boil OG:  %.2f" model.AllGrainResult.EstPreBoilOG)]
+                                    p [ ClassName "results" ] [ str (sprintf "Estimated Pre Boil OG:  %.3f" model.AllGrainResult.EstPreBoilOG)]
                             ]
                             div [ClassName "row beer-row justify-content-start"] [ 
-                                    p [ ClassName "results" ] [ str (sprintf "Estimated Original Gravity:  %.2f" model.AllGrainResult.EstOG)]
+                                    p [ ClassName "results" ] [ str (sprintf "Estimated Original Gravity:  %.3f" model.AllGrainResult.EstOG)]
                             ]
                             div [ClassName "row beer-row justify-content-start"] [ 
-                                    p [ ClassName "results" ] [ str (sprintf "Estimated Final Gravity:  %.2f" model.AllGrainResult.EstFG)]
+                                    p [ ClassName "results" ] [ str (sprintf "Estimated Final Gravity:  %.3f" model.AllGrainResult.EstFG)]
                             ]
                             div [ClassName "row beer-row justify-content-start"] [ 
-                                    p [ ClassName "results" ] [ str (sprintf "Estimated Alcohol By Volume:  %.2f" model.AllGrainResult.EstABV)]
+                                    p [ ClassName "results" ] [ str (sprintf "Estimated Alcohol By Volume:  %.2f %%" model.AllGrainResult.EstABV)]
                             ]
                         ]
                     ]

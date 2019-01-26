@@ -98,7 +98,7 @@ let view (model:Model) dispatch =
                 th [Scope "col"] [ str "Grain" ]
             ] ]
         tbody [] [
-            for i in [1..model.TableSize] do 
+            for i in [0..model.TableSize] do 
                 yield FermentableRowComponent {
                     rowId = i
                     fermentableList = model.FermentableList
