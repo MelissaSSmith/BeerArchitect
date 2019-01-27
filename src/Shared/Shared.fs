@@ -100,6 +100,7 @@ type YeastBrand =
     | WhiteLabs
     | Safale
     | DanstarLallemand
+    | Imperial
 
 type Yeast = 
     { Name: string
