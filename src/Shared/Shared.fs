@@ -94,3 +94,22 @@ type AllGrainResult =
       EstOG: float
       EstFG: float
       EstABV: float }
+
+type YeastBrand =
+    | Wyeast
+    | WhiteLabs
+    | Safale
+    | DanstarLallemand
+
+type Yeast = 
+    { Name: string
+      YeastId: string
+      LowAttenuation: float
+      HighAttenuation: float
+      Flocculation: string
+      LowTemp: float
+      HighTemp: float
+      AlcoholTolerance: string
+      Type: string
+      YeastFormat: string
+      Company: string }

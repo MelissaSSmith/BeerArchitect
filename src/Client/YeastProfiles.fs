@@ -38,4 +38,21 @@ let view model (dispatch: Msg -> unit) =
             div [ClassName "row"] [
                 sidebarNavigationMenu
                 div [ClassName "col-md-10 ml-sm-auto col-lg-10 px-4 beer-body"] [
-                    div [ClassName "row beer-row bottom-border"] [ pageHeader "Yeast Profiles"] ] ] ] ]
+                    div [ClassName "row beer-row bottom-border"] [ pageHeader "Yeast Profiles"] 
+                    div [ClassName "row beer-row"] [
+                        table [ClassName "table table-sm table-striped"] [
+                            thead [] [
+                                tr [] [
+                                    th [Scope "col"] [ str "Company" ]
+                                    th [Scope "col"] [ str "Name" ]
+                                    th [Scope "col"] [ str "Id" ]
+                                    th [Scope "col"] [ str "Attenuation" ]
+                                    th [Scope "col"] [ str "Flocculation" ]
+                                    th [Scope "col"] [ str "Optimum Temp" ]
+                                    th [Scope "col"] [ str "Alcohol Tolerance" ]
+                                ]
+                            ]
+                            tbody [] []
+                        ]
+                    ]
+                    ] ] ] ]
