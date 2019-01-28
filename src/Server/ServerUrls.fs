@@ -30,3 +30,5 @@ module APIUrls =
   let CalculateHydrometerAdjustment = "/api/hydrometer-temp/calculate"
   [<Literal>]
   let CalculateAllGrainEstimations = "/api/all-grain/calculate"
+  [<Literal>]
+  let GetYeasts = "/api/yeast/get"

@@ -1,7 +1,6 @@
 module Client.FermentableTable
 
 open Elmish
-open Fable.Import.Browser
 open Fable.Helpers.React
 open Fable.Helpers.React.Props
 open Fable.Core.JsInterop
@@ -56,7 +55,6 @@ let init (tableSize:int) =
 let update (msg:Msg) (model:Model): Model*Cmd<Msg> =
     match msg with
     | FillInFermentableList fermentableList ->
-        console.log(fermentableList)
         { model with FermentableList = fermentableList }, Cmd.none
     | Error exn ->
         { model with ErrorMsg = string (exn.Message); FermentableList = list.Empty }, Cmd.none

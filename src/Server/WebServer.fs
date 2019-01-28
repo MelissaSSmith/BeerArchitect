@@ -6,6 +6,7 @@ open Giraffe
 open Giraffe.TokenRouter
 open RequestErrors
 open Client
+open Shared
 
 let webApp : HttpHandler =
     let notfound: HttpHandler =
@@ -21,6 +22,7 @@ let webApp : HttpHandler =
             route PageUrls.AllGrainCalculator Pages.allGrainCalculator
             route APIUrls.GetFermentables Fermentables.getAllFermentables
             route APIUrls.GetHopAlphaAcids Hops.getAllHopAlphaAcids
+            route APIUrls.GetYeasts Yeast.getAllYeast
         ]
         POST [
             route APIUrls.CalculateAbv AbvCalculator.calculate

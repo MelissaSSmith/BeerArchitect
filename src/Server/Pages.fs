@@ -66,7 +66,7 @@ let yeastProfiles: HttpHandler = fun _ ctx ->
     task {
         let model: Model = {
             PageModel = 
-                let m = Client.YeastProfiles.init None
+                let m,_ = Client.YeastProfiles.init None
                 PageModel.YeastProfilesPageModel m
         }
         return! ctx.WriteHtmlViewAsync (Templates.index (Some model))

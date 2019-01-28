@@ -41,8 +41,8 @@ let urlUpdate (result: Page option) (model: Model) =
         let m, cmd = AllGrainCalculator.init()
         { model with PageModel = AllGrainCalculatorPageModel m }, Cmd.map AllGrainCalculatorMsg cmd
     | Some Page.YeastProfiles ->
-        let m = YeastProfiles.init()
-        { model with PageModel = YeastProfilesPageModel m }, Cmd.none
+        let m, cmd = YeastProfiles.init()
+        { model with PageModel = YeastProfilesPageModel m }, Cmd.map YeastProfilesMsg cmd
     | Some Page.Home ->
         { model with PageModel = HomePageModel }, Cmd.none
 
