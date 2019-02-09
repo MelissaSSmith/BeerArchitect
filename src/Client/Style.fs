@@ -13,6 +13,7 @@ type HTMLAttr =
      | [<CompiledName("aria-label")>] AriaLabel of string
      | [<CompiledName("aria-hidden")>] AriaHidden of string
      | [<CompiledName("aria-controls")>] AriaControls of string
+     | [<CompiledName("data-sort")>] DataSort of string
      interface IHTMLProp 
 
 let goToUrl (e: React.MouseEvent) =
