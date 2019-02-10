@@ -44,6 +44,7 @@ let index (model: Model option) =
           ]
         link [ _rel "stylesheet"; _href "style.css" ]
         script [ _src "https://code.jquery.com/jquery-3.2.1.min.js" ] []
+        script [ _src "https://cdnjs.cloudflare.com/ajax/libs/list.js/1.5.0/list.min.js" ] []
         link [ _rel "shortcut icon"; _type "image/png"; _href "/Images/beer_favicon.png" ]
       ]
       body [] [
@@ -55,5 +56,6 @@ let index (model: Model option) =
         script [ _src "https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" ] []
         script [ _src "main.js" ] []
         script [ _src "vendors.js" ] []
+        script [ _src "beerarchitect.js" ] []
       ]
     ]

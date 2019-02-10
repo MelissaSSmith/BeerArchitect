@@ -19,6 +19,7 @@ let webApp : HttpHandler =
             route PageUrls.HydrometerCalculator Pages.hydrometerCalculator
             route PageUrls.AllGrainCalculator Pages.allGrainCalculator
             route PageUrls.DilutionBoilOffCalculator Pages.dilutionBoilOffCalculator
+            route PageUrls.YeastProfiles Pages.yeastProfiles
             route APIUrls.GetFermentables Fermentables.getAllFermentables
             route APIUrls.GetHopAlphaAcids Hops.getAllHopAlphaAcids
             route APIUrls.GetYeasts Yeast.getAllYeast
