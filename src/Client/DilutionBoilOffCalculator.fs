@@ -34,6 +34,42 @@ type Msg =
     | CalculateNewGravity
     | Error of exn
 
+let calculateNewVolume (input:DilutionBoilOffInput) =
+    promise {
+        let body = Encode.Auto.toString(0, input)
+
+        let props =
+            [ RequestProperties.Method HttpMethod.POST
+              Fetch.requestHeaders [
+                  HttpRequestHeaders.ContentType "application/json" ]
+              RequestProperties.Body !^body ]
+
+        try 
+            let! result = Fetch.fetch ServerUrls.APIUrls.CalculateDilutionVolume props
+            let! text = result.text()
+            return Decode.Auto.unsafeFromString<DilutionBoilOffResult> text
+        with _ ->
+            return! failwithf "An error has occured"
+    }
+
+let calculateNewGravity (input:DilutionBoilOffInput) =
+    promise {
+        let body = Encode.Auto.toString(0, input)
+
+        let props =
+            [ RequestProperties.Method HttpMethod.POST
+              Fetch.requestHeaders [
+                  HttpRequestHeaders.ContentType "application/json" ]
+              RequestProperties.Body !^body ]
+
+        try 
+            let! result = Fetch.fetch ServerUrls.APIUrls.CalculateDilutionGravity props
+            let! text = result.text()
+            return Decode.Auto.unsafeFromString<DilutionBoilOffResult> text
+        with _ ->
+            return! failwithf "An error has occured"
+    }
+
 let init result =
     match result with
     | _ ->
@@ -58,9 +94,9 @@ let update (msg:Msg) (model:Model) : Model*Cmd<Msg> =
     | SetTargetVolume targetVolume ->
         { model with DilutionBoilOffInput = { model.DilutionBoilOffInput with TargetVolume = targetVolume } }, Cmd.none
     | CalculateNewVolume ->
-        model, Cmd.none
+        model, Cmd.ofPromise calculateNewVolume model.DilutionBoilOffInput CompleteCalculation Error
     | CalculateNewGravity ->
-        model, Cmd.none
+        model, Cmd.ofPromise calculateNewGravity model.DilutionBoilOffInput CompleteCalculation Error
     | Error exn ->
         { model with ErrorMsg = string (exn.Message) }, Cmd.none
 

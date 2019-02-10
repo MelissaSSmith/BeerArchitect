@@ -5,8 +5,6 @@ open ServerCode.ServerUrls
 open Giraffe
 open Giraffe.TokenRouter
 open RequestErrors
-open Client
-open Shared
 
 let webApp : HttpHandler =
     let notfound: HttpHandler =
@@ -20,6 +18,7 @@ let webApp : HttpHandler =
             route PageUrls.SrmCalculator Pages.srmCalculator
             route PageUrls.HydrometerCalculator Pages.hydrometerCalculator
             route PageUrls.AllGrainCalculator Pages.allGrainCalculator
+            route PageUrls.DilutionBoilOffCalculator Pages.dilutionBoilOffCalculator
             route APIUrls.GetFermentables Fermentables.getAllFermentables
             route APIUrls.GetHopAlphaAcids Hops.getAllHopAlphaAcids
             route APIUrls.GetYeasts Yeast.getAllYeast
@@ -30,5 +29,7 @@ let webApp : HttpHandler =
             route APIUrls.CalculateIbu IbuCalculator.calculate
             route APIUrls.CalculateHydrometerAdjustment HydrometerTempCalculator.calculate
             route APIUrls.CalculateAllGrainEstimations AllGrainCalculator.calculate
+            route APIUrls.CalculateDilutionVolume DilutionBoilOffCalculator.calculateNewVolume
+            route APIUrls.CalculateDilutionGravity DilutionBoilOffCalculator.calculateNewGravity
         ]
     ]

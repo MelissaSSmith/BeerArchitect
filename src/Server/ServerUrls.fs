@@ -13,6 +13,8 @@ module PageUrls =
   let HydrometerCalculator = "/hydrometer-temp-calculator"
   [<Literal>]
   let AllGrainCalculator = "/all-grain-calculator"
+  [<Literal>]
+  let DilutionBoilOffCalculator = "/dilution-boil-off-calculator"
 
 module APIUrls =
 
@@ -32,3 +34,7 @@ module APIUrls =
   let CalculateAllGrainEstimations = "/api/all-grain/calculate"
   [<Literal>]
   let GetYeasts = "/api/yeast/get"
+  [<Literal>]
+  let CalculateDilutionVolume = "api/brew/boil-off/new-volume"
+  [<Literal>]
+  let CalculateDilutionGravity = "api/brew/boil-off/new-gravity"

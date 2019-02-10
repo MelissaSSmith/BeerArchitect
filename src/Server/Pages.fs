@@ -72,5 +72,15 @@ let yeastProfiles: HttpHandler = fun _ ctx ->
         return! ctx.WriteHtmlViewAsync (Templates.index (Some model))
     }
 
+let dilutionBoilOffCalculator: HttpHandler = fun _ ctx ->
+    task {
+        let model: Model = {
+            PageModel =
+                let m,_ = Client.DilutionBoilOffCalculator.init None
+                PageModel.DilutionBoilOffCalculatorPageModel m
+        }
+        return! ctx.WriteHtmlViewAsync (Templates.index (Some model))
+    }
+
 let notfound: HttpHandler = fun _ ctx ->
     ctx.WriteHtmlViewAsync (Templates.index None)

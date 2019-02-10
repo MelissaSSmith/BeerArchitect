@@ -17,6 +17,7 @@
         <Compile Include="IbuCalculator.fs" />
         <Compile Include="HydrometerTempCalculator.fs" />
         <Compile Include="AllGrainCalculator.fs" />
+        <Compile Include="DilutionBoilOffCalculator.fs" />
         <Compile Include="WebServer.fs" />
         <Compile Include="Server.fs" />
     </ItemGroup>
