@@ -6,13 +6,25 @@ open FSharp.Control.Tasks.V2
 
 open ServerCode.GravityEquations
 open Shared
+open System
+
+let checkAnswer answer =
+    match answer with
+    | f when f = nan -> 0.0
+    | _ -> answer
 
 let getNewVolume currentGrav desiredGrav volume = 
+    match volume with 
+    | 0.0 -> 0.0
+    | _ ->
     let curGravPts = getGravPoints currentGrav
     let desiredGravPts = getGravPoints desiredGrav
     (curGravPts * volume) / desiredGravPts
 
 let getNewGravity currentVol currentGrav targetVol = 
+    match targetVol with 
+    | 0.0 -> 0.0
+    | _ ->
     let curGravPts = getGravPoints currentGrav
     (curGravPts * currentVol) / targetVol
     |> getSpecificGravity
