@@ -6,13 +6,30 @@ open FSharp.Control.Tasks.V2
 
 open Shared
 
+let getGravPoints specificGrav = 
+    (specificGrav - 1.0) * 1000.0
+
+let getSpecificGravity gravPoints =
+    (gravPoints / 1000.0) + 1.0
+
+let getNewVolume currentGrav desiredGrav volume = 
+    let curGravPts = getGravPoints currentGrav
+    let desiredGravPts = getGravPoints desiredGrav
+    (curGravPts * volume) / desiredGravPts
+
+let getNewGravity currentVol currentGrav targetVol = 
+    let curGravPts = getGravPoints currentGrav
+    (curGravPts * currentVol) / targetVol
+    |> getSpecificGravity
 
 let GetDilutionBoilOffResults inputs =
+    let newVolume = getNewVolume inputs.NewVolCurrGrav inputs.DesiredGravity inputs.NewVolWortVol
+    let newGravity = getNewGravity inputs.NewGravWortVol inputs.NewGravCurrGrav inputs.TargetVolume
     {
-        NewVolume = 0.0
-        NewVolumeDiff = 0.0
-        NewGravity = 0.0
-        NewGravityDiff = 0.0
+        NewVolume = newVolume
+        NewVolumeDiff = abs (newVolume - inputs.NewVolWortVol)
+        NewGravity = newGravity
+        NewGravityDiff = abs (newGravity - inputs.NewGravCurrGrav)
     } : DilutionBoilOffResult
 
 let calculateNewVolume : HttpHandler = 

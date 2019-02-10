@@ -35,6 +35,6 @@ module APIUrls =
   [<Literal>]
   let GetYeasts = "/api/yeast/get"
   [<Literal>]
-  let CalculateDilutionVolume = "api/brew/boil-off/new-volume"
+  let CalculateDilutionVolume = "/api/brew/boil-off/new-volume"
   [<Literal>]
-  let CalculateDilutionGravity = "api/brew/boil-off/new-gravity"
+  let CalculateDilutionGravity = "/api/brew/boil-off/new-gravity"

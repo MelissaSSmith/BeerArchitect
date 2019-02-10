@@ -203,10 +203,10 @@ let view model (dispatch: Msg -> unit) =
                                 ] [ str "Calculate New Gravity"]
                             ]
                             div [] [
-                                p [ ClassName "results" ] [ str (sprintf "New Gravity:  %.2f" model.DilutionBoilOffResult.NewGravity)]
+                                p [ ClassName "results" ] [ str (sprintf "New Gravity:  %.3f" model.DilutionBoilOffResult.NewGravity)]
                             ]
                             div [] [
-                                p [ ClassName "results" ] [ str (sprintf "Difference:  %.2f" model.DilutionBoilOffResult.NewGravityDiff)]
+                                p [ ClassName "results" ] [ str (sprintf "Difference:  %.3f" model.DilutionBoilOffResult.NewGravityDiff)]
                             ]
                         ]
                     ]
