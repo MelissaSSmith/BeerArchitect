@@ -6,6 +6,7 @@ open FSharp.Control.Tasks.V2
 
 open ServerCode.AbvCalculator
 open ServerCode.Fermentables
+open ServerCode.GravityEquations
 open Shared
 
 let getAttenuation yeastTolerance =
@@ -16,9 +17,6 @@ let getAttenuation yeastTolerance =
         0.72
     | YeastTolerance.High ->
         0.77
-
-let specificGravity gravUnits =
-    gravUnits / 1000.0 + 1.0 
 
 let gravityPerLbs mashEff potentialExtract =
     mashEff * potentialExtract
@@ -47,18 +45,18 @@ let endGravPoint wortSize totalGravPoints =
 let estimatedPreBoilGravity allGrainInput totalGravPoints =
     estimatedGravity allGrainInput.Effciency totalGravPoints
     |> endGravPoint allGrainInput.PreBoilSize
-    |> specificGravity
+    |> getSpecificGravity
 
 let estimatedOriginalGravity allGrainInput totalGravPoints =
     estimatedGravity allGrainInput.Effciency totalGravPoints
     |> endGravPoint allGrainInput.BatchSize
-    |> specificGravity
+    |> getSpecificGravity
 
 let estimatedFinalGravity totalGravPoints attenuationPercent allGrainInput =
     estimatedGravity allGrainInput.Effciency totalGravPoints
     |> attenuationCalc attenuationPercent
     |> endGravPoint allGrainInput.BatchSize
-    |> specificGravity
+    |> getSpecificGravity
 
 let calculate : HttpHandler =
     fun (next : HttpFunc) (ctx : HttpContext) ->

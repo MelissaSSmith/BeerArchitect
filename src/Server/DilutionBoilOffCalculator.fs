@@ -4,13 +4,8 @@ open Giraffe
 open Microsoft.AspNetCore.Http
 open FSharp.Control.Tasks.V2
 
+open ServerCode.GravityEquations
 open Shared
-
-let getGravPoints specificGrav = 
-    (specificGrav - 1.0) * 1000.0
-
-let getSpecificGravity gravPoints =
-    (gravPoints / 1000.0) + 1.0
 
 let getNewVolume currentGrav desiredGrav volume = 
     let curGravPts = getGravPoints currentGrav

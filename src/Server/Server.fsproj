@@ -12,6 +12,7 @@
         <Compile Include="Fermentables.fs" />
         <Compile Include="Hops.fs" />
         <Compile Include="Yeast.fs" />
+        <Compile Include="GravityEquations.fs" />
         <Compile Include="AbvCalculator.fs" />
         <Compile Include="SrmCalculator.fs" />
         <Compile Include="IbuCalculator.fs" />
