@@ -13,6 +13,7 @@ let navigationList =
         yield viewLink Page.IbuCalculator "IBU Calculator"
         yield viewLink Page.HydrometerTempCalculator "Hydrometer Adjustment Calculator"
         yield viewLink Page.AllGrainCalculator "All Grain Calculator"
+        yield viewLink Page.DilutionBoilOffCalculator "Dilution & Boil Off Calculator"
     ]
 
 let navigationBar = 

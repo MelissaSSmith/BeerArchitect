@@ -114,3 +114,17 @@ type Yeast =
       Type: string
       YeastFormat: string
       Company: string }
+
+type DilutionBoilOffInput =
+    { NewVolWortVol: float
+      NewVolCurrGrav: float
+      DesiredGravity: float
+      NewGravWortVol: float
+      NewGravCurrGrav: float
+      TargetVolume: float }
+
+type DilutionBoilOffResult =
+    { NewVolume: float
+      NewVolumeDiff: float
+      NewGravity: float
+      NewGravityDiff: float }

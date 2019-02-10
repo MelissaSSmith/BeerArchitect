@@ -43,6 +43,9 @@ let urlUpdate (result: Page option) (model: Model) =
     | Some Page.YeastProfiles ->
         let m, cmd = YeastProfiles.init()
         { model with PageModel = YeastProfilesPageModel m }, Cmd.map YeastProfilesMsg cmd
+    | Some Page.DilutionBoilOffCalculator ->
+        let m, cmd = DilutionBoilOffCalculator.init()
+        { model with PageModel = DilutionBoilOffCalculatorPageModel m }, Cmd.map DilutionBoilOffCalculatorMsg cmd
     | Some Page.Home ->
         { model with PageModel = HomePageModel }, Cmd.none
 
@@ -108,6 +111,14 @@ let update msg model =
                     Cmd.map YeastProfilesMsg cmd
                 ]
     | YeastProfilesMsg _, _ -> model, Navigation.newUrl (toPath Page.YeastProfiles)
+    | DilutionBoilOffCalculatorMsg msg, DilutionBoilOffCalculatorPageModel m ->
+        let m, cmd = DilutionBoilOffCalculator.update msg m
+        { model with 
+            PageModel = DilutionBoilOffCalculatorPageModel m},
+                Cmd.batch [
+                    Cmd.map DilutionBoilOffCalculatorMsg cmd
+                ]
+    | DilutionBoilOffCalculatorMsg _, _ -> model, Navigation.newUrl (toPath Page.DilutionBoilOffCalculator)
 
 
 Program.mkProgram init update view

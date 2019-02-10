@@ -8,6 +8,7 @@ type PageModel =
     | HydrometerTempCalculatorPageModel of HydrometerTempCalculator.Model
     | AllGrainCalculatorPageModel of AllGrainCalculator.Model
     | YeastProfilesPageModel of YeastProfiles.Model
+    | DilutionBoilOffCalculatorPageModel of DilutionBoilOffCalculator.Model
 
 type Model =
     { PageModel : PageModel }
@@ -19,6 +20,7 @@ type Msg =
     | HydrometerTempCalculatorMsg of HydrometerTempCalculator.Msg
     | AllGrainCalculatorMsg of AllGrainCalculator.Msg
     | YeastProfilesMsg of YeastProfiles.Msg
+    | DilutionBoilOffCalculatorMsg of DilutionBoilOffCalculator.Msg
 
 open Fable.Helpers.React
 
@@ -38,6 +40,8 @@ let viewPage model dispatch =
         AllGrainCalculator.view m (AllGrainCalculatorMsg >> dispatch)
     | YeastProfilesPageModel m ->
         YeastProfiles.view m (YeastProfilesMsg >> dispatch)
+    | DilutionBoilOffCalculatorPageModel m ->
+        DilutionBoilOffCalculator.view m (DilutionBoilOffCalculatorMsg >> dispatch)
 
 let view model dispatch =
     div [] [ viewPage model dispatch ]

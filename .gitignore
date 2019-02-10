@@ -10,3 +10,4 @@ release.sh
 .idea/
 *.DotSettings.user
 deploy
+package-lock.json
