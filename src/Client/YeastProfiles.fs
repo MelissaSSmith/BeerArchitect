@@ -25,8 +25,6 @@ type Msg =
     | RetrievedYeastList of Yeast list
     | Error of exn
 
-let setUpListSearchAndSort : obj = import "setUpYeastProfileTable" "./public/beerarchitect.js"
-
 let getYeastList a =
     promise {
         let props = 
