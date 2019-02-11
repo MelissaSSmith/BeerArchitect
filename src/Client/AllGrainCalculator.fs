@@ -118,7 +118,7 @@ let view model (dispatch: Msg -> unit) =
         div [ClassName "container-fluid"] [
             div [ClassName "row"] [
                 sidebarNavigationMenu
-                div [ClassName "col-md-10 ml-sm-auto col-lg-10 px-4 beer-body"] [
+                div [ClassName "ml-sm-auto col-md-10 px-4 beer-body"] [
                     div [ClassName "row beer-row bottom-border"] [ pageHeader "All Grain OG, FG, ABV Calculator"]
                     div [ClassName "row beer-row"] [
                         div [ClassName "col-12"
