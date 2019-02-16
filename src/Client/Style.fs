@@ -27,11 +27,6 @@ let viewLink page description =
         OnClick goToUrl]
       [ R.str description]
 
-let plainLink page description = 
-  R.a [ Href (Pages.toPath page)
-        OnClick goToUrl]
-      [ R.str description]
-
 let centerStyle direction =
     Style [ Display "flex"
             FlexDirection direction

@@ -119,5 +119,6 @@ let view model (dispatch: Msg -> unit) =
                                     }
                             ]
                         ]
+                        ul [ClassName "pagination mx-auto"] []
                     ]
                     ] ] ] ]

@@ -162,7 +162,7 @@ let view model (dispatch: Msg -> unit) =
                                 div [ClassName "col right-input"] [
                                     label [] [ str "Yeast Alcohol Tolerance" ]
                                     select [
-                                        Id "hop-type-1" 
+                                        Id "yeast-tolerance" 
                                         ClassName "form-control"
                                         AutoFocus false 
                                         OnChange (fun ev -> dispatch (SetYeastTolerance !!ev.target?value ) ) 

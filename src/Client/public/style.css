@@ -94,6 +94,14 @@ tr th {
     padding-left: 0;
 }
 
+.pagination li {
+    display: inline-block;
+    padding: 5px;
+    border: 1px solid #2323;
+    border-radius: 5px;
+    margin: 1px;
+}
+
 @media (min-width: 768px) {
     .navigation-menu {
         display: unset;

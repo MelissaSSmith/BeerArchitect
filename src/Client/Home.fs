@@ -18,7 +18,8 @@ let view () =
                             div [ClassName "card-header"] [ str "Browse" ]
                             ul [ClassName "list-group list-group-flush"] [
                                 li [ClassName "list-group-item"] [
-                                    plainLink Pages.YeastProfiles "Yeast"
+                                    a [ Href "/yeast-profiles"
+                                        ClassName "btn btn-link"] [ str "Yeast" ]
                                 ]
                             ]
                         ]
