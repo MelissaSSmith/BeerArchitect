@@ -181,7 +181,7 @@ let view model (dispatch: Msg -> unit) =
                                     ] ]
                                 tbody [] [
                                     tr [] [
-                                        th [] [
+                                        td [] [
                                             input [
                                                 Id "hop-ounces-1" 
                                                 ClassName "form-control"
@@ -189,7 +189,7 @@ let view model (dispatch: Msg -> unit) =
                                                 HTMLAttr.Type "number"
                                                 Step "any" 
                                                 OnChange (fun ev -> dispatch (SetHopOunces (0, !!ev.target?value) ) ) ] ]
-                                        th [] [
+                                        td [] [
                                             input [
                                                 Id "alpha-acids-1" 
                                                 ClassName "form-control"
@@ -197,7 +197,7 @@ let view model (dispatch: Msg -> unit) =
                                                 HTMLAttr.Type "number"
                                                 Step "any" 
                                                 OnChange (fun ev -> dispatch (SetHopAlphaAcids (0, !!ev.target?value) ) ) ] ]
-                                        th [] [
+                                        td [] [
                                             input [
                                                 Id "boil-time-1" 
                                                 ClassName "form-control"
@@ -205,7 +205,7 @@ let view model (dispatch: Msg -> unit) =
                                                 HTMLAttr.Type "number"
                                                 Step "any"
                                                 OnChange (fun ev -> dispatch (SetHopBoilTime (0, !!ev.target?value) ) ) ] ]
-                                        th [] [
+                                        td [] [
                                             select [
                                                 Id "hop-type-1" 
                                                 ClassName "form-control"
@@ -214,14 +214,14 @@ let view model (dispatch: Msg -> unit) =
                                                 DefaultValue "1"] [
                                                     option [ Value "1" ] [ str "Whole/Plug"]
                                                     option [ Value "2" ] [ str "Pellet"]  ] ]
-                                        th [] [
+                                        td [] [
                                             p [] [str (sprintf "%.4f" model.IbuResult.HopIbuResults.Head.Utilization)]
                                         ]
-                                        th [] [
+                                        td [] [
                                             p [] [str (sprintf "%.2f" model.IbuResult.HopIbuResults.Head.Ibus)]
                                         ] ]
                                     tr [] [
-                                        th [] [
+                                        td [] [
                                             input [
                                                 Id "hop-ounces-2" 
                                                 ClassName "form-control"
@@ -229,7 +229,7 @@ let view model (dispatch: Msg -> unit) =
                                                 HTMLAttr.Type "number"
                                                 Step "any" 
                                                 OnChange (fun ev -> dispatch (SetHopOunces (1, !!ev.target?value) ) ) ] ]
-                                        th [] [
+                                        td [] [
                                             input [
                                                 Id "alpha-acids-2" 
                                                 ClassName "form-control"
@@ -237,7 +237,7 @@ let view model (dispatch: Msg -> unit) =
                                                 HTMLAttr.Type "number"
                                                 Step "any" 
                                                 OnChange (fun ev -> dispatch (SetHopAlphaAcids (1, !!ev.target?value) ) ) ] ]
-                                        th [] [
+                                        td [] [
                                             input [
                                                 Id "boil-time-2" 
                                                 ClassName "form-control"
@@ -245,7 +245,7 @@ let view model (dispatch: Msg -> unit) =
                                                 HTMLAttr.Type "number"
                                                 Step "any"
                                                 OnChange (fun ev -> dispatch (SetHopBoilTime (1, !!ev.target?value) ) ) ] ]
-                                        th [] [
+                                        td [] [
                                             select [
                                                 Id "hop-type-2" 
                                                 ClassName "form-control"
@@ -254,15 +254,15 @@ let view model (dispatch: Msg -> unit) =
                                                 DefaultValue "1"] [
                                                     option [ Value "1" ] [ str "Whole/Plug"]
                                                     option [ Value "2" ] [ str "Pellet"]  ] ]
-                                        th [] [
+                                        td [] [
                                             p [] [str (sprintf "%.4f" model.IbuResult.HopIbuResults.Tail.Head.Utilization)]
                                         ]
-                                        th [] [
+                                        td [] [
                                             p [] [str (sprintf "%.2f" model.IbuResult.HopIbuResults.Tail.Head.Ibus)]
                                         ]
                                     ]
                                     tr [] [
-                                        th [] [
+                                        td [] [
                                             input [
                                                 Id "hop-ounces-3" 
                                                 ClassName "form-control"
@@ -270,7 +270,7 @@ let view model (dispatch: Msg -> unit) =
                                                 HTMLAttr.Type "number"
                                                 Step "any" 
                                                 OnChange (fun ev -> dispatch (SetHopOunces (2, !!ev.target?value) ) ) ] ]
-                                        th [] [
+                                        td [] [
                                             input [
                                                 Id "alpha-acids-3" 
                                                 ClassName "form-control"
@@ -278,7 +278,7 @@ let view model (dispatch: Msg -> unit) =
                                                 HTMLAttr.Type "number"
                                                 Step "any" 
                                                 OnChange (fun ev -> dispatch (SetHopAlphaAcids (2, !!ev.target?value) ) ) ] ]
-                                        th [] [
+                                        td [] [
                                             input [
                                                 Id "boil-time-3" 
                                                 ClassName "form-control"
@@ -286,7 +286,7 @@ let view model (dispatch: Msg -> unit) =
                                                 HTMLAttr.Type "number"
                                                 Step "any"
                                                 OnChange (fun ev -> dispatch (SetHopBoilTime (2, !!ev.target?value) ) ) ] ]
-                                        th [] [
+                                        td [] [
                                             select [
                                                 Id "hop-type-3" 
                                                 ClassName "form-control"
@@ -295,15 +295,15 @@ let view model (dispatch: Msg -> unit) =
                                                 DefaultValue "1"] [
                                                     option [ Value "1" ] [ str "Whole/Plug"]
                                                     option [ Value "2" ] [ str "Pellet"]  ] ]
-                                        th [] [
+                                        td [] [
                                             p [] [str (sprintf "%.4f" model.IbuResult.HopIbuResults.Tail.Tail.Head.Utilization)]
                                         ]
-                                        th [] [
+                                        td [] [
                                             p [] [str (sprintf "%.2f" model.IbuResult.HopIbuResults.Tail.Tail.Head.Ibus)]
                                         ]
                                     ]
                                     tr [] [
-                                        th [] [
+                                        td [] [
                                             input [
                                                 Id "hop-ounces-4" 
                                                 ClassName "form-control"
@@ -311,7 +311,7 @@ let view model (dispatch: Msg -> unit) =
                                                 HTMLAttr.Type "number"
                                                 Step "any" 
                                                 OnChange (fun ev -> dispatch (SetHopOunces (3, !!ev.target?value) ) ) ] ]
-                                        th [] [
+                                        td [] [
                                             input [
                                                 Id "alpha-acids-4" 
                                                 ClassName "form-control"
@@ -319,7 +319,7 @@ let view model (dispatch: Msg -> unit) =
                                                 HTMLAttr.Type "number"
                                                 Step "any" 
                                                 OnChange (fun ev -> dispatch (SetHopAlphaAcids (3, !!ev.target?value) ) ) ] ]
-                                        th [] [
+                                        td [] [
                                             input [
                                                 Id "boil-time-4" 
                                                 ClassName "form-control"
@@ -327,7 +327,7 @@ let view model (dispatch: Msg -> unit) =
                                                 HTMLAttr.Type "number"
                                                 Step "any"
                                                 OnChange (fun ev -> dispatch (SetHopBoilTime (3, !!ev.target?value) ) ) ] ]
-                                        th [] [
+                                        td [] [
                                             select [
                                                 Id "hop-type-4" 
                                                 ClassName "form-control"
@@ -336,15 +336,15 @@ let view model (dispatch: Msg -> unit) =
                                                 DefaultValue "1"] [
                                                     option [ Value "1" ] [ str "Whole/Plug"]
                                                     option [ Value "2" ] [ str "Pellet"]  ] ]
-                                        th [] [
+                                        td [] [
                                             p [] [str (sprintf "%.4f" model.IbuResult.HopIbuResults.Tail.Tail.Tail.Head.Utilization)]
                                         ]
-                                        th [] [
+                                        td [] [
                                             p [] [str (sprintf "%.2f" model.IbuResult.HopIbuResults.Tail.Tail.Tail.Head.Ibus)]
                                         ]
                                     ]
                                     tr [] [
-                                        th [] [
+                                        td [] [
                                             input [
                                                 Id "hop-ounces-5" 
                                                 ClassName "form-control"
@@ -352,7 +352,7 @@ let view model (dispatch: Msg -> unit) =
                                                 HTMLAttr.Type "number"
                                                 Step "any" 
                                                 OnChange (fun ev -> dispatch (SetHopOunces (4, !!ev.target?value) ) ) ] ]
-                                        th [] [
+                                        td [] [
                                             input [
                                                 Id "alpha-acids-5" 
                                                 ClassName "form-control"
@@ -360,7 +360,7 @@ let view model (dispatch: Msg -> unit) =
                                                 HTMLAttr.Type "number"
                                                 Step "any" 
                                                 OnChange (fun ev -> dispatch (SetHopAlphaAcids (4, !!ev.target?value) ) ) ] ]
-                                        th [] [
+                                        td [] [
                                             input [
                                                 Id "boil-time-5" 
                                                 ClassName "form-control"
@@ -368,7 +368,7 @@ let view model (dispatch: Msg -> unit) =
                                                 HTMLAttr.Type "number"
                                                 Step "any"
                                                 OnChange (fun ev -> dispatch (SetHopBoilTime (4, !!ev.target?value) ) ) ] ]
-                                        th [] [
+                                        td [] [
                                             select [
                                                 Id "hop-type-5" 
                                                 ClassName "form-control"
@@ -377,15 +377,15 @@ let view model (dispatch: Msg -> unit) =
                                                 DefaultValue "1"] [
                                                     option [ Value "1" ] [ str "Whole/Plug"]
                                                     option [ Value "2" ] [ str "Pellet"]  ] ]
-                                        th [] [
+                                        td [] [
                                             p [] [str (sprintf "%.4f" model.IbuResult.HopIbuResults.Tail.Tail.Tail.Tail.Head.Utilization)]
                                         ]
-                                        th [] [
+                                        td [] [
                                             p [] [str (sprintf "%.2f" model.IbuResult.HopIbuResults.Tail.Tail.Tail.Tail.Head.Ibus)]
                                         ]
                                     ]
                                     tr [] [
-                                        th [] [
+                                        td [] [
                                             input [
                                                 Id "hop-ounces-6" 
                                                 ClassName "form-control"
@@ -393,7 +393,7 @@ let view model (dispatch: Msg -> unit) =
                                                 HTMLAttr.Type "number"
                                                 Step "any" 
                                                 OnChange (fun ev -> dispatch (SetHopOunces (5, !!ev.target?value) ) ) ] ]
-                                        th [] [
+                                        td [] [
                                             input [
                                                 Id "alpha-acids-6" 
                                                 ClassName "form-control"
@@ -401,7 +401,7 @@ let view model (dispatch: Msg -> unit) =
                                                 HTMLAttr.Type "number"
                                                 Step "any" 
                                                 OnChange (fun ev -> dispatch (SetHopAlphaAcids (5, !!ev.target?value) ) ) ] ]
-                                        th [] [
+                                        td [] [
                                             input [
                                                 Id "boil-time-6" 
                                                 ClassName "form-control"
@@ -409,7 +409,7 @@ let view model (dispatch: Msg -> unit) =
                                                 HTMLAttr.Type "number"
                                                 Step "any"
                                                 OnChange (fun ev -> dispatch (SetHopBoilTime (5, !!ev.target?value) ) ) ] ]
-                                        th [] [
+                                        td [] [
                                             select [
                                                 Id "hop-type-6" 
                                                 ClassName "form-control"
@@ -418,10 +418,10 @@ let view model (dispatch: Msg -> unit) =
                                                 DefaultValue "1"] [
                                                     option [ Value "1" ] [ str "Whole/Plug"]
                                                     option [ Value "2" ] [ str "Pellet"]  ] ]
-                                        th [] [
+                                        td [] [
                                             p [] [str (sprintf "%.4f" model.IbuResult.HopIbuResults.Tail.Tail.Tail.Tail.Tail.Head.Utilization)]
                                         ]
-                                        th [] [
+                                        td [] [
                                             p [] [str (sprintf "%.2f" model.IbuResult.HopIbuResults.Tail.Tail.Tail.Tail.Tail.Head.Ibus)]
                                         ]
                                     ]

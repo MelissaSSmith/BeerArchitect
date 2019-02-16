@@ -13,8 +13,8 @@ let view () =
             div [ClassName "row"] [
                 sidebarNavigationMenu
                 div [ClassName "ml-sm-auto col-md-10 px-4 beer-body"] [
-                    div [ClassName "row beer-row"] [
-                        div [ClassName "card"] [
+                    div [ClassName "row beer-row col-3"] [
+                        div [ClassName "card w-100"] [
                             div [ClassName "card-header"] [ str "Browse" ]
                             ul [ClassName "list-group list-group-flush"] [
                                 li [ClassName "list-group-item"] [

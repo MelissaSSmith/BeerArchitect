@@ -8,8 +8,8 @@ open Shared
 
 let hopAlphaAcidRow hopAlphaAcid =
     tr [] [
-        th [] [ str hopAlphaAcid.Hops ]
-        th [] [ str (sprintf "%.1f" hopAlphaAcid.AverageAlphaAcids) ]
+        td [] [ str hopAlphaAcid.Hops ]
+        td [] [ str (sprintf "%.1f" hopAlphaAcid.AverageAlphaAcids) ]
     ]
 
 let hopAlphaAcidTable hopAlphaAcidList =

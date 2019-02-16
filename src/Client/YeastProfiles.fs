@@ -1,9 +1,9 @@
 module Client.YeastProfiles
 
 open Elmish
+open Fable.Core
 open Fable.Helpers.React
 open Fable.Helpers.React.Props
-open Fable.Core.JsInterop
 open Fable.PowerPack
 open Fable.PowerPack.Fetch.Fetch_types
 #if FABLE_COMPILER
@@ -23,6 +23,7 @@ type Model = {
 
 type Msg =
     | RetrievedYeastList of Yeast list
+    | Done of unit
     | Error of exn
 
 let getYeastList a =
@@ -38,6 +39,9 @@ let getYeastList a =
             return! failwithf "An error has occured"
     }
 
+[<Emit("yeastTableSearchAndSort($0)")>]
+let setUpSearchAndSort yeastList : unit = failwith "JS only"
+
 let init result =
     match result with
     | _ ->
@@ -50,24 +54,27 @@ let init result =
 let update (msg:Msg) (model:Model) : Model*Cmd<Msg> =
     match msg with
     | RetrievedYeastList yeastList ->
-        { model with YeastList = yeastList }, Cmd.none
+        let jsonYeastList = Encode.Auto.toString(0, yeastList)
+        { model with YeastList = yeastList }, Cmd.ofFunc setUpSearchAndSort jsonYeastList Done Error
     | Error exn ->
         { model with ErrorMsg = string (exn.Message) }, Cmd.none
+    | Done unit ->
+        model, Cmd.none
 
 type YeastRowProps =
     { yeast: Yeast; }
 
 let yeastRowComponent { yeast = yeast; } =
     tr [] [
-        th [ClassName "company"] [ str (sprintf "%s" yeast.Company) ]
-        th [ClassName "yeastId"] [ str (sprintf "%s" yeast.YeastId) ]
-        th [ClassName "name"] [ str (sprintf "%s" yeast.Name) ]
-        th [Scope "col"] [ str (sprintf "%.0f-%.0f%%" yeast.LowAttenuation yeast.HighAttenuation) ]
-        th [Scope "col"] [ str (sprintf "%s" yeast.Flocculation) ]
-        th [Scope "col"] [ str (sprintf "%.0f-%.0f F" yeast.LowTemp yeast.HighTemp) ]
-        th [Scope "col"] [ str (sprintf "%s" yeast.AlcoholTolerance) ]
-        th [ClassName "type"] [ str (sprintf "%s" yeast.Type) ]
-        th [ClassName "format"] [ str (sprintf "%s" yeast.YeastFormat) ] ]
+        td [ClassName "company"] [ str (sprintf "%s" yeast.Company) ]
+        td [ClassName "yeastId"] [ str (sprintf "%s" yeast.YeastId) ]
+        td [ClassName "name"] [ str (sprintf "%s" yeast.Name) ]
+        td [Scope "col"] [ str (sprintf "%.0f-%.0f%%" yeast.LowAttenuation yeast.HighAttenuation) ]
+        td [Scope "col"] [ str (sprintf "%s" yeast.Flocculation) ]
+        td [Scope "col"] [ str (sprintf "%.0f-%.0f F" yeast.LowTemp yeast.HighTemp) ]
+        td [Scope "col"] [ str (sprintf "%s" yeast.AlcoholTolerance) ]
+        td [ClassName "type"] [ str (sprintf "%s" yeast.Type) ]
+        td [ClassName "format"] [ str (sprintf "%s" yeast.YeastFormat) ] ]
 
 let inline YeastRowComponent props = (ofFunction yeastRowComponent) props []
 

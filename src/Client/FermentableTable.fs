@@ -69,7 +69,7 @@ type FermentableRowProps =
 
 let fermentableRowComponent { rowId = rowId; fermentableList = fermentableList; setGrainAmount = setGrainAmount; setGrainId = setGrainId } =
     tr [] [
-        th [] [
+        td [] [
             input [
                 Id (sprintf "grain-amount-%i" rowId)
                 ClassName "form-control"
@@ -77,7 +77,7 @@ let fermentableRowComponent { rowId = rowId; fermentableList = fermentableList; 
                 HTMLAttr.Type "number"
                 Step "any" 
                 OnChange setGrainAmount ] ]
-        th [] [
+        td [] [
             select [
                 Id (sprintf "grain-%i" rowId)
                 ClassName "form-control"
