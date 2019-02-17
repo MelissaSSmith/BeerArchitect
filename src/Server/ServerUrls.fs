@@ -17,6 +17,8 @@ module PageUrls =
   let DilutionBoilOffCalculator = "/dilution-boil-off-calculator"
   [<Literal>]
   let YeastProfiles = "/yeast-profiles"
+  [<Literal>]
+  let FermentableProfiles = "/fermentables"
 
 module APIUrls =
 

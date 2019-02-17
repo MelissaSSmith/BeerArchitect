@@ -46,6 +46,9 @@ let urlUpdate (result: Page option) (model: Model) =
     | Some Page.DilutionBoilOffCalculator ->
         let m, cmd = DilutionBoilOffCalculator.init()
         { model with PageModel = DilutionBoilOffCalculatorPageModel m }, Cmd.map DilutionBoilOffCalculatorMsg cmd
+    | Some Page.FermentableProfiles ->
+        let m, cmd = FermentableProfiles.init()
+        { model with PageModel = FermentableProfilesPageModel m }, Cmd.map FermentableProfilesMsg cmd
     | Some Page.Home ->
         { model with PageModel = HomePageModel }, Cmd.none
 
@@ -119,6 +122,14 @@ let update msg model =
                     Cmd.map DilutionBoilOffCalculatorMsg cmd
                 ]
     | DilutionBoilOffCalculatorMsg _, _ -> model, Navigation.newUrl (toPath Page.DilutionBoilOffCalculator)
+    | FermentableProfilesMsg msg, FermentableProfilesPageModel m ->
+        let m, cmd = FermentableProfiles.update msg m
+        { model with
+            PageModel = FermentableProfilesPageModel m },
+                Cmd.batch [
+                    Cmd.map FermentableProfilesMsg cmd
+                ]
+    | FermentableProfilesMsg _, _ -> model, Navigation.newUrl (toPath Page.FermentableProfiles)
 
 
 Program.mkProgram init update view

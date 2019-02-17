@@ -39,8 +39,8 @@ let getYeastList a =
             return! failwithf "An error has occured"
     }
 
-[<Emit("yeastTableSearchAndSort($0)")>]
-let setUpSearchAndSort yeastList : unit = failwith "JS only"
+[<Emit("yeastTableSearchAndSort()")>]
+let setUpSearchAndSort a : unit = failwith "JS only"
 
 let init result =
     match result with
@@ -54,8 +54,7 @@ let init result =
 let update (msg:Msg) (model:Model) : Model*Cmd<Msg> =
     match msg with
     | RetrievedYeastList yeastList ->
-        let jsonYeastList = Encode.Auto.toString(0, yeastList)
-        { model with YeastList = yeastList }, Cmd.ofFunc setUpSearchAndSort jsonYeastList Done Error
+        { model with YeastList = yeastList }, Cmd.ofFunc setUpSearchAndSort [] Done Error
     | Error exn ->
         { model with ErrorMsg = string (exn.Message) }, Cmd.none
     | Done unit ->
@@ -71,7 +70,7 @@ let yeastRowComponent { yeast = yeast; } =
         td [ClassName "name"] [ str (sprintf "%s" yeast.Name) ]
         td [Scope "col"] [ str (sprintf "%.0f-%.0f%%" yeast.LowAttenuation yeast.HighAttenuation) ]
         td [Scope "col"] [ str (sprintf "%s" yeast.Flocculation) ]
-        td [Scope "col"] [ str (sprintf "%.0f-%.0f F" yeast.LowTemp yeast.HighTemp) ]
+        td [Scope "col"] [ str (sprintf "%.0f-%.0f \u00b0F" yeast.LowTemp yeast.HighTemp) ]
         td [Scope "col"] [ str (sprintf "%s" yeast.AlcoholTolerance) ]
         td [ClassName "type"] [ str (sprintf "%s" yeast.Type) ]
         td [ClassName "format"] [ str (sprintf "%s" yeast.YeastFormat) ] ]
@@ -86,7 +85,7 @@ let view model (dispatch: Msg -> unit) =
         div [ClassName "container-fluid"] [
             div [ClassName "row"] [
                 sidebarNavigationMenu
-                div [ClassName "col-md-10 ml-sm-auto col-lg-10 px-4 beer-body"] [
+                div [ClassName "col-md-10 ml-sm-auto px-4 beer-body"] [
                     div [ClassName "row beer-row bottom-border"] [ pageHeader "Yeast Profiles"] 
                     div [ClassName "row beer-row" 
                          Id "yeast-profile-table"] [

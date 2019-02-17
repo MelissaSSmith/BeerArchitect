@@ -3,8 +3,6 @@ module Client.Home
 open Fable.Helpers.React
 open Fable.Helpers.React.Props
 open Client.NavigationMenu
-open Client.Pages
-open Client.Style
 
 let view () =
     div [] [
@@ -17,6 +15,10 @@ let view () =
                         div [ClassName "card w-100"] [
                             div [ClassName "card-header"] [ str "Browse" ]
                             ul [ClassName "list-group list-group-flush"] [
+                                li [ClassName "list-group-item"] [
+                                    a [ Href "/fermentables"
+                                        ClassName "btn btn-link"] [ str "Fermentables" ]
+                                ]
                                 li [ClassName "list-group-item"] [
                                     a [ Href "/yeast-profiles"
                                         ClassName "btn btn-link"] [ str "Yeast" ]
