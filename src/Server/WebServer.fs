@@ -21,6 +21,7 @@ let webApp : HttpHandler =
             route PageUrls.DilutionBoilOffCalculator Pages.dilutionBoilOffCalculator
             route PageUrls.YeastProfiles Pages.yeastProfiles
             route PageUrls.FermentableProfiles Pages.fermentableProfiles
+            route PageUrls.HopProfiles Pages.hopProfiles
             route APIUrls.GetFermentables Fermentables.getAllFermentables
             route APIUrls.GetHopAlphaAcids Hops.getAllHopAlphaAcids
             route APIUrls.GetYeasts Yeast.getAllYeast

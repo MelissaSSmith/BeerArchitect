@@ -2,10 +2,12 @@
     {
         "Name": "Admiral",
         "UrlId": "admiral",
-        "Characteristics": "",
+        "Characteristics": "Aggressive but smooth bittering with an orange-citrus and herbal resonance",
         "Use": "Bittering",
         "AlphaAcidsLow": 13.0,
         "AlphaAcidsHigh": 16.2,
+        "BetaAcidsLow": 4.6,
+        "BetaAcidsHigh": 6.1,
         "CoHumuloneComposition": "37-45%",
         "Country": "United Kingdom",
         "TotalOilComposition": "1-1.7 mL/100g",

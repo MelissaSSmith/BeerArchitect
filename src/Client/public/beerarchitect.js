@@ -18,6 +18,11 @@ function fermentableTableSearchAndSort() {
             pagination: true
         };
         
-        var yeastList = new List('fermentable-table', options);
+        var fermentableList = new List('fermentable-table', options);
+    });
+}
+
+function hopTableSearchAndSort() {
+    $(window).bind("load", function() {
     });
 }

@@ -19,6 +19,8 @@ module PageUrls =
   let YeastProfiles = "/yeast-profiles"
   [<Literal>]
   let FermentableProfiles = "/fermentables"
+  [<Literal>]
+  let HopProfiles = "/hops"
 
 module APIUrls =
 

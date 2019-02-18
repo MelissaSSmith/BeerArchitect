@@ -92,5 +92,15 @@ let fermentableProfiles: HttpHandler = fun _ ctx ->
         return! ctx.WriteHtmlViewAsync (Templates.index (Some model))
     }
 
+let hopProfiles: HttpHandler = fun _ ctx ->
+    task {
+        let model: Model = {
+            PageModel = 
+                let m,_ = Client.HopProfiles.init None
+                PageModel.HopProfilesPageModel m
+        }
+        return! ctx.WriteHtmlViewAsync (Templates.index (Some model))
+    }
+
 let notfound: HttpHandler = fun _ ctx ->
     ctx.WriteHtmlViewAsync (Templates.index None)

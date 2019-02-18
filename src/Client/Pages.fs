@@ -12,6 +12,7 @@ type Page =
     | YeastProfiles
     | DilutionBoilOffCalculator
     | FermentableProfiles
+    | HopProfiles
 
 let toPath =
     function
@@ -24,6 +25,7 @@ let toPath =
     | Page.YeastProfiles -> "/yeast-profiles"
     | Page.DilutionBoilOffCalculator -> "/dilution-boil-off-calculator"
     | Page.FermentableProfiles -> "/fermentables"
+    | Page.HopProfiles -> "/hops"
     
 let pageParser : Parser<Page -> Page,_> =
     oneOf
@@ -35,6 +37,7 @@ let pageParser : Parser<Page -> Page,_> =
           map Page.AllGrainCalculator (s "all-grain-calculator")
           map Page.YeastProfiles (s "yeast-profiles")
           map Page.DilutionBoilOffCalculator (s "dilution-boil-off-calculator")
-          map Page.FermentableProfiles (s "fermentables")]
+          map Page.FermentableProfiles (s "fermentables")
+          map Page.HopProfiles (s "hops")]
 
 let urlParser location = parsePath pageParser location

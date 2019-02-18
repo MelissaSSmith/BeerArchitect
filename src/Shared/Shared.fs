@@ -73,6 +73,8 @@ type Hop =
       Use: string
       AlphaAcidsLow: float
       AlphaAcidsHigh: float
+      BetaAcidsLow: float
+      BetaAcidsHigh: float
       CoHumuloneComposition: string
       Country: string
       TotalOilComposition: string

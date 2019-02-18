@@ -54,8 +54,8 @@ let init result =
 
 let update (msg:Msg) (model:Model) : Model*Cmd<Msg> =
     match msg with
-    | RetrievedFermentableList yeastList ->
-        { model with FermentableList = yeastList }, Cmd.ofFunc setUpSearchAndSort [] Done Error
+    | RetrievedFermentableList fermentableList ->
+        { model with FermentableList = fermentableList }, Cmd.ofFunc setUpSearchAndSort [] Done Error
     | Error exn ->
         { model with ErrorMsg = string (exn.Message) }, Cmd.none
     | Done unit ->

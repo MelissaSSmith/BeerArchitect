@@ -20,6 +20,10 @@ let view () =
                                         ClassName "btn btn-link"] [ str "Fermentables" ]
                                 ]
                                 li [ClassName "list-group-item"] [
+                                    a [ Href "/hops"
+                                        ClassName "btn btn-link"] [ str "Hops" ]
+                                ]
+                                li [ClassName "list-group-item"] [
                                     a [ Href "/yeast-profiles"
                                         ClassName "btn btn-link"] [ str "Yeast" ]
                                 ]

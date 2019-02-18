@@ -10,6 +10,7 @@ type PageModel =
     | YeastProfilesPageModel of YeastProfiles.Model
     | DilutionBoilOffCalculatorPageModel of DilutionBoilOffCalculator.Model
     | FermentableProfilesPageModel of FermentableProfiles.Model
+    | HopProfilesPageModel of HopProfiles.Model
 
 type Model =
     { PageModel : PageModel }
@@ -23,6 +24,7 @@ type Msg =
     | YeastProfilesMsg of YeastProfiles.Msg
     | DilutionBoilOffCalculatorMsg of DilutionBoilOffCalculator.Msg
     | FermentableProfilesMsg of FermentableProfiles.Msg
+    | HopProfilesMsg of HopProfiles.Msg
 
 open Fable.Helpers.React
 
@@ -46,6 +48,8 @@ let viewPage model dispatch =
         DilutionBoilOffCalculator.view m (DilutionBoilOffCalculatorMsg >> dispatch)
     | FermentableProfilesPageModel m ->
         FermentableProfiles.view m (FermentableProfilesMsg >> dispatch)
+    | HopProfilesPageModel m -> 
+        HopProfiles.view m (HopProfilesMsg >> dispatch)
 
 let view model dispatch =
     div [] [ viewPage model dispatch ]
