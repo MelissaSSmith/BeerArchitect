@@ -24,6 +24,7 @@ let webApp : HttpHandler =
             route APIUrls.GetFermentables Fermentables.getAllFermentables
             route APIUrls.GetHopAlphaAcids Hops.getAllHopAlphaAcids
             route APIUrls.GetYeasts Yeast.getAllYeast
+            route APIUrls.GetHops Hops.getAllHops
         ]
         POST [
             route APIUrls.CalculateAbv AbvCalculator.calculate

@@ -1,0 +1,19 @@
+[
+    {
+        "Name": "Admiral",
+        "UrlId": "admiral",
+        "Characteristics": "",
+        "Use": "Bittering",
+        "AlphaAcidsLow": 13.0,
+        "AlphaAcidsHigh": 16.2,
+        "CoHumuloneComposition": "37-45%",
+        "Country": "United Kingdom",
+        "TotalOilComposition": "1-1.7 mL/100g",
+        "MyrceneOilComposition": "39-48%",
+        "HumuleneOilComposition": "23-26%",
+        "CaryophylleneOil": "6-7%",
+        "FarneseneOil": "1.08-2.2%",
+        "Substitutes": [ "Chinook", "Northdown", "Challenger", "Centennial", "Cascade (US)", "Amarillo", "Target" ],
+        "BeerStyles": ["Extra Special Bitter", "American India Pale Ale", "Belgian India Pale Ale", "Imperial India Pale Ale", "India Pale Ale", "Pale Ale", "Bitter"]
+    }
+]

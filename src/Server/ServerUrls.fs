@@ -27,17 +27,19 @@ module APIUrls =
   [<Literal>]
   let CalculateSrm = "/api/srm/calculate"
   [<Literal>]
-  let GetFermentables = "/api/fermentable/get"
+  let GetFermentables = "/api/fermentables"
   [<Literal>]
   let CalculateIbu = "/api/ibu/calculate"
   [<Literal>]
   let GetHopAlphaAcids = "/api/hops/get-alpha-acids"
   [<Literal>]
+  let GetHops = "/api/hops"
+  [<Literal>]
   let CalculateHydrometerAdjustment = "/api/hydrometer-temp/calculate"
   [<Literal>]
   let CalculateAllGrainEstimations = "/api/all-grain/calculate"
   [<Literal>]
-  let GetYeasts = "/api/yeast/get"
+  let GetYeasts = "/api/yeast"
   [<Literal>]
   let CalculateDilutionVolume = "/api/brew/boil-off/new-volume"
   [<Literal>]

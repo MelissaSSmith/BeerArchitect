@@ -2055,7 +2055,7 @@
     },
     {
         "Name": "British Ale I",
-        "YeastId": "OLY-003",
+        "YeastId": "OLY-006",
         "LowAttenuation": 70.0,
         "HighAttenuation": 80.0,
         "Flocculation": "Med-High",

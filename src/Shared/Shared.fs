@@ -66,6 +66,23 @@ type HopAlphaAcid =
     { Hops: string
       AverageAlphaAcids: float }
 
+type Hop = 
+    { Name: string
+      UrlId: string
+      Characteristics: string
+      Use: string
+      AlphaAcidsLow: float
+      AlphaAcidsHigh: float
+      CoHumuloneComposition: string
+      Country: string
+      TotalOilComposition: string
+      MyrceneOilComposition: string
+      HumuleneOilComposition: string
+      CaryophylleneOil: string
+      FarneseneOil: string
+      Substitutes: string list
+      BeerStyles: string list }
+
 type HydrometerAdjustInput =
     { MeasuredGravity: float
       TemperatureReading: float
