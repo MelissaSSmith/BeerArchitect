@@ -16,6 +16,7 @@
     <Compile Include="../Client/DilutionBoilOffCalculator.fs" Watch="false" />
     <Compile Include="../Client/FermentableProfiles.fs" Watch="false" />
     <Compile Include="../Client/HopProfiles.fs" Watch="false" />
+    <Compile Include="../Client/HopProfile.fs" Watch="false" />
     <Compile Include="../Client/Shared.fs" Watch="false" />
   </ItemGroup>
 </Project>

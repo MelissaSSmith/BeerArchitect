@@ -4,7 +4,7 @@ open Giraffe
 open FSharp.Control.Tasks.V2
 open Client.Shared
 
-let home: HttpHandler = fun _ ctx ->
+let home : HttpHandler = fun _ ctx ->
     task {
         let model: Model = {
             PageModel = PageModel.HomePageModel
@@ -96,8 +96,18 @@ let hopProfiles: HttpHandler = fun _ ctx ->
     task {
         let model: Model = {
             PageModel = 
-                let m,_ = Client.HopProfiles.init None
+                let m,_ = Client.HopProfiles.init
                 PageModel.HopProfilesPageModel m
+        }
+        return! ctx.WriteHtmlViewAsync (Templates.index (Some model))
+    }
+
+let hopProfile s: HttpHandler = fun _ ctx ->
+    task {
+        let model: Model = {
+            PageModel = 
+                let m,_ = Client.HopProfile.init s
+                PageModel.HopProfilePageModel m
         }
         return! ctx.WriteHtmlViewAsync (Templates.index (Some model))
     }

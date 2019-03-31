@@ -43,14 +43,12 @@ let getHopList a =
 [<Emit("hopTableSearchAndSort()")>]
 let setUpSearchAndSort a : unit = failwith "JS only"
 
-let init result =
-    match result with
-    | _ ->
-        { HopList = list.Empty
-          ErrorMsg = "" },
-          Cmd.batch [
-              Cmd.ofPromise getHopList [] RetrievedHopList Error
-          ]
+let init =
+    { HopList = list.Empty
+      ErrorMsg = "" },
+      Cmd.batch [
+        Cmd.ofPromise getHopList [] RetrievedHopList Error
+      ]
 
 let update (msg:Msg) (model:Model) : Model*Cmd<Msg> =
     match msg with
@@ -58,7 +56,7 @@ let update (msg:Msg) (model:Model) : Model*Cmd<Msg> =
         { model with HopList = hopList }, Cmd.ofFunc setUpSearchAndSort [] Done Error
     | Error exn ->
         { model with ErrorMsg = string (exn.Message) }, Cmd.none
-    | Done unit ->
+    | Done _ ->
         model, Cmd.none
 
 type HopRowProps =
@@ -66,7 +64,8 @@ type HopRowProps =
 
 let hopRowComponent { hop = hop; } =
     tr [] [
-        td [ClassName "name"] [ str (sprintf "%s" hop.Name) ]
+        td [ClassName "name"] [ a [Href (sprintf "/hops/%s" hop.UrlId)
+                                   ClassName "btn btn-link"] [ str (sprintf "%s" hop.Name) ] ]
         td [ClassName "use"] [ str (sprintf "%s" hop.Use) ]
         td [ClassName "country"] [ str (sprintf "%s" hop.Country) ]
         td [ClassName "alpha-acids"] [ str (sprintf "%.1f-%.1f%%" hop.AlphaAcidsLow hop.AlphaAcidsHigh) ]

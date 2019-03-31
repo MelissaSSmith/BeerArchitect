@@ -21,6 +21,7 @@ module PageUrls =
   let FermentableProfiles = "/fermentables"
   [<Literal>]
   let HopProfiles = "/hops"
+  let HopProfile = "/hops/%s"
 
 module APIUrls =
 
@@ -36,6 +37,8 @@ module APIUrls =
   let GetHopAlphaAcids = "/api/hops/get-alpha-acids"
   [<Literal>]
   let GetHops = "/api/hops"
+  [<Literal>]
+  let GetHop = "/api/hops/%s"
   [<Literal>]
   let CalculateHydrometerAdjustment = "/api/hydrometer-temp/calculate"
   [<Literal>]

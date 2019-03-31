@@ -50,8 +50,11 @@ let urlUpdate (result: Page option) (model: Model) =
         let m, cmd = FermentableProfiles.init()
         { model with PageModel = FermentableProfilesPageModel m }, Cmd.map FermentableProfilesMsg cmd
     | Some Page.HopProfiles ->
-        let m, cmd = HopProfiles.init()
+        let m, cmd = HopProfiles.init
         { model with PageModel = HopProfilesPageModel m }, Cmd.map HopProfilesMsg cmd
+    | Some Page.HopProfile ->
+        let m, cmd = HopProfile.init "admiral"
+        { model with PageModel = HopProfilePageModel m}, Cmd.map HopProfileMsg cmd
     | Some Page.Home ->
         { model with PageModel = HomePageModel }, Cmd.none
 
@@ -141,6 +144,14 @@ let update msg model =
                     Cmd.map HopProfilesMsg cmd
                 ]
     | HopProfilesMsg _, _ -> model, Navigation.newUrl (toPath Page.HopProfiles)
+    | HopProfileMsg msg, HopProfilePageModel m ->
+        let m, cmd = HopProfile.update msg m
+        { model with
+            PageModel = HopProfilePageModel m },
+                Cmd.batch [
+                    Cmd.map HopProfileMsg cmd
+                ]
+    | HopProfileMsg _, _ -> model, Navigation.newUrl (toPath Page.HopProfile)
 
 
 Program.mkProgram init update view
