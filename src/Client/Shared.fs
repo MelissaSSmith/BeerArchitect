@@ -14,7 +14,8 @@ type PageModel =
     | HopProfilePageModel of HopProfile.Model
 
 type Model =
-    { PageModel : PageModel }
+    { CurrentPage : Pages.Page
+      PageModel : PageModel }
 
 type Msg =
     | AbvCalculatorMsg of AbvCalculator.Msg

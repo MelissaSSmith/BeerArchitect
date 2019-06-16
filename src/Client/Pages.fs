@@ -15,21 +15,21 @@ type Page =
     | HopProfiles
     | HopProfile of string
 
-let toPath =
+let toHash =
     function
-    | Page.Home -> "/"
-    | Page.AbvCalculator -> "/abv-calculator"
-    | Page.SrmCalculator -> "/srm-calculator"
-    | Page.IbuCalculator -> "/ibu-calculator"
-    | Page.HydrometerTempCalculator -> "/hydrometer-temp-calculator"
-    | Page.AllGrainCalculator -> "/all-grain-calculator"
-    | Page.YeastProfiles -> "/yeast-profiles"
-    | Page.DilutionBoilOffCalculator -> "/dilution-boil-off-calculator"
-    | Page.FermentableProfiles -> "/fermentables"
-    | Page.HopProfiles -> "/hops"
-    | Page.HopProfile s -> "/hops/" + s
+    | Page.Home -> "#/"
+    | Page.AbvCalculator -> "#/abv-calculator"
+    | Page.SrmCalculator -> "#/srm-calculator"
+    | Page.IbuCalculator -> "#/ibu-calculator"
+    | Page.HydrometerTempCalculator -> "#/hydrometer-temp-calculator"
+    | Page.AllGrainCalculator -> "#/all-grain-calculator"
+    | Page.YeastProfiles -> "#/yeast-profiles"
+    | Page.DilutionBoilOffCalculator -> "#/dilution-boil-off-calculator"
+    | Page.FermentableProfiles -> "#/fermentables"
+    | Page.HopProfiles -> "#/hops"
+    | Page.HopProfile s -> "#/hops/" + s
     
-let pageParser : Parser<Page -> Page,_> =
+let pageParser : Parser<Page -> Page,Page> =
     oneOf
         [ map Page.Home (s "")
           map Page.AbvCalculator (s "abv-calculator") 

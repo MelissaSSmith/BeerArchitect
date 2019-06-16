@@ -23,7 +23,7 @@ let goToUrl (e: React.MouseEvent) =
 
 let viewLink page description =
   R.a [ ClassName "nav-item nav-link sidebar-tab"
-        Href (Pages.toPath page)
+        Href (Pages.toHash page)
         OnClick goToUrl]
       [ R.str description]
 
